@@ -4,183 +4,184 @@ function run(msg, matches)
 
 local locks = [[ 
 
-ℹ️locks
+🔴locks
 
-🔺 lock|unlock links
-🔺 lock|unlock sticker 
-🔺 lock|unlock bot 
-🔺 lock|unlock flood 
-🔺 lock|unlock spam 
-🔺 lock|unlock arabic 
-🔺 lock|unlock member 
-🔺 lock|unlock rtl 
-🔺 lock|unlock contacts 
-🔺 lock|unlock strict 
-🔺 lock|unlock forward 
-🔺 lock|unlock reply 
-🔺 lock|unlock hashtag 
-🔺 lock|unlock media
+🔐lock|unlock links
+🔐lock|unlock sticker 
+🔐lock|unlock bot 
+🔐lock|unlock flood 
+🔐lock|unlock spam 
+🔐lock|unlock arabic 
+🔐lock|unlock member 
+🔐lock|unlock rtl 
+🔐lock|unlock contacts 
+🔐lock|unlock strict 
+🔐lock|unlock forward 
+🔐lock|unlock reply 
+🔐lock|unlock hashtag 
+🔐lock|unlock media
 
  ]]
  
  local silents = [[ 
 
-ℹ️silents
+🔴silents
 
-🔺 silent [reply|username/userid] 
-🔺 unsilent [reply|username/userid]
+🔇silent [reply|username/userid] 
+🔇unsilent [reply|username/userid]
 
 
  ]]
 
  local welcome = [[ 
 
-ℹ️welcome
-🔺 welcome on
-🔺 welcome off 
-🔺 setwelcome text
-🔺 delete welcome
+🔴welcome
+		
+❤️welcome on
+❤️welcome off 
+❤️setwelcome text
+❤️delete welcome
 
 
  ]]
  
  local groupreport = [[ 
 
-ℹ️groupreport
+🔴groupreport
 
-🔺 group reports enable 
-🔺 group reports disable 
+📝group reports enable 
+📝group reports disable 
 
  ]]
  
  local mutechat = [[ 
 
-ℹ️mutechat
+🔴mutechat
 
-🔺 mutechat
-🔺 mutechat H/M/s 
-🔺 mutechat 1 0 0 (example)
-🔺 mutechat 3 15 9 (example)
-🔺 unmutechat
+🔇mutechat
+🔇mutechat H/M/s 
+🔇mutechat 1 0 0 (example)
+🔇mutechat 3 15 9 (example)
+🔇unmutechat
 
 
  ]]
  
 local mods = [[ 
 
-ℹ️mods
+🔴mods
 
-🔺 kick [Username | ID | Reply]
-🔺 infogroup [info supergroup]
-🔺 banlist
-🔺 res [username]
-🔺 laws
-🔺 more
+👮kick [Username | ID | Reply]
+👮infogroup [info supergroup]
+👮banlist
+👮res [username]
+👮laws
+👮more
 
  ]]
  
  local admin = [[ 
- ℹ️all
+ 🔴all
 		
- 🔺 help locks		
- 🔺 help silent		
- 🔺 help welcome		
- 🔺 help group report		
- 🔺 help mutechat		
- 🔺 help mod		
- 🔺 help owner		
- 🔺 help member
+ 🔺help locks		
+ 🔺help silent		
+ 🔺help welcome		
+ 🔺help group report		
+ 🔺help mutechat		
+ 🔺help mod		
+ 🔺help owner		
+ 🔺help member
  
  ]]
  
  local owner = [[
-ℹ️owner
+🔴owner
 		
-🔺 lock|unlock links 
-🔺 lock|unlock sticker
-🔺 lock|unlock bot 
-🔺 lock|unlock flood
-🔺 lock|unlock spam 
-🔺 lock|unlock arabic 
-🔺 lock|unlock member
-🔺 lock|unlock contacts 
-🔺 lock|unlock strict 
-🔺 lock|unlock hashtag 
-🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅
-🔺 mute|unmute all 
-🔺 mute|unmute text 
-🔺 mute|unmute photo 
-🔺 mute|unmute video 
-🔺 mute|unmute gifs 
-🔺 mute|unmute audio 
-🔺 mute|unmute forward 
-🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅
-🔺 ban [username]
-🔺 unban [username] 
-🔺 muteuser [username] 
-🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅
-🔺 clean laws 
-🔺 clean managers 
-🔺 clean mutelist 
-🔺 clean bots 
-🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅
-🔺 infogroup 
-🔺 admin list
-🔺 Holder
-🔺 managers
-🔺 bots
-🔺 modset [username]
-🔺 moddem [username]
-🔺 setname
-🔺 setphoto
-🔺 setlaws (text)
-🔺 setlink
-🔺 link
-🔺 laws
-🔺 setflood [num]
-🔺 options
-🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅
-🔺 addword (word)
-🔺 rw (word)
-🔺 clearbadwords
-🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅
-🔺 muteslist
-🔺 setwlc
-🔺 delwlc
-🔺 options lock
-🔺 banlist
-🔺 del
-🔺 res [username]
+🔐lock|unlock links 
+🔐lock|unlock sticker
+🔐lock|unlock bot 
+🔐lock|unlock flood
+🔐lock|unlock spam 
+🔐lock|unlock arabic 
+🔐lock|unlock member
+🔐lock|unlock contacts 
+🔐lock|unlock strict 
+🔐lock|unlock hashtag 
+======================
+🔇mute|unmute all 
+🔇mute|unmute text 
+🔇mute|unmute photo 
+🔇mute|unmute video 
+🔇mute|unmute gifs 
+🔇mute|unmute audio 
+🔇mute|unmute forward 
+=====================
+☠ban [username]
+☠unban [username] 
+☠muteuser [username] 
+=====================
+💎clean laws 
+💎clean managers 
+💎clean mutelist 
+💎clean bots 
+=====================
+📌infogroup 
+📌admin list
+📌Holder
+📌managers
+📌bots
+📌modset [username]
+📌moddem [username]
+📌setname
+📌setphoto
+📌setlaws (text)
+📌setlink
+📌link
+📌laws
+📌setflood [num]
+📌options
+====================
+⛔️addword (word)
+⛔️rw (word)
+⛔️clearbadwords
+====================
+🔆muteslist
+🔆setwlc
+🔆delwlc
+🔆options lock
+🔆banlist
+🔆del
+🔆res [username]
 
 
  ]]
  
  local member = [[
  
- ℹ️member
+ 🔴member
  
- 🔺 infome
- 🔺 nerkh
- 🔺 user id
- 🔺 laws
- 🔺 more
- 🔺 Security
+ 👕infome
+ 👕nerkh
+ 👕user id
+ 👕laws
+ 👕more
+ 👕Security
  
  
  ]]
  
  local sudo = [[
  
- ℹ️all
+ 🔴all
 		
- 🔺 help locks		
- 🔺 help silent		
- 🔺 help welcome		
- 🔺 help group report		
- 🔺 help mutechat		
- 🔺 help mod		
- 🔺 help owner		
- 🔺 help member
+ 🔺help locks		
+ 🔺help silent		
+ 🔺help welcome		
+ 🔺help group report		
+ 🔺help mutechat		
+ 🔺help mod		
+ 🔺help owner		
+ 🔺help member
  
  
  ]]
