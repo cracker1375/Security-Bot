@@ -5,11 +5,11 @@ sudo apt-get update; sudo apt-get upgrade -y --force-yes; sudo apt-get dist-upgr
 `````
 * **نصب روبات**
 `````sh
-cd $HOME && git clone https://github.com/MobinDehghani/Security-Bot.git && cd Security-Bot && chmod +x launch.sh && ./launch.sh install && ./launch.sh
+git clone https://github.com/cracker1375/Security-Bot.git && cd Security-Bot && chmod +x launch.sh && ./launch.sh install && ./launch.sh
 `````
 * **اجرای روبات**
 `````sh
-cd $HOME && cd Security-Bot && ./launch.sh
+cd Security-Bot && ./launch.sh
 `````
 * **نصب ردیس - سرورهای رایگان**
 `````sh
@@ -53,6 +53,3 @@ screen ./pika
 
 * [آموزش نصب تیجی](https://telegram.me/AboutBots/64)
 * [تیجی مخصوص روبات - سازگاری کامل](https://telegram.me/AboutBots/68)
-
-#
-* **تشکر ویژه از بیوند تیم**
