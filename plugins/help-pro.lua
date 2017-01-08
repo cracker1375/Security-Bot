@@ -108,13 +108,13 @@ local mods = [[
 🔐lock|unlock strict 
 🔐lock|unlock hashtag 
 ===================
-🔇mute|unmute all 
-🔇mute|unmute text 
-🔇mute|unmute photo 
-🔇mute|unmute video 
-🔇mute|unmute gifs 
-🔇mute|unmute audio 
-🔇mute|unmute forward 
+🔇mute|unmute all
+🔇mute|unmute text
+🔇mute|unmute photo
+🔇mute|unmute video
+🔇mute|unmute gifs
+🔇mute|unmute audio
+🔇mute|unmute forward
 ===================
 ☠ban [username]
 ☠unban [username] 
