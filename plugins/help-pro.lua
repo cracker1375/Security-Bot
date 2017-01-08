@@ -107,7 +107,7 @@ local mods = [[
 🔐lock|unlock contacts 
 🔐lock|unlock strict 
 🔐lock|unlock hashtag 
-======================
+===================
 🔇mute|unmute all 
 🔇mute|unmute text 
 🔇mute|unmute photo 
@@ -115,16 +115,16 @@ local mods = [[
 🔇mute|unmute gifs 
 🔇mute|unmute audio 
 🔇mute|unmute forward 
-=====================
+===================
 ☠ban [username]
 ☠unban [username] 
 ☠muteuser [username] 
-=====================
+===================
 💎clean laws 
 💎clean managers 
 💎clean mutelist 
 💎clean bots 
-=====================
+===================
 📌infogroup 
 📌admin list
 📌Holder
@@ -140,11 +140,11 @@ local mods = [[
 📌laws
 📌setflood [num]
 📌options
-====================
+===================
 ⛔️addword (word)
 ⛔️rw (word)
 ⛔️clearbadwords
-====================
+===================
 🔆muteslist
 🔆setwlc
 🔆delwlc
