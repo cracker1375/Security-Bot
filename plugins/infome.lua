@@ -50,17 +50,17 @@ local function run(msg, matches)
 	   end
 	  local _nl, ctrl_chars = string.gsub(msg.text, '%c', '')
 	    if string.len(msg.from.print_name) > 40 or ctrl_chars > 70 then
-		local text = '<i> 》کاربر </i> [<b>'..msg.from.first_name..'</b>] <i> به دلیل استفاده از کارکتر های طولانی در نام اکانت کاربری خود قادر به نمایش اطلاعات شما نیستم </i>'
+		local text = ' 》کاربر ['..msg.from.first_name..'] به دلیل استفاده از کارکتر های طولانی در نام اکانت کاربری خود قادر به نمایش اطلاعات شما نیستم '
 return reply_msg(msg.id, text, ok_cb, false)
 end
 	local file = io.open("./info/"..msg.from.id..".txt", "r")
 		--if file ~= nil then
 		if not file then
-	local text = "<i> >کاربر </i> {<b>"..msg.from.first_name.."</b>}\n<i> ابتدا نیاز به تایید حساب کاربری خوددارید </i>\n<i> > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید </i>\n> /activation"
+	local text = ">کاربر {"..msg.from.first_name.."}\nابتدا نیاز به تایید حساب کاربری خوددارید \n > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید \n> /activation"
 	return reply_msg(msg.id, text, ok_cb, false)
 	end
 if string.find(msg.from.username , 'A_P_P_L_E') or string.find(msg.from.username , 'ValtMan') or string.find(msg.from.username , 'Apple_VPN') or string.find(msg.from.username , 'booodit') or string.find(msg.from.username , 'Kiarashlua') then
-local text = '<i> >متاسفم.شما از بخش دریافت اطلاعات خود مسدود هستید! </i> \n<i> >برای رفع مشکل با مدیریت ارتباط برقرار کنید </i>'
+local text = ' >متاسفم.شما از بخش دریافت اطلاعات خود مسدود هستید!  \n >برای رفع مشکل با مدیریت ارتباط برقرار کنید '
 return reply_msg(msg.id, text, ok_cb, false)
 end
 	   userrank = "Member"
@@ -87,7 +87,7 @@ end
  local info_hash = 'info:'..hour..':'..msg.to.id
  local is_info = redis:get(info_hash)
 if is_info then
-    local text = " 》<i> انجام این دستور هر {5} دقیقه امکان پذیر میباشد!  </i>"
+    local text = " 》 انجام این دستور هر {5} دقیقه امکان پذیر میباشد!  "
 	return reply_msg(msg.id, text, ok_cb, false)
      elseif not is_info then
      redis:set(info_hash, true)
