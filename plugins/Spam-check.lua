@@ -91,7 +91,7 @@ local function pre_process(msg)
 		print(msgs)
 		if msgs >= max_msg then
 			print("Pass2")
-			send_large_msg("user#id"..msg.from.id, "》<i> به دلیل ارسال پیام مکرر شما از اکانت کاربری ربات مسدود و  دسترسی شما از ورود به تمامی گروه های ربات گرفته شد </i> <b>(Globally Banned!)</b>")
+			send_large_msg("user#id"..msg.from.id, "》 به دلیل ارسال پیام مکرر شما از اکانت کاربری ربات مسدود و  دسترسی شما از ورود به تمامی گروه های ربات گرفته شد")
 			savelog(msg.from.id.." PM", "User ["..msg.from.id.."] blocked for spam.")
 			block_user("user#id"..msg.from.id,ok_cb,false)--Block user if spammed in private
 			banall_user(msg.from.id, msg.to.id)
@@ -109,12 +109,12 @@ local function pre_process(msg)
 	  if msg.to.type == 'chat' or msg.to.type == 'channel' then
 		if username then
 			savelog(msg.to.id, name_log.." @"..username.." ["..msg.from.id.."] kicked for #spam")
-			send_large_msg(receiver , '》<code> کاربر </code> (<b>'..msg.from.first_name..'</b>) <code> با شناسه کاربری </code> [<b> '..msg.from.id..' </b>] <code> به دلیل ارسال پیام مکرر (بیش از حد مجاز) از گروه اخراج شد </code>')
+			send_large_msg(receiver , '》 کاربر('..msg.from.first_name..')با شناسه کاربری ['..msg.from.id..']به دلیل ارسال پیام مکرر (بیش از حد مجاز) از گروه اخراج شد')
 			--reply_msg(extra.msg.id,"----------------",ok_cb,true)
 			--return reply_msg(msg.id, '》کاربر ('..msg.from.first_name..') با شناسه کاربری ['..msg.from.id..'] به دلیل ارسال پیام مکرر (بیش از حد مجاز) از گروه اخراج شد, ok_cb, false)
 		else
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked for #spam")
-			send_large_msg(receiver , '》<code> کاربر </code> (<b>'..msg.from.first_name..'</b>) <code> با شناسه کاربری </code> [<b> '..msg.from.id..' </b>] <code> به دلیل ارسال پیام مکرر (بیش از حد مجاز) از گروه اخراج شد </code>')
+			send_large_msg(receiver , '》کاربر ('..msg.from.first_name..') با شناسه کاربری ['..msg.from.id..'] به دلیل ارسال پیام مکرر (بیش از حد مجاز) از گروه اخراج شد ')
 			 --reply_msg(extra.msg.id,"----------------",ok_cb,true)
 			--reply_msg(msg.id, '》کاربر ('..msg.from.first_name..') با شناسه کاربری ['..msg.from.id..'] به دلیل ارسال پیام مکرر (بیش از حد مجاز) از گروه اخراج شد, ok_cb, false)
 		end
@@ -146,19 +146,19 @@ local function pre_process(msg)
 		  local GBan_log =  data[tostring(GBan_log)]
 		  for k,v in pairs(GBan_log) do
 			log_SuperGroup = v
-			gban_text = "📃 <i> گزارش جدید </i>  <b>(Banall For Spam)</b>\n________________\n"
-			.."><code> نام کاربر: </code>  "
-			.."[<b> "..name.." </b>] \n  "
-			.."><code> یوزرنیم: </code>  "
+			gban_text = "📃 گزارش جدید (Banall For Spam)\n________________\n"
+			.."> نام کاربر: "
+			.."["..name.."] \n  "
+			..">یوزرنیم:"
 			.."[@"..(msg.from.username or "---").."] \n  "
-			.."><code> شناسه کاربری: </code>  "
-			.."[<b> "..msg.from.id.." </b>] \n________________\n  "
-			.."》<code> دلیل: ارسال پیام مکرر بیش از حد مجاز در گروه </code>  "
-			.."[<b>"..msg.to.print_name.."</b>]"
-			.."<code> به شناسه </code>  "
-			.."[<b> "..msg.to.id.." </b>]\n________________\n  "
-			.."》<code> نوع پیام ارسالی کاربر: </code>  "
-			.."<b>{TEXT}</b>"
+			..">شناسه کاربری:"
+			.."["..msg.from.id.."] \n________________\n  "
+			.."》دلیل: ارسال پیام مکرر بیش از حد مجاز در گروه"
+			.."["..msg.to.print_name.."]"
+			.."به شناسه"
+			.."["..msg.to.id.."]\n________________\n  "
+			.."》نوع پیام ارسالی کاربر:"
+			.."{TEXT}"
 			--send it to log group/channel
 			send_large_msg(log_SuperGroup, gban_text)
 		  end
