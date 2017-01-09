@@ -68,7 +68,7 @@ local function list_plugins(only_enabled)
      -- text = text..v..'  '..status..'\n'
     end
   end
-  local text = text..'<i> تغییرات مورد نظر شما اعمال گردید! </i>'
+  local text = text..' تغییرات مورد نظر شما اعمال گردید! '
   return text
 end
 
@@ -83,7 +83,7 @@ local function enable_plugin( plugin_name )
   print('checking if '..plugin_name..' exists')
   -- Check if plugin is enabled
   if plugin_enabled(plugin_name) then
-    return 'افزونه [<b>'..plugin_name..'</b>] فعال است'
+    return 'افزونه ['..plugin_name..'] فعال است'
   end
   -- Checks if plugin exists
   if plugin_exists(plugin_name) then
@@ -94,19 +94,19 @@ local function enable_plugin( plugin_name )
     -- Reload the plugins
     return reload_plugins( )
   else
-    return 'افزونه [<b>'..plugin_name..'</b>] یافت نشد'
+    return 'افزونه ['..plugin_name..'] یافت نشد'
   end
 end
 
 local function disable_plugin( name, chat )
   -- Check if plugins exists
   if not plugin_exists(name) then
-    return 'افزونه [<b>'..name..'</b>] یافت نشد'
+    return 'افزونه ['..name..'] یافت نشد'
   end
   local k = plugin_enabled(name)
   -- Check if plugin is enabled
   if not k then
-    return 'افزونه [<b>'..name..'</b>] فعال نیست'
+    return 'افزونه ['..name..'] فعال نیست'
   end
   -- Disable and reload
   table.remove(_config.enabled_plugins, k)
@@ -116,7 +116,7 @@ end
 
 local function disable_plugin_on_chat(receiver, plugin)
   if not plugin_exists(plugin) then
-    return "<i> افزونه مورد نظر یافت نشد </i>"
+    return " افزونه مورد نظر یافت نشد "
   end
 
   if not _config.disabled_plugin_on_chat then
@@ -130,7 +130,7 @@ local function disable_plugin_on_chat(receiver, plugin)
   _config.disabled_plugin_on_chat[receiver][plugin] = true
 
   save_config()
-  return '<i> افزونه </i> [<b>'..plugin..'</b>] <i> در این گروه غیر فعال شد </i>'
+  return ' افزونه ['..plugin..'] در این گروه غیر فعال شد '
 end
 
 local function reenable_plugin_on_chat(receiver, plugin)
@@ -148,7 +148,7 @@ local function reenable_plugin_on_chat(receiver, plugin)
 
   _config.disabled_plugin_on_chat[receiver][plugin] = false
   save_config()
-  return '<i> افزونه </i> [<b>'..plugin..'</b>] <i> مجدد فعال شد </i>'
+  return 'افزونه ['..plugin..'] مجدد فعال شد '
 end
 
 local function run(msg, matches)
