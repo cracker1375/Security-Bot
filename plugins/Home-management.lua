@@ -5,7 +5,7 @@ local function check_member_super(cb_extra, success, result)
   local data = cb_extra.data
   local msg = cb_extra.msg
   if type(result) == 'boolean' then
-     return reply_msg(msg.id, '><code> متاسفم.قادر به خواندن این پیام نیستم. </code>\n<b>[Not supported] This is a old message!</b>', ok_cb, false)
+     return reply_msg(msg.id, '> متاسفم.قادر به خواندن این پیام نیستم. \n [Not supported] This is a old message!', ok_cb, false)
    end
   if success == 0 then
 	send_large_msg(receiver, "ℹ️ابتدا من را ادمین کنید!")
@@ -65,10 +65,10 @@ local function check_member_super(cb_extra, success, result)
 	  local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-	  local text = '<i>ℹ️سوپرگروه</i> ['..msg.to.title..'] <i>توسط</i>  [@'..(msg.from.username or '---')..'] <i>به لیست دسترسی های مجاز مدیریتی اضافه شد</i>'
+	  local text = 'ℹ️سوپرگروه ['..msg.to.title..'] توسط  [@'..(msg.from.username or '---')..'] به لیست دسترسی های مجاز مدیریتی اضافه شد'
       return reply_msg(msg.id, text, ok_cb, false)
 	  else
-	   local text = '<b>ℹ️Supergroup</b> ['..msg.to.title..'] <b>By</b>  [@'..(msg.from.username or '---')..'] <b>Management was added to the list of allowed access</b>'
+	   local text = 'ℹ️Supergroup ['..msg.to.title..'] By [@'..(msg.from.username or '---')..'] Management was added to the list of allowed access'
       return reply_msg(msg.id, text, ok_cb, false)
 	  end
 	  --send_msg('user#159887854', text, ok_cb, false)
@@ -82,7 +82,7 @@ local function check_member_superrem(cb_extra, success, result)
   local data = cb_extra.data
   local msg = cb_extra.msg
   if type(result) == 'boolean' then
-     return reply_msg(msg.id, '><code> متاسفم.قادر به خواندن این پیام نیستم. </code>\n<b>[Not supported] This is a old message!</b>', ok_cb, false)
+     return reply_msg(msg.id, '> متاسفم.قادر به خواندن این پیام نیستم. \n [Not supported] This is a old message!', ok_cb, false)
    end
   for k,v in pairs(result) do
     local member_id = v.id
@@ -100,10 +100,10 @@ local function check_member_superrem(cb_extra, success, result)
 	  local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-	  local text = '<i>ℹ️سوپرگروه</i> ['..msg.to.title..'] <i>توسط</i>  [@'..(msg.from.username or '---')..'] <i>از لیست دسترسی های مجاز مدیریتی حذف گردید</i>'
+	  local text = 'ℹ️سوپرگروه ['..msg.to.title..'] توسط [@'..(msg.from.username or '---')..'] از لیست دسترسی های مجاز مدیریتی حذف گردید'
       return reply_msg(msg.id, text, ok_cb, false)
 	  else
-	  local text = '<b>ℹ️Supergroup</b> ['..msg.to.title..'] <b>By</b>  [@'..(msg.from.username or '---')..'] <b>Access was removed from the list of allowed management!</b>'
+	  local text = 'ℹ️Supergroup ['..msg.to.title..'] By [@'..(msg.from.username or '---')..'] Access was removed from the list of allowed management!'
       return reply_msg(msg.id, text, ok_cb, false)
 	  end
 	  --send_msg('user#159887854', text, ok_cb, false)
@@ -131,7 +131,7 @@ local function reset_group(cb_extra, success, result)
   local data = cb_extra.data
   local msg = cb_extra.msg
   if type(result) == 'boolean' then
-     return reply_msg(msg.id, '><code> متاسفم.قادر به خواندن این پیام نیستم. </code>\n<b>[Not supported] This is a old message!</b>', ok_cb, false)
+     return reply_msg(msg.id, '> متاسفم.قادر به خواندن این پیام نیستم. \n [Not supported] This is a old message!', ok_cb, false)
    end
   if success == 0 then
 	send_large_msg(receiver, "ℹ️ابتدا من را ادمین کنید!")
@@ -191,10 +191,10 @@ local function reset_group(cb_extra, success, result)
 	  local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-	  local text = '》<i> تمامی تنظیمات سوپرگروه </i> [<b>'..msg.to.title..'</b>] <i> بازنشانی و به حالت اولیه بازگشت! </i>\n<i> نسبت به تنظیم مجدد اقدام کنید </i>'
+	  local text = '》 تمامی تنظیمات سوپرگروه ['..msg.to.title..']  بازنشانی و به حالت اولیه بازگشت! \n نسبت به تنظیم مجدد اقدام کنید '
       return reply_msg(msg.id, text, ok_cb, false)
 	  else
-	  local text = '》<b>All settings SuperGroup</b> [<i>'..msg.to.title..'</i>] <b>Reset and return to the original state!</b>\n<b>To reset your action</b>'
+	  local text = '》 All settings SuperGroup ['..msg.to.title..'] Reset and return to the original state! \n To reset your action'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -226,11 +226,11 @@ local function silentuser_by_reply(extra, success, result)
 				end
 		if is_muted_user(chat_id, user_id) then
 			--return send_large_msg(receiver, " ["..user_id.."] is already silented.")
-			return reply_msg(extra.msg.reply_id,"><i>  از قبل در لیست کاربران حالت سکوت قرار دارد و توانایی گفتگو در گروه را ندارد!  </i>",ok_cb,true)
+			return reply_msg(extra.msg.reply_id,"> از قبل در لیست کاربران حالت سکوت قرار دارد و توانایی گفتگو در گروه را ندارد!  ",ok_cb,true)
 		end
 			mute_user(chat_id, user_id)
-		return reply_msg(extra.msg.reply_id,"<i>انجام شد </i>\n><i>  به لیست سکوت کاربران افزوده گردید  </i>\n><i> مشخصات کاربر: </i> [@"..(user_name or "—-").."]--[<b>"..user_id.."</b>]",ok_cb,true)
-		--return reply_msg(msg.reply_id,"🔖 <i>انجام شد </i>\n🔇 ><i>  به لیست سکوت کاربران افزوده گردید  </i>\n><i> مشخصات کاربر: </i> --[<b>"..user_id.."</b>]",ok_cb,true)
+		return reply_msg(extra.msg.reply_id,"انجام شد \n>  به لیست سکوت کاربران افزوده گردید  \n> مشخصات کاربر:  [@"..(user_name or "—-").."]--["..user_id.."]",ok_cb,true)
+		--return reply_msg(msg.reply_id,"🔖 انجام شد \n🔇 >  به لیست سکوت کاربران افزوده گردید  \n > مشخصات کاربر: --["..user_id.."]",ok_cb,true)
 	end
 
 local function silentuser_by_username(extra, success, result)
@@ -242,11 +242,11 @@ local function silentuser_by_username(extra, success, result)
 				end
 		if is_muted_user(chat_id, user_id) then
 			--return send_large_msg(receiver, " ["..user_id.."] is already silented.")
-		 reply_msg(extra.msg.id,"><i> کاربر </i> [@"..(user_name or "—-").."]--["..user_id.."] <i> از قبل در لیست سکوت کاربران قرار دارد. </i>",ok_cb,true)
+		 reply_msg(extra.msg.id,"> کاربر [@"..(user_name or "—-").."]--["..user_id.."] از قبل در لیست سکوت کاربران قرار دارد. ",ok_cb,true)
 		end
 			mute_user(chat_id, user_id)
 		--return send_large_msg(receiver, " ["..user_id.."] added to silent users list.")
-		reply_msg(extra.msg.id,"<i>انجام شد </i>\n><i>  به لیست سکوت کاربران افزوده گردید  </i>\n><i> مشخصات کاربر: </i> [@"..(user_name or "—-").."]--[<b>"..user_id.."</b>]",ok_cb,true)
+		reply_msg(extra.msg.id,"انجام شد \n> به لیست سکوت کاربران افزوده گردید  \n> مشخصات کاربر: [@"..(user_name or "—-").."]--["..user_id.."]",ok_cb,true)
 	end
 
 --unsilent_user By @alireza_PT
@@ -262,10 +262,10 @@ function unsilentuser_by_reply(extra, success, result)
 		if is_muted_user(chat_id, user_id) then
 			unmute_user(chat_id, user_id)
 			--send_large_msg(receiver, "> کاربر ["..user_id.."] از لیست  سکوت کاربران حذف گردید.")
-			return reply_msg(extra.msg.reply_id,"<i>انجام شد </i>\n><i>  از لیست سکوت کاربران حذف گردید  </i>\n><i> مشخصات کاربر: </i> [@"..(user_name or "—-").."]--[<b>"..user_id.."</b>]",ok_cb,true)
+			return reply_msg(extra.msg.reply_id,"انجام شد \n> از لیست سکوت کاربران حذف گردید \n> مشخصات کاربر:  [@"..(user_name or "—-").."]--["..user_id.."]",ok_cb,true)
 else
 			--send_large_msg(receiver, "> کاربر ["..user_id.."] در لیست سکوت کاربران قرار ندارد.")
-			return reply_msg(extra.msg.reply_id,"><i>  در لیست حالت سکوت کاربران قرار ندارد و توانایی گفتگو در گروه را دارا میباشد!  </i>",ok_cb,true)
+			return reply_msg(extra.msg.reply_id,"> در لیست حالت سکوت کاربران قرار ندارد و توانایی گفتگو در گروه را دارا میباشد!  ",ok_cb,true)
 		end
 	end
 
@@ -276,10 +276,10 @@ local function unsilentuser_by_username(extra, success, result)
 		if is_muted_user(chat_id, user_id) then
 			unmute_user(chat_id, user_id)
 			--send_large_msg(receiver, "> کاربر ["..user_id.."] از لیست  سکوت کاربران حذف گردید.")
-			reply_msg(extra.msg.id,"<i>انجام شد </i>\n><i>  از لیست سکوت کاربران حذف گردید  </i>\n><i> مشخصات کاربر: </i> [@"..(user_name or "—-").."]--[<b>"..user_id.."</b>]",ok_cb,true)
+			reply_msg(extra.msg.id,"انجام شد \n> از لیست سکوت کاربران حذف گردید \n> مشخصات کاربر: [@"..(user_name or "—-").."]--["..user_id.."]",ok_cb,true)
 else
 			--send_large_msg(receiver, "> کاربر ["..user_id.."] در لیست سکوت کاربران قرار ندارد.")
-			reply_msg(extra.msg.id,"><i> کاربر </i> [@"..(user_name or "—-").."]--["..user_id.."] <i> در لیست حالت سکوت کاربران قرار ندارد. </i>",ok_cb,true)
+			reply_msg(extra.msg.id,"> کاربر [@"..(user_name or "—-").."]--["..user_id.."] در لیست حالت سکوت کاربران قرار ندارد. ",ok_cb,true)
 			-- reply_msg(extra.receiver, "test", ok_cb, true)
 		end
 	end
@@ -305,11 +305,11 @@ end
 
 --Get and output info about supergroup
 local function callback_info(cb_extra, success, result)
-local title ="<i> ℹ️اطلاعات سوپرگروه: </i> [<b>"..result.title.."</b>]\n"
-local admin_num = "<i> 👥تعداد ادمین ها: </i> [<b>"..result.admins_count.."</b>]\n"
-local user_num = "<i> 👤تعداد کاربران: </i> [<b>"..result.participants_count.."</b>]\n"
-local kicked_num = "<i> ⬅️تعداد کاربر اخراج شده: </i> [<b>"..result.kicked_count.."</b>]\n"
-local channel_id = "<i> ⬅️شناسه: </i> [<b>"..result.peer_id.."</b>]\n____________________\n<b>BOT VERSION: 3.6</b>"
+local title ="ℹ️اطلاعات سوپرگروه: ["..result.title.."]\n"
+local admin_num = "👥تعداد ادمین ها: ["..result.admins_count.."]\n"
+local user_num = "👤تعداد کاربران: ["..result.participants_count.."]\n"
+local kicked_num = "⬅️تعداد کاربر اخراج شده: ["..result.kicked_count.."]\n"
+local channel_id = "⬅️شناسه: ["..result.peer_id.."]\n____________________\n BOT VERSION: 3.6"
 if result.username then
 	channel_username = "Username: @"..result.username
 else
@@ -337,7 +337,7 @@ end
 
 --Get and output members of supergroup
 local function callback_wholist(cb_extra, success, result)
-local text = "<i> 📋لیست کاربران موجود در سوپرگروه </i>\n<i> 📋شناسه سوپرگروه </i> [<b>"..cb_extra.receiver.."</b>]\n"
+local text = "📋لیست کاربران موجود در سوپرگروه \n 📋شناسه سوپرگروه ["..cb_extra.receiver.."]\n"
 local i = 1
 for k,v in pairsByKeys(result) do
 if not v.print_name then
@@ -365,7 +365,7 @@ end
 
 --Get and output members of supergroup
 local function callback_whofile(cb_extra, success, result)
-local text = "<i> 📋لیست کاربران موجود در سوپرگروه </i>\n<i> 📋شناسه سوپرگروه </i> [<b>"..cb_extra.receiver.."</b>]\n"
+local text = "📋لیست کاربران موجود در سوپرگروه \n 📋شناسه سوپرگروه ["..cb_extra.receiver.."]\n"
 local i = 1
 for k,v in pairsByKeys(result) do
 if not v.print_name then
@@ -394,7 +394,7 @@ end
 --Get and output list of kicked users for supergroup
 local function callback_kickedlist(cb_extra, success, result)
 --vardump(result)
-local text = "<i> 📋لیست کاربران حذف شده از سوپرگروه </i>\n<i> 📋شناسه سوپرگروه </i> [<b>"..cb_extra.receiver.."</b>]\n____________________"
+local text = "📋لیست کاربران حذف شده از سوپرگروه \n 📋شناسه سوپرگروه ["..cb_extra.receiver.."]\n____________________"
 local i = 1
 for k,v in pairsByKeys(result) do
 if not v.print_name then
@@ -420,7 +420,7 @@ end
 --Get and output list of kicked users for supergroup
 local function callback_kickedfile(cb_extra, success, result)
 --vardump(result)
-local text = "<i> 📋لیست کاربران حذف شده از سوپرگروه </i>\n<i> 📋شناسه سوپرگروه </i> [<b>"..cb_extra.receiver.."</b>]\n"
+local text = "📋لیست کاربران حذف شده از سوپرگروه \n 📋شناسه سوپرگروه ["..cb_extra.receiver.."]\n"
 local i = 1
 for k,v in pairsByKeys(result) do
 if not v.print_name then
@@ -473,24 +473,24 @@ local function cb_user_infouser(cb_extra, success, result)
 	if result.first_name then
 		first_name = result.first_name:gsub("_", " ")
 	else
-		first_name = "<i> ندارد </i>"
+		first_name = " ندارد "
 	end
 	if result.last_name then
 		last_name = result.last_name:gsub("_", " ")
 	else
-		last_name = "<i> ندارد </i>"
+		last_name = " ندارد "
 	end
 	if result.username then
 		username = "@"..result.username
 	else
-		username = "<i> [یافت نشد] </i>"
+		username = " [یافت نشد] "
 	end
 	--if result.from.phone then
 		--phone = "+"..result.from.phone
 	--else
 		--phone = "[یافت نشد]"
 	--end
-	text = "》<i> اطلاعات کاربر: </i>\n\n》<i> شناسه: </i> {<b>"..result.peer_id.."</b>}\n》<i> نام اول: </i> {<b>"..first_name.."</b>}\n》<i> نام آخر: </i> {<b>"..last_name.."</b>}\n》<i> یوزرنیم: </i> {"..username.."}"   --\n》<i> شماره تلفن: </i> {<b>"..phone.."</b>}
+	text = "》 اطلاعات کاربر: \n\n》 شناسه: {"..result.peer_id.."}\n》 نام اول: {"..first_name.."}\n》 نام آخر: {"..last_name.."}\n》 یوزرنیم: {"..username.."}"   --\n》 شماره تلفن: {"..phone.."}
 	send_large_msg(receiver, text)
 	--reply_msg(receiver,text,ok_cb,true) 
 end
@@ -522,7 +522,7 @@ local function logadd(msg)
 	end
 	data[tostring(GBan_log)][tostring(msg.to.id)] = msg.to.peer_id
 	save_data(_config.moderation.data, data)
-	local text = '<b>Log_SuperGroup has has been set!</b>'
+	local text = 'Log_SuperGroup has has been set!'
 	reply_msg(msg.id,text,ok_cb,false)
 	return
 end
@@ -538,7 +538,7 @@ local function logrem(msg)
 	end
 	data[tostring(GBan_log)][tostring(msg.to.id)] = nil
 	save_data(_config.moderation.data, data)
-	local text = '<b>Log_SuperGroup has has been removed!</b>'
+	local text = 'Log_SuperGroup has has been removed!'
 	reply_msg(msg.id,text,ok_cb,false)
 	return
 end
@@ -634,9 +634,9 @@ local function lock_group_links(msg, data, target)
    local hash = 'group:'..msg.to.id
   local group_lang = redis:hget(hash,'lang')
   if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '> از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
 end
 end
     data[tostring(target)]['settings']['lock_link'] = 'yes'
@@ -644,9 +644,9 @@ end
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ارسال لینک قفل شد </i>'
+    return 'ارسال لینک قفل شد'
 	  else
-  return '● <i>Link posting</i> has been <b>locked</b>'
+  return '● Link posting has been locked'
   end
 end
 
@@ -659,9 +659,9 @@ local function unlock_group_links(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+   return reply_msg(msg.id, '> از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_link'] = 'no'
@@ -669,9 +669,9 @@ end
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '️<i> ارسال لینک آزاد شد </i>'
+    return '️ ارسال لینک آزاد شد '
 	else
-	return '● <i>Link posting</i> has been <b>unlocked</b>'
+	return '● Link posting has been unlocked'
   end
 end
 
@@ -684,9 +684,9 @@ local function lock_group_tags(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_tags'] = 'yes'
@@ -694,9 +694,9 @@ local function lock_group_tags(msg, data, target)
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ارسال برچسب قفل شد </i>'
+    return ' ارسال برچسب قفل شد '
 	else
-	return '<i>Tags</i> has been <b>locked</b>'
+	return 'Tags has been locked'
   end
 end
 
@@ -709,9 +709,9 @@ local function unlock_group_tags(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_tags'] = 'no'
@@ -719,9 +719,9 @@ end
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ارسال برچسب آزاد شد </i>'
+    return ' ارسال برچسب آزاد شد '
 	else
-	return '<i>Tags</i> has been <b>unlocked</b>'
+	return 'Tags has been unlocked'
   end
 end
 
@@ -734,9 +734,9 @@ local function lock_group_emoji(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_emoji'] = 'yes'
@@ -744,9 +744,9 @@ local function lock_group_emoji(msg, data, target)
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ارسال شکلک قفل شد </i>'
+    return ' ارسال شکلک قفل شد '
 	else
-	return '<i>emoji</i> has been <b>locked</b>'
+	return 'emoji has been locked'
   end
 end
 
@@ -759,9 +759,9 @@ local function unlock_group_emoji(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_emoji'] = 'no'
@@ -769,9 +769,9 @@ end
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ارسال شکلک آزاد شد </i>'
+    return ' ارسال شکلک آزاد شد '
 	else
-	return '<i>emoji</i> has been <b>unlocked</b>'
+	return 'emoji has been unlocked'
   end
 end
 
@@ -784,9 +784,9 @@ local function lock_group_commands(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '> از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_commands'] = 'yes'
@@ -794,9 +794,9 @@ local function lock_group_commands(msg, data, target)
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> استفاده از دستورات ربات قفل شد </i>'
+    return ' استفاده از دستورات ربات قفل شد '
 	else
-	return '<i>Using</i> robot commands <b>locked</b>'
+	return 'Using robot commands locked</b>'
   end
 end
 
@@ -809,9 +809,9 @@ local function unlock_group_commands(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_commands'] = 'no'
@@ -819,9 +819,9 @@ end
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> استفاده از دستورات ربات آزاد شد </i>'
+    return ' استفاده از دستورات ربات آزاد شد '
 	else
-	return '<i>Using</i> robot commands <b>unlocked</b>'
+	return 'Using robot commands unlocked'
   end
 end
 
@@ -834,9 +834,9 @@ local function lock_group_commandsuser(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_commandsuser'] = 'yes'
@@ -844,9 +844,9 @@ local function lock_group_commandsuser(msg, data, target)
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> استفاده از دستورات ربات قفل شد </i>\n<i> اکنون ربات به کاربران عادی در هنگام استفاده از دستورات پاسخی نخواهد داد! </i>'
+    return ' استفاده از دستورات ربات قفل شد \n اکنون ربات به کاربران عادی در هنگام استفاده از دستورات پاسخی نخواهد داد!'
 	else
-	return '<i>Using</i> BOT commands <b>locked</b>\n<i>Now normal users when using commands the BOT to not respond!</i>'
+	return 'Using BOT commands locked \n Now normal users when using commands the BOT to not respond!'
   end
 end
 
@@ -859,9 +859,9 @@ local function unlock_group_commandsuser(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_commandsuser'] = 'no'
@@ -869,9 +869,9 @@ end
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> استفاده از دستورات ربات آزاد شد </i>'
+    return ' استفاده از دستورات ربات آزاد شد '
 	else
-	return '<i>Using</i> robot commands <b>unlocked</b>'
+	return 'Using robot commands unlocked'
   end
 end
 
@@ -884,9 +884,9 @@ local function lock_group_all(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_all'] = 'yes'
@@ -894,9 +894,9 @@ local function lock_group_all(msg, data, target)
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> تمامی تنظیمات قفل شد </i>'
+    return ' تمامی تنظیمات قفل شد '
 	else
-	return '<i>all</i> setting has been <b>locked</b>'
+	return 'all setting has been locked'
   end
 end
 
@@ -909,9 +909,9 @@ local function unlock_group_all(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_all'] = 'no'
@@ -919,9 +919,9 @@ end
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> تمامی تنظیمات آزاد شد </i>'
+    return ' تمامی تنظیمات آزاد شد '
 	else
-	return '<i>all</i> setting has been <b>unlocked</b>'
+	return 'all setting has been unlocked'
   end
 end
 
@@ -934,9 +934,9 @@ local function lock_group_username(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_username'] = 'yes'
@@ -944,9 +944,9 @@ local function lock_group_username(msg, data, target)
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ارسال یوزرنیم قفل شد </i>'
+    return ' ارسال یوزرنیم قفل شد '
 	else
-	return '<i>username</i> has been <b>locked</b>'
+	return 'username has been locked'
   end
 end
 
@@ -959,9 +959,9 @@ local function unlock_group_username(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_username'] = 'no'
@@ -969,9 +969,9 @@ end
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ارسال یوزرنیم آزاد شد </i>'
+    return ' ارسال یوزرنیم آزاد شد '
 	else
-	return '<i>username</i> has been <b>unlocked</b>'
+	return 'username has been unlocked'
   end
 end
 
@@ -984,9 +984,9 @@ local function lock_group_reply(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_reply'] = 'yes'
@@ -994,9 +994,9 @@ local function lock_group_reply(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> پاسخ قفل شد </i>'
+    return ' پاسخ قفل شد '
 	else
-	return '<i>reply</i> has been <b>locked</b>'
+	return 'reply has been locked'
   end
 end
 
@@ -1009,9 +1009,9 @@ local function unlock_group_reply(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_reply'] = 'no'
@@ -1019,9 +1019,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> پاسخ آزاد شد </i>'
+    return ' پاسخ آزاد شد '
 	else
-	return '<i>reply</i> has been <b>unlocked</b>'
+	return 'reply has been unlocked'
   end
 end
 
@@ -1034,9 +1034,9 @@ local function lock_group_badwords(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_badwords'] = 'yes'
@@ -1044,9 +1044,9 @@ local function lock_group_badwords(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> استفاده از واژه های توهین آمیز قفل شد </i>'
+    return ' استفاده از واژه های توهین آمیز قفل شد '
 	else
-	return '<i>badwords</i> has been <b>locked</b>'
+	return 'badwords has been locked'
   end
 end
 
@@ -1059,9 +1059,9 @@ local function unlock_group_badwords(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_badwords'] = 'no'
@@ -1069,9 +1069,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '️<i> استفاده از واژه های توهین آمیز آزاد شد </i>'
+    return '️ استفاده از واژه های توهین آمیز آزاد شد '
 	else
-	return '<i>badwords</i> has been <b>unlocked</b>'
+	return 'badwords has been unlocked'
   end
 end
 
@@ -1084,9 +1084,9 @@ local group_security_lock = data[tostring(target)]['settings']['lock_security']
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_security'] = 'yes'
@@ -1094,9 +1094,9 @@ local group_security_lock = data[tostring(target)]['settings']['lock_security']
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> قفل امنیتی پیشرفته  فعال شد </i>\n<i> تمامی تنظیمات پیشرفته از قبل تعیین شده نیز فعال شد </i>'
+    return ' قفل امنیتی پیشرفته  فعال شد \n تمامی تنظیمات پیشرفته از قبل تعیین شده نیز فعال شد '
 	else
-	return 'Advanced <i>security</i> lock enabled \n<i>all the advanced settings of the active preset</i>'
+	return 'Advanced security lock enabled \n all the advanced settings of the active preset'
   end
 end
 
@@ -1109,9 +1109,9 @@ local function unlock_group_security(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_security'] = 'no'
@@ -1119,9 +1119,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> قفل امنیتی پیشرفته غیرفعال شد </i>\n<i> تمامی تنظیمات پیشرفته از قبل تعیین شده نیز غیرفعال شد </i>'
+    return ' قفل امنیتی پیشرفته غیرفعال شد \n تمامی تنظیمات پیشرفته از قبل تعیین شده نیز غیرفعال شد '
 	else
-	return 'Advanced <i>security</i> lock disabled \n<i>all advanced settings are predefined disabled</i>'
+	return 'Advanced security lock disabled \n all advanced settings are predefined disabled'
   end
 end
 
@@ -1134,9 +1134,9 @@ local group_webpage_lock = data[tostring(target)]['settings']['lock_webpage']
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_webpage'] = 'yes'
@@ -1144,9 +1144,9 @@ local group_webpage_lock = data[tostring(target)]['settings']['lock_webpage']
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> قفل ارسال صفحات اینترنتی فعال شد </i>'
+    return ' قفل ارسال صفحات اینترنتی فعال شد '
 	else
-	return 'Locks <i>write web</i> pages <b>enabled</b>'
+	return 'Locks write web pages enabled'
   end
 end
 
@@ -1159,9 +1159,9 @@ local function unlock_group_webpage(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '> از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_webpage'] = 'no'
@@ -1169,9 +1169,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> قفل ارسال صفحات اینترنتی غیرفعال شد </i>'
+    return ' قفل ارسال صفحات اینترنتی غیرفعال شد '
 	else
-	return 'Locks <i>write web</i> pages <b>disabled</b>'
+	return 'Locks write web pages disabled'
   end
 end
 
@@ -1184,9 +1184,9 @@ local group_linkpro_lock = data[tostring(target)]['settings']['lock_linkpro']
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_linkpro'] = 'yes'
@@ -1194,9 +1194,9 @@ local group_linkpro_lock = data[tostring(target)]['settings']['lock_linkpro']
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> قفل ارسال لینک پیشرفته فعال شد </i>'
+    return ' قفل ارسال لینک پیشرفته فعال شد '
 	else
-	return 'Lock send the <i>link</i> Enhanced was <b>active</b>'
+	return 'Lock send the link Enhanced was active'
   end
 end
 
@@ -1209,9 +1209,9 @@ local function unlock_group_linkpro(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_linkpro'] = 'no'
@@ -1219,9 +1219,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> قفل ارسال لینک پیشرفته غیرفعال شد </i>'
+    return ' قفل ارسال لینک پیشرفته غیرفعال شد '
 	else
-	return 'Locks send the <i>link</i> Enhanced <b>disabled</b>'
+	return 'Locks send the link Enhanced disabled'
   end
 end
 
@@ -1234,9 +1234,9 @@ local group_porn_lock = data[tostring(target)]['settings']['lock_porn']
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_porn'] = 'yes'
@@ -1244,9 +1244,9 @@ local group_porn_lock = data[tostring(target)]['settings']['lock_porn']
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ارسال تصاویر پورن قفل شد </i>'
+    return ' ارسال تصاویر پورن قفل شد '
 	else
-	return 'Send <i>pornographic</i> images <b>locked</b> '
+	return 'Send pornographic images locked '
   end
 end
 
@@ -1259,9 +1259,9 @@ local function unlock_group_porn(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_porn'] = 'no'
@@ -1269,9 +1269,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ارسال تصاویر پورن آزاد شد </i>'
+    return ' ارسال تصاویر پورن آزاد شد '
 	else
-	return 'Send <i>pornographic</i> images <b>released</b>'
+	return 'Send pornographic images released'
   end
 end
 
@@ -1284,9 +1284,9 @@ local group_pornword_lock = data[tostring(target)]['settings']['lock_pornword']
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_pornword'] = 'yes'
@@ -1294,9 +1294,9 @@ local group_pornword_lock = data[tostring(target)]['settings']['lock_pornword']
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> استفاده از کلمات و جملات(مستهجن) در گروه ممنوع شد </i>\n<i> از این پس تمامی گفتگو های(مستهجن) به صورت خودکار شناسایی و حذف خواهند شد </i>'
+    return ' استفاده از کلمات و جملات (مستهجن) در گروه ممنوع شد \n از این پس تمامی گفتگو های (مستهجن) به صورت خودکار شناسایی و حذف خواهند شد '
 	else
-	return 'The use of words and sentences <i>(pornographic)</i> in the Group was <b>forbidden</b> \n<i>From now on all conversations (pornographic) are automatically detected and removed</i>'
+	return 'The use of words and sentences (pornographic) in the Group was forbidden \n From now on all conversations (pornographic) are automatically detected and removed'
   end
 end
 
@@ -1309,9 +1309,9 @@ local function unlock_group_pornword(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_pornword'] = 'no'
@@ -1319,9 +1319,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> استفاده از کلمات و جملات(مستهجن) در گروه آزاد شد </i>'
+    return ' استفاده از کلمات و جملات (مستهجن) در گروه آزاد شد '
 	else
-	return 'The use of words and sentences <i>(pornographic)</i> in the Group <b>released</b>'
+	return 'The use of words and sentences (pornographic) in the Group released'
   end
 end
 
@@ -1334,9 +1334,9 @@ local group_operator_lock = data[tostring(target)]['settings']['lock_operator']
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_operator'] = 'yes'
@@ -1344,9 +1344,9 @@ local group_operator_lock = data[tostring(target)]['settings']['lock_operator']
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i>ارسال تبلیغات اپراتور ها قفل شد </i>'
+    return 'ارسال تبلیغات اپراتور ها قفل شد '
 	else
-	return 'Advertising <i>operator</i> <b>locked</b>'
+	return 'Advertising operator locked'
   end
 end
 
@@ -1359,9 +1359,9 @@ local function unlock_group_operator(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_operator'] = 'no'
@@ -1369,9 +1369,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ارسال تبلیغات اپراتور ها آزاد شد </i>'
+    return ' ارسال تبلیغات اپراتور ها آزاد شد '
 	else
-	return 'Advertising <i>operator</i> <b>released</b>'
+	return 'Advertising operator released'
   end
 end
 
@@ -1384,9 +1384,9 @@ local group_support_lock = data[tostring(target)]['settings']['lock_support']
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_support'] = 'yes'
@@ -1394,9 +1394,9 @@ local group_support_lock = data[tostring(target)]['settings']['lock_support']
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> قفل محتوای مطالب گروه پشتیبانی فعال شد </i>\n<i> تمامی مطالب از پیش تایین شده در صورت استفاده فیدبک ربات را در پیش دارند </i>'
+    return ' قفل محتوای مطالب گروه پشتیبانی فعال شد \n تمامی مطالب از پیش تایین شده در صورت استفاده فیدبک ربات را در پیش دارند '
 	else
-	return 'Lock content <i>support</i> group <b>enabled</b> \n <i>All content pre-specified ahead of them if you use the robot Feedback</i>'
+	return 'Lock content support group enabled \n All content pre-specified ahead of them if you use the robot Feedback'
   end
 end
 
@@ -1409,9 +1409,9 @@ local function unlock_group_support(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_support'] = 'no'
@@ -1419,9 +1419,9 @@ end
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> قفل محتوای مطالب گروه پشتیبانی غیرفعال شد </i>'
+    return ' قفل محتوای مطالب گروه پشتیبانی غیرفعال شد '
 	else
-	return '<i>Lock</i> content was <b>disabled</b> support group'
+	return 'Lock content was disabled support group'
   end
 end
 
@@ -1434,9 +1434,9 @@ local group_low_lock = data[tostring(target)]['settings']['lock_low']
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '> از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_low'] = 'yes'
@@ -1444,9 +1444,9 @@ local group_low_lock = data[tostring(target)]['settings']['lock_low']
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> تنظیمات  انجام شد! </i>\n<i> حالت گروه روی ترافیک سبک تنظیم شد.تمامی تنظیمات مجدد تنظیم شد </i>'
+    return ' تنظیمات  انجام شد! \n حالت گروه روی ترافیک سبک تنظیم شد.تمامی تنظیمات مجدد تنظیم شد '
 	else
-	return '<b>setting done!</b> \n<i>All settings were reset</i>'
+	return 'setting done! \n All settings were reset'
   end
 end
 
@@ -1459,9 +1459,9 @@ local function unlock_group_low(msg, data, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_low'] = 'no'
@@ -1469,9 +1469,9 @@ end
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> تنظیمات انجام شد! </i>\n<i> تمامی تنظیمات انجام شده لغو گردید. </i>'
+    return ' تنظیمات انجام شد! \n تمامی تنظیمات انجام شده لغو گردید. '
 	else
-	return '<b>setting done!</b> \n <i>All settings were canceled.</i>'
+	return 'setting done! \n All settings were canceled.'
   end
 end
 
@@ -1484,9 +1484,9 @@ local group_high_lock = data[tostring(target)]['settings']['lock_high']
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '> از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_high'] = 'yes'
@@ -1494,9 +1494,9 @@ local group_high_lock = data[tostring(target)]['settings']['lock_high']
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> تنظیمات انجام شد! </i>\n<i> حالت گروه روی ترافیک سنگین تنظیم شد. </i>'
+    return ' تنظیمات انجام شد! \n حالت گروه روی ترافیک سنگین تنظیم شد. '
 	else
-	return '<b>setting done!</b> \n <i>Mode Group was set up on heavy traffic.</i>'
+	return 'setting done! \n Mode Group was set up on heavy traffic.'
   end
 end
 
@@ -1509,9 +1509,9 @@ local function unlock_group_high(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '> از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_high'] = 'no'
@@ -1519,9 +1519,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> تنظیمات انجام شد! </i>\n<i> تنظیمات به حالت اولیه برگشت </i>'
+    return ' تنظیمات انجام شد! \n تنظیمات به حالت اولیه برگشت '
 	else
-	return '<b>setting done!</b> \n <i>Settings to primary status</i>'
+	return 'setting done! \n Settings to primary status'
   end
 end
 
@@ -1534,9 +1534,9 @@ local group_family_lock = data[tostring(target)]['settings']['lock_family']
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '> از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_family'] = 'yes'
@@ -1544,9 +1544,9 @@ local group_family_lock = data[tostring(target)]['settings']['lock_family']
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> حالت خانواده فعال شد! </i>\n <i>اکیدا توصیه میشود این قابلیت ویژه گروه هایی فعال شود که حالت نرمال و آرامی دارند.اگر گروه شما این چنین نیست همین الان این قابلیت رو غیرفعال کنید</i>'
+    return ' حالت خانواده فعال شد! \n اکیدا توصیه میشود این قابلیت ویژه گروه هایی فعال شود که حالت نرمال و آرامی دارند.اگر گروه شما این چنین نیست همین الان این قابلیت رو غیرفعال کنید'
   else
-  return '<b>The family was active mode!</b> \n <i>This feature is highly recommended, especially groups that are active in normal mode and slowly. If this is not the case right now it your team turn</i>'
+  return 'The family was active mode! \n This feature is highly recommended, especially groups that are active in normal mode and slowly. If this is not the case right now it your team turn'
   end
 end
 
@@ -1559,9 +1559,9 @@ local function unlock_group_family(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end
     data[tostring(target)]['settings']['lock_family'] = 'no'
@@ -1569,9 +1569,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> حالت خانواده غیرفعال شد! </i>'
+    return ' حالت خانواده غیرفعال شد! '
 	else
-	return '<i>Family</i> mode is <b>disabled</b>!'
+	return 'Family mode is disabled!'
   end
 end
 
@@ -1584,9 +1584,9 @@ local function lock_group_join(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_join'] = 'yes'
@@ -1594,9 +1594,9 @@ local function lock_group_join(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ورود عضو  قفل شد </i>'
+    return ' ورود عضو  قفل شد '
 	else
-	return '<i>Entry member</i>  <b>locked</b>'
+	return 'Entry member locked'
   end
 end
 
@@ -1609,9 +1609,9 @@ local function unlock_group_join(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
 	else
-	return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+	return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
 end 
     data[tostring(target)]['settings']['lock_join'] = 'no'
@@ -1619,9 +1619,9 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> ورود عضو آزاد شد </i>'
+    return ' ورود عضو آزاد شد '
 	else
-	return '<i>Entry member</i> <b>released</b>'
+	return 'Entry member released'
   end
 end
 
@@ -1634,10 +1634,10 @@ local function lock_group_extalk(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل قفل است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-	local text = '》 <b>Already is locked</b> (Please do not try again)'
+	local text = '》 Already is locked (Please do not try again)'
 	return reply_msg(msg.id, text, ok_cb, false)
 	end
 	end
@@ -1646,10 +1646,10 @@ local function lock_group_extalk(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<i>تغییرات اعمال شد! </i>\n<i> تغییرات اعمال شده:تمامی(فایل/تصاویرمتحرک/تصاویر/فیلم/صدا) ها بصورت خودکار حذف میشوند و هم اکنون فقط گفتگو در گروه مجاز است </i>'
+    local text = 'تغییرات اعمال شد! \n تغییرات اعمال شده:تمامی(فایل/تصاویرمتحرک/تصاویر/فیلم/صدا) ها بصورت خودکار حذف میشوند و هم اکنون فقط گفتگو در گروه مجاز است '
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-	local text = '<b>Changes was done!</b> \n <i>Changes made: all (File / Wallpapers Graphics / images / videos / audio) will be deleted automatically and now only allowed to talk in groups</i>'
+	local text = 'Changes was done! \n Changes made: all (File / Wallpapers Graphics / images / videos / audio) will be deleted automatically and now only allowed to talk in groups'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1663,10 +1663,10 @@ local function unlock_group_extalk(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل آزاد است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-	local text = '》 <b>Has already been released</b> (Please do not try again)'
+	local text = '》 Has already been released (Please do not try again)'
 	return reply_msg(msg.id, text, ok_cb, false)
 	end
 	end
@@ -1675,10 +1675,10 @@ local function unlock_group_extalk(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<i> تغییرات اعمال شد! </i>\n<i> تنظیمات اعمال شده به درخواست شما لغو گردید! </i>'
+    local text = ' تغییرات اعمال شد! \n تنظیمات اعمال شده به درخواست شما لغو گردید! '
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = '<i>Changes to settings</i> on your request has been <b>canceled</b>!'
+	local text = 'Changes to settings on your request has been canceled!'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1692,10 +1692,10 @@ local function lock_group_kickme(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل قفل است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-  local text = '》 <b>Already is locked</b> (Please do not try again)'
+  local text = '》 Already is locked (Please do not try again)'
   return reply_msg(msg.id, text, ok_cb, false)
   end
   end
@@ -1704,10 +1704,10 @@ local function lock_group_kickme(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<i> استفاده از دستور </i> [<b>/kickme</b>] <i> در این گروه مجاز شد </i>'
+    local text = ' استفاده از دستور [/kickme] در این گروه مجاز شد '
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = 'Use the command [<b>/kickme</b>] in this group was <i>allowed</i>'
+	local text = 'Use the command [/kickme] in this group was allowed'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1721,10 +1721,10 @@ local function unlock_group_kickme(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل آزاد است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-  local text = '》 <b>Has already been released</b> (Please do not try again)'
+  local text = '》 Has already been released (Please do not try again)'
   return reply_msg(msg.id, text, ok_cb, false)
   end
   end
@@ -1733,10 +1733,10 @@ local function unlock_group_kickme(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = 'استفاده از دستور [<b>/kickme</b>] در این گروه غیرمجاز شد'
+    local text = 'استفاده از دستور [/kickme] در این گروه غیرمجاز شد'
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = 'Use the command [<b>/kickme</b>] in this group was <i>not allowed</i>'
+	local text = 'Use the command [/kickme] in this group was not allowed'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1750,10 +1750,10 @@ local function lock_group_qa(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل قفل است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-  local text = '》 <b>Already is locked</b> (Please do not try again)'
+  local text = '》 Already is locked (Please do not try again)'
   return reply_msg(msg.id, text, ok_cb, false)
   end
   end
@@ -1762,10 +1762,10 @@ local function lock_group_qa(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<code> قفل تذکر تکمیل پروفایل کاربری  فعال شد! </code>'
+    local text = ' قفل تذکر تکمیل پروفایل کاربری  فعال شد! '
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = '<b>Note Complete Profile lock is activated!</b> '
+	local text = 'Note Complete Profile lock is activated! '
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1779,10 +1779,10 @@ local function unlock_group_qa(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل آزاد است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-  local text = '》 <b>Has already been released</b> (Please do not try again)'
+  local text = '》 Has already been released (Please do not try again)'
   return reply_msg(msg.id, text, ok_cb, false)
   end
   end
@@ -1791,10 +1791,10 @@ local function unlock_group_qa(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<code> قفل تذکر تکمیل پروفایل کاربری  غیرفعال شد. </code>'
+    local text = ' قفل تذکر تکمیل پروفایل کاربری  غیرفعال شد. '
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = '<b>Note complete disabled Lock Profile.</b>'
+	local text = 'Note complete disabled Lock Profile.'
 	return reply_msg(msg.id, text, ok_cb, false) 
   end
 end
@@ -1808,10 +1808,10 @@ local function lock_group_dialogue(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل قفل است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-  local text = '》 <b>Already is locked</b> (Please do not try again)'
+  local text = '》 Already is locked (Please do not try again)'
   return reply_msg(msg.id, text, ok_cb, false)
   end
   end
@@ -1820,10 +1820,10 @@ local function lock_group_dialogue(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<i> قفل گفتگو متنی فعال شد </i>\n<i> از این پس فقط متن های ارسالی حذف میشوند و ارسال تمامی رسانه ها مجاز میباشد </i>'
+    local text = ' قفل گفتگو متنی فعال شد \n از این پس فقط متن های ارسالی حذف میشوند و ارسال تمامی رسانه ها مجاز میباشد'
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = '<b>Text chat was active lock</b>\nFrom now on you just deleted text messages and send all the media is allowed</i>'
+	local text = 'Text chat was active lock \n From now on you just deleted text messages and send all the media is allowed'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1837,10 +1837,10 @@ local function unlock_group_dialogue(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل آزاد است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-  local text = '》 <b>Has already been released</b> (Please do not try again)'
+  local text = '》 Has already been released (Please do not try again)'
   return reply_msg(msg.id, text, ok_cb, false)
   end
   end
@@ -1849,10 +1849,10 @@ local function unlock_group_dialogue(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<i> قفل گفتگو متنی  غیرفعال شد </i>\n<i> تنظیمات انجام شده بنا به درخواست شما لغو گردید </i>'
+    local text = ' قفل گفتگو متنی  غیرفعال شد \n تنظیمات انجام شده بنا به درخواست شما لغو گردید'
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = 'Lock text chat is disabled and setting your query <b>was canceled</b>'
+	local text = 'Lock text chat is disabled and setting your query was canceled'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1866,10 +1866,10 @@ local function lock_group_antispambot(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل قفل است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-  local text = '》 <b>Already is locked</b> (Please do not try again)'
+  local text = '》 Already is locked (Please do not try again)'
   return reply_msg(msg.id, text, ok_cb, false)
   end
   end
@@ -1878,10 +1878,10 @@ local function lock_group_antispambot(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<i> قفل ورود ربات ضد اسپم(Cli) فعال گردید </i>\n<i> ربات بصورت خودکار شناسایی و حذف خواهد شد </i>'
+    local text = ' قفل ورود ربات ضد اسپم فعال گردید \n ربات بصورت خودکار شناسایی و حذف خواهد شد'
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = '<b>Entry lock anti-spam robot (Cli) was activated</b> \n <i>bot will automatically detect and remove</i>'
+	local text = 'Entry lock anti-spam robot was activated \n bot will automatically detect and remove'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1895,10 +1895,10 @@ local function unlock_group_antispambot(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل آزاد است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-  local text = '》 <b>Has already been released</b> (Please do not try again)'
+  local text = '》 Has already been released (Please do not try again)'
   return reply_msg(msg.id, text, ok_cb, false)
   end
   end
@@ -1907,10 +1907,10 @@ local function unlock_group_antispambot(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<i> قفل ورود ربات ضد اسپم(Cli) غیرفعال گردید </i>\n<i> تنظیمات انجام شده بنا به درخواست شما لغو گردید </i>'
+    local text = ' قفل ورود ربات ضد اسپم غیرفعال گردید \n تنظیمات انجام شده بنا به درخواست شما لغو گردید '
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = '<b>Entry lock anti-spam robot (Cli) has been inactive</b> \n<i> settings according to your request was canceled </i>'
+	local text = 'Entry lock anti-spam robot has been inactive \n settings according to your request was canceled'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1924,10 +1924,10 @@ local function lock_group_publicpro(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل قفل است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-  local text = '》 <b>Already is locked</b> (Please do not try again)'
+  local text = '》 Already is locked (Please do not try again)'
   return reply_msg(msg.id, text, ok_cb, false)
   end
   end
@@ -1936,10 +1936,10 @@ local function lock_group_publicpro(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<i> حذف ارسال لینک و تبلیغات فعال شد(پیشرفته) </i>\n<i> تمامی تبلیغات شامل(لینک/تبلیغات اینترنتی و ... حذف خواهند شد) </i>'
+    local text = ' حذف ارسال لینک و تبلیغات فعال شد(پیشرفته) \n تمامی تبلیغات شامل(لینک/تبلیغات اینترنتی و ... حذف خواهند شد) '
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = '<i>Remove send the link</i> <b>was active</b> and advanced advertising'
+	local text = 'Remove send the link was active and advanced advertising'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1953,10 +1953,10 @@ local function unlock_group_publicpro(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '》<i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)'
+    local text = '》 از قبل آزاد است (لطفا مجدد سعی نکنید)'
 	return reply_msg(msg.id, text, ok_cb, false)
   else
-  local text = '》 <b>Has already been released</b> (Please do not try again)'
+  local text = '》 Has already been released (Please do not try again)'
   return reply_msg(msg.id, text, ok_cb, false)
   end
   end
@@ -1965,10 +1965,10 @@ local function unlock_group_publicpro(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    local text = '<i> حذف ارسال لینک و تبلیغات غیرفعال شد </i>\n<i> تنظیمات انجام شده بنا به درخواست شما لغو گردید </i>'
+    local text = ' حذف ارسال لینک و تبلیغات غیرفعال شد \n تنظیمات انجام شده بنا به درخواست شما لغو گردید '
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
-	local text = '<i>Remove send the link</i> <b>was disabled</b> and advanced advertising'
+	local text = 'Remove send the link was disabled and advanced advertising'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
 end
@@ -1987,7 +1987,7 @@ local function lock_group_welcome(msg, data, target)
   else
     data[tostring(target)]['welcome'] = 'yes'
     save_data(_config.moderation.data, data)
-    local text = 'پیام خوش امد گویی فعال شد\nبرای تغییر این پیام از دستور زیر استفاده کنید\n/set welcome <welcomemsg>'
+    local text = 'پیام خوش امد گویی فعال شد \n برای تغییر این پیام از دستور زیر استفاده کنید \n /set welcome <welcomemsg>'
 	return reply_msg(msg.id, text, ok_cb, false)
 	--else
 	--local text = 'Welcome message has been enabled'
@@ -2025,9 +2025,9 @@ local function lock_group_bots(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_bots'] = 'yes'
@@ -2035,11 +2035,11 @@ local function lock_group_bots(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '> <i> ورود ربات  قفل شد </i>'
-	return reply_msg(msg.id, '<i> ورود ربات  قفل شد </i>', ok_cb, false)
+    --return '>  ورود ربات  قفل شد '
+	return reply_msg(msg.id, ' ورود ربات  قفل شد ', ok_cb, false)
 	 else
-	-- return '> <i>Bots</i> protection has been <b>enabled</b>'
-	 return reply_msg(msg.id, '<i>Bots</i> protection has been <b>enabled</b>', ok_cb, false)
+	-- return '> Bots protection has been enabled'
+	 return reply_msg(msg.id, 'Bots protection has been enabled', ok_cb, false)
   end
 end
 
@@ -2052,9 +2052,9 @@ local function unlock_group_bots(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '> از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_bots'] = 'no'
@@ -2062,11 +2062,11 @@ local function unlock_group_bots(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> ورود ربات  آزاد شد </i>'
-	return reply_msg(msg.id, '<i> ورود ربات  آزاد شد </i>', ok_cb, false)
+    --return ' ورود ربات  آزاد شد '
+	return reply_msg(msg.id, ' ورود ربات  آزاد شد ', ok_cb, false)
 	 else
-	-- return '<i>Bots</i> protection has been <b>disabled</b>'
-	 return reply_msg(msg.id, '<i>Bots</i> protection has been <b>disabled</b>', ok_cb, false)
+	-- return 'Bots protection has been disabled'
+	 return reply_msg(msg.id, 'Bots protection has been disabled', ok_cb, false)
   end
 end
 
@@ -2082,9 +2082,9 @@ end
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_spam'] = 'yes'
@@ -2092,11 +2092,11 @@ end
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> ارسال هرزنامه در سوپرگروه قفل شد </i>'
-	return reply_msg(msg.id, '> <i> ارسال هرزنامه در سوپرگروه قفل شد </i>', ok_cb, false)
+    --return ' ارسال هرزنامه در سوپرگروه قفل شد '
+	return reply_msg(msg.id, '>  ارسال هرزنامه در سوپرگروه قفل شد ', ok_cb, false)
 	 else
-	 --return 'SuperGroup <i>spam</i> has been <b>locked</b>'
-	 return reply_msg(msg.id, '> SuperGroup <i>spam</i> has been <b>locked</b>', ok_cb, false)
+	 --return 'SuperGroup spam has been locked'
+	 return reply_msg(msg.id, '> SuperGroup spam has been locked', ok_cb, false)
   end
 end
 
@@ -2109,9 +2109,9 @@ local function unlock_group_spam(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_spam'] = 'no'
@@ -2119,11 +2119,11 @@ local function unlock_group_spam(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> ارسال هرزنامه در سوپرگروه آزاد شد </i>'
-	return reply_msg(msg.id, '> <i> ارسال هرزنامه در سوپرگروه آزاد شد </i>', ok_cb, false)
+    --return ' ارسال هرزنامه در سوپرگروه آزاد شد '
+	return reply_msg(msg.id, '>  ارسال هرزنامه در سوپرگروه آزاد شد ', ok_cb, false)
 	 else
-	 --return 'SuperGroup <i>spam</i> has been <b>unlocked</b>'
-	 return reply_msg(msg.id, '> SuperGroup <i>spam</i> has been <b>unlocked</b>', ok_cb, false)
+	 --return 'SuperGroup spam has been unlocked'
+	 return reply_msg(msg.id, '> SuperGroup spam has been unlocked', ok_cb, false)
   end
 end
 
@@ -2136,9 +2136,9 @@ local function lock_group_flood(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['flood'] = 'yes'
@@ -2146,11 +2146,11 @@ local function lock_group_flood(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> ارسال پیام مکرر قفل شد </i>'
-	return reply_msg(msg.id, '> <i> ارسال پیام مکرر قفل شد </i>', ok_cb, false)
+    --return ' ارسال پیام مکرر قفل شد '
+	return reply_msg(msg.id, '>  ارسال پیام مکرر قفل شد ', ok_cb, false)
 	 else
-	 --return '<i>Flood</i> has been <b>locked</b>'
-	 return reply_msg(msg.id, '> <i>Flood</i> has been <b>locked</b>', ok_cb, false)
+	 --return 'Flood has been locked'
+	 return reply_msg(msg.id, '> Flood has been locked', ok_cb, false)
   end
 end
 
@@ -2163,9 +2163,9 @@ local function unlock_group_flood(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['flood'] = 'no'
@@ -2173,11 +2173,11 @@ local function unlock_group_flood(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> ارسال پیام مکرر آزاد شد </i>'
+    --return ' ارسال پیام مکرر آزاد شد '
 	return reply_msg(msg.id, '> <i> ارسال پیام مکرر آزاد شد </i>', ok_cb, false)
 	 else
-	-- return '<i>Flood</i> has been <b>unlocked</b>'
-	 return reply_msg(msg.id, '> <i>Flood</i> has been <b>unlocked</b>', ok_cb, false)
+	-- return 'Flood has been unlocked'
+	 return reply_msg(msg.id, '> Flood has been unlocked', ok_cb, false)
   end
 end
 
@@ -2190,9 +2190,9 @@ local function lock_group_arabic(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '> از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_arabic'] = 'yes'
@@ -2200,11 +2200,11 @@ local function lock_group_arabic(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   -- return '<i> گفتگو به زبان فارسی در گروه قفل شد </i>'
-	return reply_msg(msg.id, '> <i> گفتگو به زبان فارسی در گروه قفل شد </i>', ok_cb, false)
+   -- return ' گفتگو به زبان فارسی در گروه قفل شد '
+	return reply_msg(msg.id, '> گفتگو به زبان فارسی در گروه قفل شد ', ok_cb, false)
 	 else
-	 --return '<i>Arabic/Persian</i> has been <b>locked</b>'
-	 return reply_msg(msg.id, '> <i>Arabic/Persian</i> has been <b>locked</b>', ok_cb, false)
+	 --return 'Arabic/Persian has been locked'
+	 return reply_msg(msg.id, '> Arabic/Persian has been locked', ok_cb, false)
   end
 end
 
@@ -2217,9 +2217,9 @@ local function unlock_group_arabic(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_arabic'] = 'no'
@@ -2227,11 +2227,11 @@ local function unlock_group_arabic(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   -- return '<i> گفتگو به زبان فارسی در گروه آزاد شد </i>'
-	return reply_msg(msg.id, '> <i> گفتگو به زبان فارسی در گروه آزاد شد </i>', ok_cb, false)
+   -- return ' گفتگو به زبان فارسی در گروه آزاد شد '
+	return reply_msg(msg.id, '>  گفتگو به زبان فارسی در گروه آزاد شد ', ok_cb, false)
 	 else
-	-- return '<i>Arabic/Persian</i> has been <b>unlocked</b>'
-	 return reply_msg(msg.id, '> <i>Arabic/Persian</i> has been <b>unlocked</b>', ok_cb, false)
+	-- return 'Arabic/Persian has been unlocked'
+	 return reply_msg(msg.id, '> Arabic/Persian has been unlocked', ok_cb, false)
   end
 end
 
@@ -2244,9 +2244,9 @@ local function lock_group_membermod(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_member'] = 'yes'
@@ -2254,11 +2254,11 @@ local function lock_group_membermod(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  --return '<i> ورود عضو به سوپرگروه قفل شد </i>'
-  return reply_msg(msg.id, '> <i> ورود عضو به سوپرگروه قفل شد </i>', ok_cb, false)
+  --return ' ورود عضو به سوپرگروه قفل شد '
+  return reply_msg(msg.id, '>  ورود عضو به سوپرگروه قفل شد ', ok_cb, false)
    else
-	-- return 'SuperGroup <i>members</i> has been <b>locked</b>'
-	 return reply_msg(msg.id, '> SuperGroup <i>members</i> has been <b>locked</b>', ok_cb, false)
+	-- return 'SuperGroup members has been locked'
+	 return reply_msg(msg.id, '> SuperGroup members has been locked', ok_cb, false)
 end
 end
 
@@ -2271,9 +2271,9 @@ local function unlock_group_membermod(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_member'] = 'no'
@@ -2281,11 +2281,11 @@ local function unlock_group_membermod(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   -- return '<i> ورود عضو به سوپرگروه آزاد شد </i>'
-	return reply_msg(msg.id, '> <i> ورود عضو به سوپرگروه آزاد شد </i>', ok_cb, false)
+   -- return ' ورود عضو به سوپرگروه آزاد شد '
+	return reply_msg(msg.id, '>  ورود عضو به سوپرگروه آزاد شد ', ok_cb, false)
 	 else
-	 --return 'SuperGroup <i>members</i> has been <b>unlocked</b>'
-	 return reply_msg(msg.id, '> SuperGroup <i>members</i> has been <b>unlocked</b>', ok_cb, false)
+	 --return 'SuperGroup members has been unlocked'
+	 return reply_msg(msg.id, '> SuperGroup members has been unlocked', ok_cb, false)
   end
 end
 
@@ -2298,9 +2298,9 @@ local function lock_group_rtl(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_rtl'] = 'yes'
@@ -2308,11 +2308,11 @@ local function lock_group_rtl(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   -- return '<i> RTL قفل شد </i>'
-	return reply_msg(msg.id, '> <i> RTL قفل شد </i>', ok_cb, false)
+   -- return ' RTL قفل شد '
+	return reply_msg(msg.id, '>  RTL قفل شد ', ok_cb, false)
 	 else
-	-- return '<i>RTL</i> has been <b>locked</b>'
-	 return reply_msg(msg.id, '> <i>RTL</i> has been <b>locked</b>', ok_cb, false)
+	-- return 'RTL has been locked'
+	 return reply_msg(msg.id, '> RTL has been locked', ok_cb, false)
   end
 end
 
@@ -2325,9 +2325,9 @@ local function unlock_group_rtl(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_rtl'] = 'no'
@@ -2335,11 +2335,11 @@ local function unlock_group_rtl(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   -- return '<i> RTL آزاد شد </i>'
-	return reply_msg(msg.id, '> <i> RTL آزاد شد </i>', ok_cb, false)
+   -- return ' RTL آزاد شد '
+	return reply_msg(msg.id, '>  RTL آزاد شد ', ok_cb, false)
 	 else
-	 --return '<i>RTL</i> has been <b>unlocked</b>'
-	 return reply_msg(msg.id, '> <i>RTL</i> has been <b>unlocked</b>', ok_cb, false)
+	 --return 'RTL has been unlocked'
+	 return reply_msg(msg.id, '> RTL has been unlocked', ok_cb, false)
   end
 end
 
@@ -2352,9 +2352,9 @@ local function lock_group_tgservice(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_tgservice'] = 'yes'
@@ -2362,11 +2362,11 @@ local function lock_group_tgservice(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   -- return '<i> حذف خودکار پیغام ورود و خروج افراد از گروه فعال شد </i>'
-	return reply_msg(msg.id, '> <i> حذف خودکار پیغام ورود و خروج افراد از گروه فعال شد </i>', ok_cb, false)
+   -- return ' حذف خودکار پیغام ورود و خروج افراد از گروه فعال شد '
+	return reply_msg(msg.id, '>  حذف خودکار پیغام ورود و خروج افراد از گروه فعال شد ', ok_cb, false)
 	 else
-	 --return '<i>Tgservice</i> has been <b>locked</b>'
-	 return reply_msg(msg.id, '> <i>Tgservice</i> has been <b>locked</b>', ok_cb, false)
+	 --return 'Tgservice has been locked'
+	 return reply_msg(msg.id, '> Tgservice has been locked', ok_cb, false)
   end
 end
 
@@ -2379,9 +2379,9 @@ local function unlock_group_tgservice(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_tgservice'] = 'no'
@@ -2389,11 +2389,11 @@ local function unlock_group_tgservice(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> حذف خودکار پیغام ورود و خروج افراد از گروه غیرفعال شد </i>'
-	return reply_msg(msg.id, '> <i> حذف خودکار پیغام ورود و خروج افراد از گروه غیرفعال شد </i>', ok_cb, false)
+    --return ' حذف خودکار پیغام ورود و خروج افراد از گروه غیرفعال شد '
+	return reply_msg(msg.id, '>  حذف خودکار پیغام ورود و خروج افراد از گروه غیرفعال شد ', ok_cb, false)
 	 else
-	-- return '<i>Tgservice</i> has been <b>unlocked</b>'
-	 return reply_msg(msg.id, '> <i>Tgservice</i> has been <b>unlocked</b>', ok_cb, false)
+	-- return 'Tgservice has been unlocked'
+	 return reply_msg(msg.id, '> Tgservice has been unlocked', ok_cb, false)
   end
 end
 
@@ -2406,9 +2406,9 @@ local function lock_group_sticker(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_sticker'] = 'yes'
@@ -2416,11 +2416,11 @@ local function lock_group_sticker(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> ارسال استیکر قفل شد </i>'
-	return reply_msg(msg.id, '> <i> ارسال استیکر قفل شد </i>', ok_cb, false)
+    --return ' ارسال استیکر قفل شد '
+	return reply_msg(msg.id, '>  ارسال استیکر قفل شد ', ok_cb, false)
 	 else
-	 --return '<i>Sticker</i> posting has been <b>locked</b>'
-	 return reply_msg(msg.id, '> <i>Sticker</i> posting has been <b>locked</b>', ok_cb, false)
+	 --return 'Sticker posting has been locked'
+	 return reply_msg(msg.id, '> Sticker posting has been locked', ok_cb, false)
   end
 end
 
@@ -2433,9 +2433,9 @@ local function unlock_group_sticker(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_sticker'] = 'no'
@@ -2443,11 +2443,11 @@ local function unlock_group_sticker(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   -- return '<i> ارسال استیکر آزاد شد </i>'
-	return reply_msg(msg.id, '> <i> ارسال استیکر آزاد شد </i>', ok_cb, false)
+   -- return ' ارسال استیکر آزاد شد '
+	return reply_msg(msg.id, '>  ارسال استیکر آزاد شد ', ok_cb, false)
 	 else
-	-- return '<i>Sticker</i> posting has been <b>unlocked</b>'
-	 return reply_msg(msg.id, '> <i>Sticker</i> posting has been <b>unlocked</b>', ok_cb, false)
+	-- return 'Sticker posting has been unlocked'
+	 return reply_msg(msg.id, '> Sticker posting has been unlocked', ok_cb, false)
   end
 end
 
@@ -2460,9 +2460,9 @@ local function lock_group_contacts(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_contacts'] = 'yes'
@@ -2470,11 +2470,11 @@ local function lock_group_contacts(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> ارسال شماره تلفن قفل شد </i>'
-	return reply_msg(msg.id, '> <i> ارسال شماره تلفن قفل شد </i>', ok_cb, false)
+    --return ' ارسال شماره تلفن قفل شد '
+	return reply_msg(msg.id, '>  ارسال شماره تلفن قفل شد ', ok_cb, false)
 	 else
-	-- return '<i>Contact</i> posting has been <b>locked</b>'
-	 return reply_msg(msg.id, '> <i>Contact</i> posting has been <b>locked</b>', ok_cb, false)
+	-- return 'Contact posting has been locked'
+	 return reply_msg(msg.id, '> Contact posting has been locked', ok_cb, false)
   end
 end
 
@@ -2487,9 +2487,9 @@ local function unlock_group_contacts(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return reply_msg(msg.id, '> <i> از قبل آزاد است </i>(لطفا مجدد سعی نکنید)', ok_cb, false)
+    return reply_msg(msg.id, '>  از قبل آزاد است (لطفا مجدد سعی نکنید)', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['lock_contacts'] = 'no'
@@ -2497,11 +2497,11 @@ local function unlock_group_contacts(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> ارسال شماره تلفن آزاد شد </i>'
-	return reply_msg(msg.id, '> <i> ارسال شماره تلفن آزاد شد </i>', ok_cb, false)
+    --return ' ارسال شماره تلفن آزاد شد '
+	return reply_msg(msg.id, '>  ارسال شماره تلفن آزاد شد ', ok_cb, false)
 	 else
-	 --return '<i>Contact</i> posting has been <b>unlocked</b>'
-	 return reply_msg(msg.id, '> <i>Contact</i> posting has been <b>unlocked</b>', ok_cb, false)
+	 --return 'Contact posting has been unlocked'
+	 return reply_msg(msg.id, '> Contact posting has been unlocked', ok_cb, false)
   end
 end
 
@@ -2514,9 +2514,9 @@ local function enable_strict_rules(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['strict'] = 'yes'
@@ -2524,11 +2524,11 @@ local function enable_strict_rules(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> تنظیمات سخت گیرانه فعال شد </i>'
-	return reply_msg(msg.id, '> <i> فعال سازی حالت اخراج کاربران فعال شد </i>\n<i> اکنون پس از ارسال موارد ممنوعه از گروه اخراج میشوند </i>', ok_cb, false)
+    --return ' تنظیمات سخت گیرانه فعال شد '
+	return reply_msg(msg.id, '>  فعال سازی حالت اخراج کاربران فعال شد \n اکنون پس از ارسال موارد ممنوعه از گروه اخراج میشوند ', ok_cb, false)
 	 else
 	-- return '<b>Settings will be strictly enforced</b>'
-	 return reply_msg(msg.id, '> <i>Activation mode users were fired</i>\n<b>Now, after sending the Forbidden fired</b>', ok_cb, false)
+	 return reply_msg(msg.id, '> Activation mode users were fired \n Now, after sending the Forbidden fired', ok_cb, false)
   end
 end
 
@@ -2541,9 +2541,9 @@ local function disable_strict_rules(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> 》از قبل آزاد است </i>(لطفا مجدد سعی نکنید)'
+    return ' 》از قبل آزاد است (لطفا مجدد سعی نکنید)'
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['strict'] = 'no'
@@ -2551,11 +2551,11 @@ local function disable_strict_rules(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-     --return '<i> تنظیمات سخت گیرانه غیرفعال شد </i>'
-	 return reply_msg(msg.id, '> <i> تغییرات اعمال شده لغو گردید </i>', ok_cb, false)
+     --return ' تنظیمات سخت گیرانه غیرفعال شد '
+	 return reply_msg(msg.id, '>  تغییرات اعمال شده لغو گردید ', ok_cb, false)
 	 else
-	 --return '<b>Settings will not be strictly enforced</b>'
-	 return reply_msg(msg.id, '> <b>Changes made was canceled!</b>', ok_cb, false)
+	 --return 'Settings will not be strictly enforced'
+	 return reply_msg(msg.id, '> Changes made was canceled!', ok_cb, false)
   end
 end
 ------------strict ban----------------
@@ -2568,9 +2568,9 @@ local function enable_strictban_rules(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-   return reply_msg(msg.id, '> <i> از قبل قفل است </i>(لطفا مجدد سعی نکنید)تغییر یافت', ok_cb, false)
+   return reply_msg(msg.id, '>  از قبل قفل است (لطفا مجدد سعی نکنید) تغییر یافت', ok_cb, false)
   else
-  return reply_msg(msg.id, '> <b>Already is locked</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Already is locked (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['strictban'] = 'yes'
@@ -2578,11 +2578,11 @@ local function enable_strictban_rules(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    --return '<i> تنظیمات سخت گیرانه فعال شد </i>'
-	return reply_msg(msg.id, '> <i> فعال سازی حالت مسدود سازی کاربران فعال شد </i>\n<i> اکنون پس از ارسال موارد ممنوعه از گروه مسدود میشوند </i>', ok_cb, false)
+    --return ' تنظیمات سخت گیرانه فعال شد '
+	return reply_msg(msg.id, '>  فعال سازی حالت مسدود سازی کاربران فعال شد \n اکنون پس از ارسال موارد ممنوعه از گروه مسدود میشوند ', ok_cb, false)
 	 else
-	-- return '<b>Settings will be strictly enforced</b>'
-	 return reply_msg(msg.id, '> <i>Activation mode users were fired</i>\n<b>Now, after sending the Forbidden fired</b>', ok_cb, false)
+	-- return 'Settings will be strictly enforced'
+	 return reply_msg(msg.id, '> Activation mode users were fired \n Now, after sending the Forbidden fired', ok_cb, false)
   end
 end
 
@@ -2595,9 +2595,9 @@ local function disable_strictban_rules(msg, data, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-    return '<i> 》از قبل آزاد است </i>(لطفا مجدد سعی نکنید)'
+    return ' 》از قبل آزاد است (لطفا مجدد سعی نکنید)'
   else
-  return reply_msg(msg.id, '> <b>Has already been released</b> <i>(Please do not try again)</i>', ok_cb, false)
+  return reply_msg(msg.id, '> Has already been released (Please do not try again)', ok_cb, false)
   end
   end
     data[tostring(target)]['settings']['strictban'] = 'no'
@@ -2605,11 +2605,11 @@ local function disable_strictban_rules(msg, data, target)
 	local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-     --return '<i> تنظیمات سخت گیرانه غیرفعال شد </i>'
-	return reply_msg(msg.id, '> <i> تغییرات اعمال شده لغو گردید </i>', ok_cb, false)
+     --return ' تنظیمات سخت گیرانه غیرفعال شد '
+	return reply_msg(msg.id, '>  تغییرات اعمال شده لغو گردید ', ok_cb, false)
 	 else
-	 --return '<b>Settings will not be strictly enforced</b>'
-	 return reply_msg(msg.id, '> <b>Changes made was canceled!</b>', ok_cb, false)
+	 --return 'Settings will not be strictly enforced'
+	 return reply_msg(msg.id, '> Changes made was canceled!', ok_cb, false)
   end
 end
 --End supergroup locks
@@ -2622,7 +2622,7 @@ local function set_lawsmod(msg, data, target)
   local data_cat = 'laws'
   data[tostring(target)][data_cat] = laws
   save_data(_config.moderation.data, data)
-  local text = '<i> قوانین سوپرگروه تنظیم شد </i>'
+  local text = ' قوانین سوپرگروه تنظیم شد '
   return reply_msg(msg.id, text, ok_cb, false)
 end
 
@@ -2630,7 +2630,7 @@ end
 local function get_laws(msg, data)
   local data_cat = 'laws'
   if not data[tostring(msg.to.id)][data_cat] then
-    local text = '> <i> قوانین برای گروه تنظیم نشده است </i> \n📜 <i> قوانین پیشفرض به این صورت است:</i> \n <b>1-</b> <i>No Flood.</i>\n <b>2-</b> <i>No Spam.</i>\n <b>3-</b> <i>Try to stay on topic.</i>'
+    local text = '>  قوانین برای گروه تنظیم نشده است  \n📜  قوانین پیشفرض به این صورت است: \n 1- No Flood. \n 2- No Spam. \n 3- Try to stay on topic.'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
   local laws = data[tostring(msg.to.id)][data_cat]
@@ -2642,7 +2642,7 @@ if is_laws then
     return reply_msg(msg.id, "🔖User (@"..msg.from.username..") You attempted too much! A few minutes to get the laws work", ok_cb, false)
      elseif not is_laws then
      redis:set(laws_hash, true)
-  local laws = ' 🖋نام گروه: <b>'..group_name..'</b>\n 📜 قوانین گروه:\n\n'..laws:gsub("/n", " ")
+  local laws = ' 🖋نام گروه: '..group_name..' \n 📜 قوانین گروه:\n\n'..laws:gsub("/n", " ")
  --send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/laws.webp", ok_cb, false)
   reply_msg(msg.id, laws, ok_cb, false)
 end
@@ -2651,7 +2651,7 @@ end
 local function get_lawspv(msg, data)
   local data_cat = 'laws'
   if not data[tostring(msg.to.id)][data_cat] then
-    local text = '> <i> قوانین برای گروه تنظیم نشده است </i> \n📜 <i> قوانین پیشفرض به این صورت است:</i> \n <b>1-</b> <i>No Flood.</i>\n <b>2-</b> <i>No Spam.</i>\n <b>3-</b> <i>Try to stay on topic.</i>'
+    local text = '>  قوانین برای گروه تنظیم نشده است  \n📜  قوانین پیشفرض به این صورت است: \n 1- No Flood. \n 2- No Spam. \n 3- Try to stay on topic.'
 	return reply_msg(msg.id, text, ok_cb, false)
   end
   local laws = data[tostring(msg.to.id)][data_cat]
@@ -2945,17 +2945,17 @@ end
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  local text = "<i> ⚙تنظیمات سوپرگروه </i> [<b>"..msg.to.title.."</b>] <i> (قفل ها) </i>:\n____________________\n》#قفل <i> کلمات توهین آمیز </i>: "..settings.lock_badwords.."\n》#قفل <i> ورود اعضا </i>: "..settings.lock_member.."\n》#قفل <i> عربی/فارسی </i>: "..settings.lock_arabic.."\n》#قفل <i> برچسب </i>: "..settings.lock_sticker.."\n》#قفل <i> امنیتی پیشرفته </i>: "..settings.lock_security.."\n》#تنظیمات <i> اخراج کاربر </i>: "..settings.strict.."\n》#تنظیمات <i> مسدود سازی کاربر </i>: "..settings.strictban.."\n》#قفل <i> هرزنامه </i>: "..settings.lock_spam.."\n》#قفل <i> ورود ربات </i>: "..bots_protection.."\n》#قفل <i> پیشرفته تبلیغات </i>: "..settings.lock_public.."\n#قفل <i> لینک </i> : "..settings.lock_link.."\n》#قفل <i> تگ </i>: "..settings.lock_tags.."\n》#قفل <i> دستورات </i>: "..settings.lock_commands.."\n》#قفل <i> دستورات کاربران </i>: "..settings.lock_commandsuser.."\n》#قفل <i> صفحات اینترنتی </i> : "..settings.lock_webpage.."\n》#قفل <i> ارسال لینک پیشرفته </i>: "..settings.lock_linkpro.."\n》#قفل <i> تبلیغات اپراتور </i>: "..settings.lock_operator.."\n》#قفل <i> ورود ربات(Cli) </i>: "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6"
-   local text = string.gsub(text,'yes','|<code>فعال</code>|') --》#قفل <i> راست به چپ </i>: "..settings.lock_rtl.."|\n》#Lock <b> RTL </b>: "..settings.lock_rtl.."|\n》#قفل <i> خدمات تلگرام </i> : "..settings.lock_tgservice.."|\n》#Lock <b> TGservice </b>: "..settings.lock_tgservice.."
-  local text = string.gsub(text,'no','|<code>غیرفعال</code>|')
+  local text = " ⚙تنظیمات سوپرگروه ["..msg.to.title.."] (قفل ها) :\n____________________\n》قفل کلمات توهین آمیز : "..settings.lock_badwords.."\n》قفل ورود اعضا : "..settings.lock_member.."\n》قفل عربی/فارسی : "..settings.lock_arabic.."\n》قفل برچسب : "..settings.lock_sticker.."\n》قفل امنیتی پیشرفته : "..settings.lock_security.."\n》تنظیمات اخراج کاربر : "..settings.strict.."\n》تنظیمات مسدود سازی کاربر : "..settings.strictban.."\n》قفل هرزنامه : "..settings.lock_spam.."\n》قفل ورود ربات : "..bots_protection.."\n》قفل پیشرفته تبلیغات : "..settings.lock_public.."\nقفل لینک : "..settings.lock_link.."\n》قفل تگ : "..settings.lock_tags.."\n》قفل دستورات : "..settings.lock_commands.."\n》قفل دستورات کاربران : "..settings.lock_commandsuser.."\n》قفل صفحات اینترنتی : "..settings.lock_webpage.."\n》قفل ارسال لینک پیشرفته : "..settings.lock_linkpro.."\n》قفل تبلیغات اپراتور : "..settings.lock_operator.."\n》قفل ورود ربات : "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6"
+   local text = string.gsub(text,'yes','|فعال|') --》قفل راست به چپ : "..settings.lock_rtl.."|\n》Lock RTL : "..settings.lock_rtl.."|\n》قفل خدمات تلگرام : "..settings.lock_tgservice.."|\n》Lock TGservice : "..settings.lock_tgservice.."
+  local text = string.gsub(text,'no','|غیرفعال|')
   return reply_msg(msg.id, text, ok_cb, false)
 else
-local text = "<i> ⚙Settings SuperGroup </i> [<b>"..msg.to.title.."</b>] <i> (Lock) </i>:\n____________________\n》#Lock <b> Badwords </b>: "..settings.lock_badwords.."\n》#Lock <b> Join Members </b>: "..settings.lock_member.."\n》#Lock <b> Arabic/Persian </b>: "..settings.lock_arabic.."\n》#Lock <b> Stickers </b>: "..settings.lock_sticker.."\n》#Lock <b> Security Pro </b>: "..settings.lock_security.."\n》#Lock <b> User Kick </b>: "..settings.strict.."\n》#Lock <b> User Ban </b>: "..settings.strictban.."\n》#Lock <b> Spam </b>: "..settings.lock_spam.."\n》#Lock <b> join BOTs(API) </b>: "..bots_protection.."\n》#Lock <b> publicy </b>: "..settings.lock_public.."\n》#Lock <b> links </b>: "..settings.lock_link.."\n》#Lock <b> Tags </b>: "..settings.lock_tags.."\n》#Lock <b> Commands </b>: "..settings.lock_commands.."\n》#Lock <b> Commandsuser </b>: "..settings.lock_commandsuser.."\n》#Lock <b> Webpage </b>: "..settings.lock_webpage.."\n》#Lock <b> links Pro </b>: "..settings.lock_linkpro.."\n》#Lock <b> Operator </b>: "..settings.lock_operator.."\n》#Lock <b> entry robot(Cli) </b>: "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6"
-  --reply_msg(msg.id,"<code>⚙Settings SuperGroup ["..msg.to.title.."] (Lock):\n____________________\n》#Lock RTL: "..settings.lock_rtl.."\n》#Lock TGservice : "..settings.lock_tgservice.."\n》#Lock Badwords: "..settings.lock_badwords.."\n》#Lock Join Members: "..settings.lock_member.."\n》#Lock Arabic/Persian: "..settings.lock_arabic.."\n》#Lock Stickers: "..settings.lock_sticker.."\n》#Lock Security Pro: "..settings.lock_security.."\n》#Lock Strict: "..settings.strict.."\n》#Lock Spam: "..settings.lock_spam.."\n》#Lock join BOTs(API): "..bots_protection.."\n》#Lock publicy: "..settings.lock_public.."\n》#Lock links : "..settings.lock_link.."\n》#Lock Tags: "..settings.lock_tags.."\n》#Lock Commands: "..settings.lock_commands.."\n》#Lock Webpage : "..settings.lock_webpage.."\n》#Lock links Pro: "..settings.lock_linkpro.."\n》#Lock Operator: "..settings.lock_operator.."\n》#Lock entry robot(Cli): "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6</code>",ok_cb,true)
+local text = " ⚙Settings SuperGroup ["..msg.to.title.."] (Lock) :\n____________________\n》Lock Badwords : "..settings.lock_badwords.."\n》Lock Join Members : "..settings.lock_member.."\n》Lock Arabic/Persian : "..settings.lock_arabic.."\n》Lock Stickers : "..settings.lock_sticker.."\n》Lock Security Pro : "..settings.lock_security.."\n》Lock User Kick : "..settings.strict.."\n》Lock User Ban : "..settings.strictban.."\n》Lock Spam : "..settings.lock_spam.."\n》Lock join BOTs(API) : "..bots_protection.."\n》Lock publicy : "..settings.lock_public.."\n》Lock links : "..settings.lock_link.."\n》Lock Tags : "..settings.lock_tags.."\n》Lock Commands : "..settings.lock_commands.."\n》Lock Commandsuser : "..settings.lock_commandsuser.."\n》Lock Webpage : "..settings.lock_webpage.."\n》Lock links Pro : "..settings.lock_linkpro.."\n》Lock Operator : "..settings.lock_operator.."\n》Lock entry robot : "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6"
+  --reply_msg(msg.id,"⚙Settings SuperGroup ["..msg.to.title.."] (Lock):\n____________________\n》Lock RTL: "..settings.lock_rtl.."\n》Lock TGservice : "..settings.lock_tgservice.."\n》Lock Badwords: "..settings.lock_badwords.."\n》Lock Join Members: "..settings.lock_member.."\n》Lock Arabic/Persian: "..settings.lock_arabic.."\n》Lock Stickers: "..settings.lock_sticker.."\n》Lock Security Pro: "..settings.lock_security.."\n》Lock Strict: "..settings.strict.."\n》Lock Spam: "..settings.lock_spam.."\n》Lock join BOTs(API): "..bots_protection.."\n》Lock publicy : "..settings.lock_public.."\n》Lock links : "..settings.lock_link.."\n》Lock Tags : "..settings.lock_tags.."\n》Lock Commands : "..settings.lock_commands.."\n》Lock Webpage : "..settings.lock_webpage.."\n》Lock links Pro : "..settings.lock_linkpro.."\n》Lock Operator : "..settings.lock_operator.."\n》Lock entry robot : "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6",ok_cb,true)
   --local text = string.gsub(text,'yes','[Yes | 🔐]')
   --local text = string.gsub(text,'no','[No | 🔓]')
-  local text = string.gsub(text,'yes','|<code>Enable</code>|')
-  local text = string.gsub(text,'no','|<code>Disable</code>|')
+  local text = string.gsub(text,'yes','|Enable|')
+  local text = string.gsub(text,'no','|Disable|')
   return reply_msg(msg.id, text, ok_cb, false)
 end
 end
@@ -3109,7 +3109,7 @@ end
 	local gp_type = data[tostring(msg.to.id)]['group_type']
 	
   local settings = data[tostring(target)]['settings']
-  local text = "⚙إعدادات الذائع الصيت (قفل):\n____________________\n》#منع سوء الكلمات: "..settings.lock_badwords.."\n》#قفل تاريخ الأعضاء: "..settings.lock_member.."\n》#قفل العربية: "..settings.lock_arabic.."\n》#ملصقات قفل: "..settings.lock_sticker.."\n》#الأمن قفل برو: "..settings.lock_security.."\n》#قفل صارمة: "..settings.strict.."\n》#كتلة البريد المزعج: "..settings.lock_spam.."\n》#قفل انضمام السير: "..bots_protection.."\n》#وصلات قفل : "..settings.lock_link.."\n》#علامات القفل: "..settings.lock_tags.."\n》#قفل أوامر: "..settings.lock_commands.."\n》#قفل أوامر الأعضاء: "..settings.lock_commandsuser.."\n》#صفحة ويب قفل : "..settings.lock_webpage.."\n》#وصلات قفل برو: "..settings.lock_linkpro.."\n》#مشغل القفل: "..settings.lock_operator.."\n》#قفل دخول الروبوت (CLI): "..settings.lock_antispambot.."\n____________________\nالأمناء صيغة: 3.6\nسودو : @AliReza_PT"
+  local text = "⚙إعدادات الذائع الصيت (قفل):\n____________________\n》منع سوء الكلمات: "..settings.lock_badwords.."\n》قفل تاريخ الأعضاء: "..settings.lock_member.."\n》قفل العربية: "..settings.lock_arabic.."\n》ملصقات قفل: "..settings.lock_sticker.."\n》الأمن قفل برو: "..settings.lock_security.."\n》قفل صارمة: "..settings.strict.."\n》كتلة البريد المزعج: "..settings.lock_spam.."\n》قفل انضمام السير: "..bots_protection.."\n》وصلات قفل : "..settings.lock_link.."\n》علامات القفل: "..settings.lock_tags.."\n》قفل أوامر: "..settings.lock_commands.."\n》قفل أوامر الأعضاء: "..settings.lock_commandsuser.."\n》صفحة ويب قفل : "..settings.lock_webpage.."\n》وصلات قفل برو: "..settings.lock_linkpro.."\n》مشغل القفل: "..settings.lock_operator.."\n》قفل دخول الروبوت : "..settings.lock_antispambot.."\n____________________\nالأمناء صيغة: 3.6\nسودو : @H_Terminal"
   local text = string.gsub(text,'yes','[القفل | 🔐]')
   local text = string.gsub(text,'no','[مفتوح | 🔓]')
   return reply_msg(msg.id, text, ok_cb, false)
@@ -3267,14 +3267,14 @@ end
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  local text = "⚙تنظیمات سوپرگروه ["..msg.to.title.."] (قفل ها):\n____________________\nℹ️#قفل راست به چپ: "..settings.lock_rtl.."\nℹ️#قفل خدمات تلگرام : "..settings.lock_tgservice.."\nℹ️#قفل کلمات توهین آمیز: "..settings.lock_badwords.."\nℹ️#قفل ورود اعضا: "..settings.lock_member.."\nℹ️#قفل عربی/فارسی: "..settings.lock_arabic.."\nℹ️#قفل برچسب: "..settings.lock_sticker.."\nℹ️#قفل امنیتی پیشرفته: "..settings.lock_security.."\nℹ️#تنظیمات سخت گیرانه: "..settings.strict.."\nℹ️#قفل هرزنامه: "..settings.lock_spam.."\nℹ️#قفل ورود ربات: "..bots_protection.."\nℹ️#قفل پیشرفته تبلیغات: "..settings.lock_public.."\nℹ️#قفل لینک : "..settings.lock_link.."\nℹ️#قفل تگ: "..settings.lock_tags.."\nℹ️#قفل دستورات: "..settings.lock_commands.."\nℹ️#قفل دستورات کاربران: "..settings.lock_commandsuser.."\nℹ️#قفل صفحات اینترنتی : "..settings.lock_webpage.."\nℹ️#قفل ارسال لینک پیشرفته: "..settings.lock_linkpro.."\nℹ️#قفل تبلیغات اپراتور: "..settings.lock_operator.."\nℹ️#قفل ورود ربات(Cli): "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6"
+  local text = "⚙تنظیمات سوپرگروه ["..msg.to.title.."] (قفل ها):\n____________________\nℹ️قفل راست به چپ: "..settings.lock_rtl.."\nℹ️قفل خدمات تلگرام : "..settings.lock_tgservice.."\nℹ️قفل کلمات توهین آمیز: "..settings.lock_badwords.."\nℹ️قفل ورود اعضا: "..settings.lock_member.."\nℹ️قفل عربی/فارسی: "..settings.lock_arabic.."\nℹ️قفل برچسب: "..settings.lock_sticker.."\nℹ️قفل امنیتی پیشرفته: "..settings.lock_security.."\nℹ️تنظیمات سخت گیرانه: "..settings.strict.."\nℹ️قفل هرزنامه: "..settings.lock_spam.."\nℹ️قفل ورود ربات: "..bots_protection.."\nℹ️قفل پیشرفته تبلیغات: "..settings.lock_public.."\nℹ️قفل لینک : "..settings.lock_link.."\nℹ️قفل تگ: "..settings.lock_tags.."\nℹ️قفل دستورات: "..settings.lock_commands.."\nℹ️قفل دستورات کاربران: "..settings.lock_commandsuser.."\nℹ️قفل صفحات اینترنتی : "..settings.lock_webpage.."\nℹ️قفل ارسال لینک پیشرفته: "..settings.lock_linkpro.."\nℹ️قفل تبلیغات اپراتور: "..settings.lock_operator.."\nℹ️قفل ورود ربات: "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6"
    local text = string.gsub(text,'yes','[قفل | 🔐]')
   local text = string.gsub(text,'no','[آزاد | 🔓]')
   send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
   --send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/send.webp", ok_cb, false)
            return "ℹ️تنظیمات مربوط به قفل این سوپرگروه در خصوصی ارسال شد(Fa)"
 else
-local text = "⚙Settings SuperGroup ["..msg.to.title.."]  (Lock):\n____________________\n》#Lock RTL: "..settings.lock_rtl.."\n》#Lock TGservice : "..settings.lock_tgservice.."\n》#Lock Badwords: "..settings.lock_badwords.."\n》#Lock Join Members: "..settings.lock_member.."\n》#Lock Arabic/Persian: "..settings.lock_arabic.."\n》#Lock Stickers: "..settings.lock_sticker.."\n》#Lock Security Pro: "..settings.lock_security.."\n》#Lock Strict: "..settings.strict.."\n》#Lock Spam: "..settings.lock_spam.."\n》#Lock join BOTs(API): "..bots_protection.."\n》#Lock publicy: "..settings.lock_public.."\n》#Lock links : "..settings.lock_link.."\n》#Lock Tags: "..settings.lock_tags.."\n》#Lock Commands: "..settings.lock_commands.."\n》#Lock Commandsuser: "..settings.lock_commandsuser.."\n》#Lock Webpage : "..settings.lock_webpage.."\n》#Lock links Pro: "..settings.lock_linkpro.."\n》#Lock Operator: "..settings.lock_operator.."\n》#Lock entry robot(Cli): "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6"
+local text = "⚙Settings SuperGroup ["..msg.to.title.."]  (Lock):\n____________________\n》Lock RTL: "..settings.lock_rtl.."\n》Lock TGservice : "..settings.lock_tgservice.."\n》Lock Badwords: "..settings.lock_badwords.."\n》Lock Join Members: "..settings.lock_member.."\n》Lock Arabic/Persian: "..settings.lock_arabic.."\n》Lock Stickers: "..settings.lock_sticker.."\n》Lock Security Pro: "..settings.lock_security.."\n》Lock Strict: "..settings.strict.."\n》Lock Spam: "..settings.lock_spam.."\n》Lock join BOTs(API): "..bots_protection.."\n》Lock publicy: "..settings.lock_public.."\n》Lock links : "..settings.lock_link.."\n》Lock Tags: "..settings.lock_tags.."\n》Lock Commands: "..settings.lock_commands.."\n》Lock Commandsuser: "..settings.lock_commandsuser.."\n》Lock Webpage : "..settings.lock_webpage.."\n》Lock links Pro: "..settings.lock_linkpro.."\n》Lock Operator: "..settings.lock_operator.."\n》Lock entry robot(Cli): "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6"
   local text = string.gsub(text,'yes','[Yes | 🔐]')
   local text = string.gsub(text,'no','[No | 🔓]')
   send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
@@ -3360,12 +3360,12 @@ local settings = data[tostring(target)]['settings']
 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  local text = "⚙تنظیمات ["..msg.to.title.."] (کارکرد+دیگر تنظیمات):\n____________________\n🔺#قفل ارسال پیام متوالی: "..settings.flood.."\n🔻#حساسیت نسبت به ارسال پیام : "..NUM_MSG_MAX.."\n\n↙️#قفل تصاویر پورن: "..settings.lock_porn.."\n⬅️#قفل کلمات(مستهجن): "..settings.lock_pornword.."\n↖️#قفل پشتیبانی(Sudo): "..settings.lock_support.."\n🔀#قفل استفاده از دستور(kickme): "..settings.lock_kickme.."\n\n____Switch & Traffic Mod_____\n🔄#کارکرد ترافیک سنگین: "..settings.lock_high.."\n🔄#کارکرد ترافیک سبک: "..settings.lock_low.."\n🔄#حالت خانواده: "..settings.lock_family.."\nℹ️#قفل تمامی تنظیمات: "..settings.lock_all.."\n\n_____درباره گروه_____\n↙️#پیغام خوش آمد گویی: "..Welcome.."\n⬅️#نوع گروه: "..gp_type.."\n↖️#تاریخ انقضای گروه: "..expire.." روز دیگر\n____________________\nBOT VERSION: 3.6"
+  local text = "⚙تنظیمات ["..msg.to.title.."] (کارکرد+دیگر تنظیمات):\n____________________\n🔺قفل ارسال پیام متوالی: "..settings.flood.."\n🔻حساسیت نسبت به ارسال پیام : "..NUM_MSG_MAX.."\n\n↙️قفل تصاویر پورن: "..settings.lock_porn.."\n⬅️قفل کلمات(مستهجن): "..settings.lock_pornword.."\n↖️قفل پشتیبانی(Sudo): "..settings.lock_support.."\n🔀قفل استفاده از دستور(kickme): "..settings.lock_kickme.."\n\n____Switch & Traffic Mod_____\n🔄کارکرد ترافیک سنگین: "..settings.lock_high.."\n🔄کارکرد ترافیک سبک: "..settings.lock_low.."\n🔄حالت خانواده: "..settings.lock_family.."\nℹ️قفل تمامی تنظیمات: "..settings.lock_all.."\n\n_____درباره گروه_____\n↙️پیغام خوش آمد گویی: "..Welcome.."\n⬅️نوع گروه: "..gp_type.."\n↖️تاریخ انقضای گروه: "..expire.." روز دیگر\n____________________\nBOT VERSION: 3.6"
   local text = string.gsub(text,'yes','[قفل | 🔐]')
   local text = string.gsub(text,'no','[آزاد | 🔓]')
   return reply_msg(msg.id, text, ok_cb, false)
 else
-local text = "⚙Settings ["..msg.to.title.."] (Function + other settings):\n____________________\n🔺#Lock flood: "..settings.flood.."\n🔻#Flood sensitivity : "..NUM_MSG_MAX.."\n\n》#Lock porn pictures: "..settings.lock_porn.."\n》#Lock porn Words: "..settings.lock_pornword.."\n》#Lock Support(Sudo): "..settings.lock_support.."\n》#Lock Kickme: "..settings.lock_kickme.."\n\n____Switch & Traffic Mod_____\n》#Heavy traffic operation: "..settings.lock_high.."\n》#Light traffic operation: "..settings.lock_low.."\n》#Mode family: "..settings.lock_family.."\n》#Lock All Settings: "..settings.lock_all.."\n\n_____About Group_____\n》#Welcome Message: "..Welcome.."\n》#Type Group: "..gp_type.."\n》#Group expiration date: "..expire.." other day\n____________________\nBOT VERSION: 3.6"
+local text = "⚙Settings ["..msg.to.title.."] (Function + other settings):\n____________________\n🔺Lock flood: "..settings.flood.."\n🔻Flood sensitivity : "..NUM_MSG_MAX.."\n\n》Lock porn pictures: "..settings.lock_porn.."\n》Lock porn Words: "..settings.lock_pornword.."\n》Lock Support(Sudo): "..settings.lock_support.."\n》Lock Kickme: "..settings.lock_kickme.."\n\n____Switch & Traffic Mod_____\n》Heavy traffic operation: "..settings.lock_high.."\n》Light traffic operation: "..settings.lock_low.."\n》Mode family: "..settings.lock_family.."\n》Lock All Settings: "..settings.lock_all.."\n\n_____About Group_____\n》Welcome Message: "..Welcome.."\n》Type Group: "..gp_type.."\n》Group expiration date: "..expire.." other day\n____________________\nBOT VERSION: 3.6"
   local text = string.gsub(text,'yes','[Yes | 🔐]')
   local text = string.gsub(text,'no','[No | 🔓]')
   return reply_msg(msg.id, text, ok_cb, false)
@@ -3449,14 +3449,14 @@ local settings = data[tostring(target)]['settings']
 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  local text = "⚙تنظیمات ["..msg.to.title.."] (کارکرد+دیگر تنظیمات):\n____________________\n🔺#قفل ارسال پیام متوالی: "..settings.flood.."\n🔻#حساسیت نسبت به ارسال پیام : "..NUM_MSG_MAX.."\n\n↙️#قفل تصاویر پورن: "..settings.lock_porn.."\n⬅️#قفل کلمات(مستهجن): "..settings.lock_pornword.."\n↖️#قفل پشتیبانی(Sudo): "..settings.lock_support.."\n🔀#قفل استفاده از دستور(kickme): "..settings.lock_kickme.."\n\n____Switch & Traffic Mod_____\n🔄#کارکرد ترافیک سنگین: "..settings.lock_high.."\n🔄#کارکرد ترافیک سبک: "..settings.lock_low.."\n🔄#حالت خانواده: "..settings.lock_family.."\nℹ️#قفل تمامی تنظیمات: "..settings.lock_all.."\n\n_____درباره گروه_____\n↙️#پیغام خوش آمد گویی: "..Welcome.."\n⬅️#نوع گروه: "..gp_type.."\n↖️#تاریخ انقضای گروه: "..expire.." روز دیگر\n____________________\nBOT VERSION: 3.6"
+  local text = "⚙تنظیمات ["..msg.to.title.."] (کارکرد+دیگر تنظیمات):\n____________________\n🔺قفل ارسال پیام متوالی: "..settings.flood.."\n🔻حساسیت نسبت به ارسال پیام : "..NUM_MSG_MAX.."\n\n↙️قفل تصاویر پورن: "..settings.lock_porn.."\n⬅️قفل کلمات(مستهجن): "..settings.lock_pornword.."\n↖️قفل پشتیبانی(Sudo): "..settings.lock_support.."\n🔀قفل استفاده از دستور(kickme): "..settings.lock_kickme.."\n\n____Switch & Traffic Mod_____\n🔄کارکرد ترافیک سنگین: "..settings.lock_high.."\n🔄کارکرد ترافیک سبک: "..settings.lock_low.."\n🔄حالت خانواده: "..settings.lock_family.."\nℹ️قفل تمامی تنظیمات: "..settings.lock_all.."\n\n_____درباره گروه_____\n↙️پیغام خوش آمد گویی: "..Welcome.."\n⬅️نوع گروه: "..gp_type.."\n↖️تاریخ انقضای گروه: "..expire.." روز دیگر\n____________________\nBOT VERSION: 3.6"
   local text = string.gsub(text,'yes','[قفل | 🔐]')
   local text = string.gsub(text,'no','[آزاد | 🔓]')
   send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
   --send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/send.webp", ok_cb, false)
            return "ℹ️تنظیمات مروبط به تنظیمات بیشتر این سوپرگروه در خصوصی ارسال شد(Fa)"
 else
-local text = "⚙Settings ["..msg.to.title.."] (Function + other settings):\n____________________\n🔺#Lock flood: "..settings.flood.."\n🔻#Flood sensitivity : "..NUM_MSG_MAX.."\n\n》#Lock porn pictures: "..settings.lock_porn.."\n》#Lock porn Words: "..settings.lock_pornword.."\n》#Lock Support(Sudo): "..settings.lock_support.."\n》#Lock Kickme: "..settings.lock_kickme.."\n\n____Switch & Traffic Mod_____\n》#Heavy traffic operation: "..settings.lock_high.."\n》#Light traffic operation: "..settings.lock_low.."\n》#Mode family: "..settings.lock_family.."\n》#Lock All Settings: "..settings.lock_all.."\n\n_____About Group_____\n》#Welcome Message: "..Welcome.."\n》#Type Group: "..gp_type.."\n》#Group expiration date: "..expire.." other day\n____________________\nBOT VERSION: 3.6"
+local text = "⚙Settings ["..msg.to.title.."] (Function + other settings):\n____________________\n🔺Lock flood: "..settings.flood.."\n🔻Flood sensitivity : "..NUM_MSG_MAX.."\n\n》Lock porn pictures: "..settings.lock_porn.."\n》Lock porn Words: "..settings.lock_pornword.."\n》Lock Support(Sudo): "..settings.lock_support.."\n》Lock Kickme: "..settings.lock_kickme.."\n\n____Switch & Traffic Mod_____\n》Heavy traffic operation: "..settings.lock_high.."\n》Light traffic operation: "..settings.lock_low.."\n》Mode family: "..settings.lock_family.."\n》Lock All Settings: "..settings.lock_all.."\n\n_____About Group_____\n》Welcome Message: "..Welcome.."\n》Type Group: "..gp_type.."\n》Group expiration date: "..expire.." other day\n____________________\nBOT VERSION: 3.6"
   local text = string.gsub(text,'yes','[Yes | 🔐]')
   local text = string.gsub(text,'no','[No | 🔓]')
   send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
@@ -3497,12 +3497,12 @@ local settings = data[tostring(target)]['settings']
 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  local text = "⚙تنظیمات سوپرگروه (پخش عمومی):\n____________________\n🛄#قفل پرسش و پاسخ(گروه): "..settings.lock_qa.."\n🛄#قفل کمکی متن(گفتگو): "..settings.lock_dialogue.."\n🛄#بخش های جدید بزودی: ❌".."\n🛄#بخش های جدید بزودی: ❌".."\n____________________\nBOT VERSION: 3.6"
+  local text = "⚙تنظیمات سوپرگروه (پخش عمومی):\n____________________\n🛄قفل پرسش و پاسخ(گروه): "..settings.lock_qa.."\n🛄قفل کمکی متن(گفتگو): "..settings.lock_dialogue.."\n🛄بخش های جدید بزودی: ❌".."\n🛄بخش های جدید بزودی: ❌".."\n____________________\nBOT VERSION: 3.6"
   local text = string.gsub(text,'yes','✅')
   local text = string.gsub(text,'no','❌')
   return reply_msg(msg.id, text, ok_cb, false)
 else
-local text = "⚙Super Group Settings (General):\n____________________\n》#Lock FAQ (in the group): "..settings.lock_qa.."\n》#Text auxiliary lock (dialogue): "..settings.lock_dialogue.."\n》#The new section soon: ❌".."\n》#The new section soon: ❌".."\n____________________\nBOT VERSION: 3.6"
+local text = "⚙Super Group Settings (General):\n____________________\n》Lock FAQ (in the group): "..settings.lock_qa.."\n》Text auxiliary lock (dialogue): "..settings.lock_dialogue.."\n》The new section soon: ❌".."\n》The new section soon: ❌".."\n____________________\nBOT VERSION: 3.6"
   local text = string.gsub(text,'yes','✅')
   local text = string.gsub(text,'no','❌')
   return reply_msg(msg.id, text, ok_cb, false)
@@ -3541,14 +3541,14 @@ local settings = data[tostring(target)]['settings']
 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  local text = "⚙تنظیمات سوپرگروه (پخش عمومی):\n____________________\n🛄#قفل پرسش و پاسخ(گروه): "..settings.lock_qa.."\n🛄#قفل کمکی متن(گفتگو): "..settings.lock_dialogue.."\n🛄#بخش های جدید بزودی: ❌".."\n🛄#بخش های جدید بزودی: ❌".."\n____________________\nBOT VERSION: 3.6"
+  local text = "⚙تنظیمات سوپرگروه (پخش عمومی):\n____________________\n🛄قفل پرسش و پاسخ(گروه): "..settings.lock_qa.."\n🛄قفل کمکی متن(گفتگو): "..settings.lock_dialogue.."\n🛄بخش های جدید بزودی: ❌".."\n🛄بخش های جدید بزودی: ❌".."\n____________________\nBOT VERSION: 3.6"
   local text = string.gsub(text,'yes','✅')
   local text = string.gsub(text,'no','❌')
    send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
    --send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/send.webp", ok_cb, false)
            return "ℹ️تنظیمات مربوط به پخش عمومی این سوپرگروه به خصوصی شما ارسال شد(Fa)"
 else
- local text = "⚙Super Group Settings (General):\n____________________\n》#Lock FAQ (in the group): "..settings.lock_qa.."\n》#Text auxiliary lock (dialogue): "..settings.lock_dialogue.."\n》#The new section soon: ❌".."\n》#The new section soon: ❌".."\n____________________\nBOT VERSION: 3.6"
+ local text = "⚙Super Group Settings (General):\n____________________\n》Lock FAQ (in the group): "..settings.lock_qa.."\n》Text auxiliary lock (dialogue): "..settings.lock_dialogue.."\n》The new section soon: ❌".."\n》The new section soon: ❌".."\n____________________\nBOT VERSION: 3.6"
   local text = string.gsub(text,'yes','✅')
   local text = string.gsub(text,'no','❌')
    send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
@@ -3778,13 +3778,13 @@ end
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  local text = ">تنظیمات کلی سوپرگروه\n____________________\n>نام گروه: ["..msg.to.title.."]\n>شناسه گروه ["..msg.to.id.."]\n____________________\n>قفل ها:\n》قفل راست به چپ: "..settings.lock_rtl.."\n》قفل خدمات تلگرام : "..settings.lock_tgservice.."\n》قفل کلمات توهین آمیز: "..settings.lock_badwords.."\n》قفل ورود اعضا: "..settings.lock_member.."\n》قفل عربی/فارسی: "..settings.lock_arabic.."\n》قفل برچسب: "..settings.lock_sticker.."\n》قفل امنیتی پیشرفته: "..settings.lock_security.."\n》تنظیمات سخت گیرانه: "..settings.strict.."\n》قفل هرزنامه: "..settings.lock_spam.."\n》قفل ورود ربات: "..bots_protection.."\n》قفل پیشرفته تبلیغات: "..settings.lock_public.."\n》قفل لینک : "..settings.lock_link.."\n》قفل تگ: "..settings.lock_tags.."\n》قفل دستورات: "..settings.lock_commands.."\n》قفل دستورات کاربران: "..settings.lock_commandsuser.."\n》قفل صفحات اینترنتی : "..settings.lock_webpage.."\n》قفل ارسال لینک پیشرفته: "..settings.lock_linkpro.."\n》قفل تبلیغات اپراتور: "..settings.lock_operator.."\n》قفل ورود ربات(Cli): "..settings.lock_antispambot.."\n》قفل پرسش و پاسخ(گروه): "..settings.lock_qa.."\n》قفل کمکی متن(گفتگو): "..settings.lock_dialogue.."\n》قفل ارسال پیام متوالی: "..settings.flood.."\n》حساسیت نسبت به ارسال پیام : "..NUM_MSG_MAX.."\n》قفل تصاویر پورن: "..settings.lock_porn.."\n》قفل کلمات(مستهجن): "..settings.lock_pornword.."\n》قفل پشتیبانی(Sudo): "..settings.lock_support.."\n》قفل استفاده از دستور(kickme): "..settings.lock_kickme.."\n》کارکرد ترافیک سنگین: "..settings.lock_high.."\n》کارکرد ترافیک سبک: "..settings.lock_low.."\n》حالت خانواده: "..settings.lock_family.."\n》قفل تمامی تنظیمات: "..settings.lock_all.."\n》پیغام خوش آمد گویی: "..Welcome.."\n》نوع گروه: "..gp_type.."\n》تاریخ انقضای گروه: "..expire.." روز دیگر\n>تعداد ادمین ها: "..result.admins_count.."\n>تعداد کاربران: "..result.participants_count.."\n>تعداد کاربران اخراج شده: "..result.kicked_count.."\nمالک گروه: "..group_owner.."\nلینک گروه: "..group_link.."\nلیست مدیران:\n "..adminslist.."____________________\nBOT VERSION: 3.6"
+  local text = ">تنظیمات کلی سوپرگروه\n____________________\n>نام گروه: ["..msg.to.title.."]\n>شناسه گروه ["..msg.to.id.."]\n____________________\n>قفل ها:\n》قفل راست به چپ: "..settings.lock_rtl.."\n》قفل خدمات تلگرام : "..settings.lock_tgservice.."\n》قفل کلمات توهین آمیز: "..settings.lock_badwords.."\n》قفل ورود اعضا: "..settings.lock_member.."\n》قفل عربی/فارسی: "..settings.lock_arabic.."\n》قفل برچسب: "..settings.lock_sticker.."\n》قفل امنیتی پیشرفته: "..settings.lock_security.."\n》تنظیمات سخت گیرانه: "..settings.strict.."\n》قفل هرزنامه: "..settings.lock_spam.."\n》قفل ورود ربات: "..bots_protection.."\n》قفل پیشرفته تبلیغات: "..settings.lock_public.."\n》قفل لینک : "..settings.lock_link.."\n》قفل تگ: "..settings.lock_tags.."\n》قفل دستورات: "..settings.lock_commands.."\n》قفل دستورات کاربران: "..settings.lock_commandsuser.."\n》قفل صفحات اینترنتی : "..settings.lock_webpage.."\n》قفل ارسال لینک پیشرفته: "..settings.lock_linkpro.."\n》قفل تبلیغات اپراتور: "..settings.lock_operator.."\n》قفل ورود ربات: "..settings.lock_antispambot.."\n》قفل پرسش و پاسخ(گروه): "..settings.lock_qa.."\n》قفل کمکی متن(گفتگو): "..settings.lock_dialogue.."\n》قفل ارسال پیام متوالی: "..settings.flood.."\n》حساسیت نسبت به ارسال پیام : "..NUM_MSG_MAX.."\n》قفل تصاویر پورن: "..settings.lock_porn.."\n》قفل کلمات(مستهجن): "..settings.lock_pornword.."\n》قفل پشتیبانی(Sudo): "..settings.lock_support.."\n》قفل استفاده از دستور(kickme): "..settings.lock_kickme.."\n》کارکرد ترافیک سنگین: "..settings.lock_high.."\n》کارکرد ترافیک سبک: "..settings.lock_low.."\n》حالت خانواده: "..settings.lock_family.."\n》قفل تمامی تنظیمات: "..settings.lock_all.."\n》پیغام خوش آمد گویی: "..Welcome.."\n》نوع گروه: "..gp_type.."\n》تاریخ انقضای گروه: "..expire.." روز دیگر\n>تعداد ادمین ها: "..result.admins_count.."\n>تعداد کاربران: "..result.participants_count.."\n>تعداد کاربران اخراج شده: "..result.kicked_count.."\nمالک گروه: "..group_owner.."\nلینک گروه: "..group_link.."\nلیست مدیران:\n "..adminslist.."____________________\nBOT VERSION: 3.6"
    local text = string.gsub(text,'yes','[قفل | 🔐]')
   local text = string.gsub(text,'no','[آزاد | 🔓]')
   return reply_msg(msg.id, text, ok_cb, false)
 else
-local text = "><b>General Settings SuperGroup</b>\n____________________\n><b> Group name: </b> ["..msg.to.title.."]\n><b>Group ID:</b> ["..msg.to.id.."]\n____________________\n><b>Lock(s):</b>\n》<i>Lock RTL:</i> "..settings.lock_rtl.."\n》<i>Lock TGservice:</i> "..settings.lock_tgservice.."\n》<i>Lock Badwords:</i> "..settings.lock_badwords.."\n》<i>Lock Join Members:</i> ".."\n》<i>Lock Arabic/Persian:</i> "..settings.lock_arabic.."\n》<i>Lock Stickers:</i> "..settings.lock_sticker.."\n》<i>Lock Security Pro:</i> "..settings.lock_security.."\n》<i>Lock Strict:</i> "..settings.strict.."\n》<i>Lock Spam:</i> "..settings.lock_spam.."\n》<i>Lock join BOTs(API):</i> "..bots_protection.."\n》<i>Lock publicy pro:</i> "..settings.lock_public.."\n》<i>Lock links:</i> "..settings.lock_link.."\n》<i>Lock Tags:</i> "..settings.lock_tags.."\n》<i>Lock Commands:</i> "..settings.lock_commands.."\n》<i>Lock Commands user:</i> ".."\n》<i>Lock Webpage:</i> "..settings.lock_webpage.."\n》<i>Lock links Pro:</i> "..settings.lock_linkpro.."\n》<i>Lock Operator:</i> "..settings.lock_operator.."\n》<i>Lock entry robot(Cli):</i> "..settings.lock_antispambot.."\n》<i>Lock FAQ (in the group):</i> "..settings.lock_qa.."\n》<i>Text auxiliary lock (dialogue):</i> "..settings.lock_dialogue.."\n》<i>Lock flood:</i> "..settings.flood.."\n》<i>Flood sensitivity:</i> "..NUM_MSG_MAX.."\n》<i>Lock porn pictures:</i> "..settings.lock_porn.."\n》<i>Lock porn Words:</i> ".."\n》<i>Lock Support(Sudo):</i> "..settings.lock_support.."\n》<i>Lock Kickme command:</i> "..settings.lock_kickme.."\n》<i>Heavy traffic operation:</i> "..settings.lock_high.."\n》<i>Light traffic operation:</i> "..settings.lock_low.."\n》<i>Mode family:</i> "..settings.lock_family.."\n》<i>Lock All Settings:</i> ".."\n____________________\n》<i>Welcome Message:</i> "..Welcome.."\n》<i>Type Group:</i> ["..gp_type.."]\n》<i>Group expiry date:</i> ["..expire.."] other day\n____________________\n> <b> Administrators: </b> [Fault]".."\n> <b> number of users: </b> [Fault]".."\n> <b> Members expelled: </b> [Fault]".."\n____________________\n> <b> Group Owner: </b> ["..group_owner.."]\n> <b> Group link: </b>  ["..group_link.."]\n____________________\n> <b> Managers list: </b> "..adminslist.."\n____________________\n> <b> Group Rules: </b> [".."] \n____________________\n<i>BOT VERSION: 3.6</i>"
-  --reply_msg(msg.id,"<code>⚙Settings SuperGroup ["..msg.to.title.."] (Lock):\n____________________\n》#Lock RTL: "..settings.lock_rtl.."\n》#Lock TGservice : "..settings.lock_tgservice.."\n》#Lock Badwords: "..settings.lock_badwords.."\n》#Lock Join Members: "..settings.lock_member.."\n》#Lock Arabic/Persian: "..settings.lock_arabic.."\n》#Lock Stickers: "..settings.lock_sticker.."\n》#Lock Security Pro: "..settings.lock_security.."\n》#Lock Strict: "..settings.strict.."\n》#Lock Spam: "..settings.lock_spam.."\n》#Lock join BOTs(API): "..bots_protection.."\n》#Lock publicy: "..settings.lock_public.."\n》#Lock links : "..settings.lock_link.."\n》#Lock Tags: "..settings.lock_tags.."\n》#Lock Commands: "..settings.lock_commands.."\n》#Lock Webpage : "..settings.lock_webpage.."\n》#Lock links Pro: "..settings.lock_linkpro.."\n》#Lock Operator: "..settings.lock_operator.."\n》#Lock entry robot(Cli): "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6</code>",ok_cb,true)
+local text = "><b>General Settings SuperGroup \n____________________\n> Group name: ["..msg.to.title.."]\n> Group ID: ["..msg.to.id.."]\n____________________\n> Lock(s): \n》<i>Lock RTL: "..settings.lock_rtl.."\n》Lock TGservice: "..settings.lock_tgservice.."\n》Lock Badwords: "..settings.lock_badwords.."\n》Lock Join Members: ".."\n》Lock Arabic/Persian: "..settings.lock_arabic.."\n》Lock Stickers: "..settings.lock_sticker.."\n》Lock Security Pro: "..settings.lock_security.."\n》Lock Strict: "..settings.strict.."\n》Lock Spam: "..settings.lock_spam.."\n》Lock join BOTs(API): "..bots_protection.."\n》Lock publicy pro: "..settings.lock_public.."\n》Lock links: "..settings.lock_link.."\n》Lock Tags: "..settings.lock_tags.."\n》Lock Commands: "..settings.lock_commands.."\n》Lock Commands user: ".."\n》Lock Webpage: "..settings.lock_webpage.."\n》Lock links Pro: "..settings.lock_linkpro.."\n》Lock Operator: "..settings.lock_operator.."\n》Lock entry robot: "..settings.lock_antispambot.."\n》Lock FAQ (in the group): "..settings.lock_qa.."\n》Text auxiliary lock (dialogue): "..settings.lock_dialogue.."\n》Lock flood: "..settings.flood.."\n》Flood sensitivity: "..NUM_MSG_MAX.."\n》Lock porn pictures: "..settings.lock_porn.."\n》Lock porn Words: ".."\n》Lock Support(Sudo): "..settings.lock_support.."\n》Lock Kickme command: "..settings.lock_kickme.."\n》Heavy traffic operation: "..settings.lock_high.."\n》Light traffic operation: "..settings.lock_low.."\n》Mode family: "..settings.lock_family.."\n》Lock All Settings: ".."\n____________________\n》Welcome Message: "..Welcome.."\n》Type Group: ["..gp_type.."]\n》Group expiry date: ["..expire.."] other day\n____________________\n>  Administrators:  [Fault]".."\n>  number of users:  [Fault]".."\n>  Members expelled:  [Fault]".."\n____________________\n>  Group Owner:  ["..group_owner.."]\n>  Group link:   ["..group_link.."]\n____________________\n>  Managers list:  "..adminslist.."\n____________________\n>  Group Rules:  [".."] \n____________________\n BOT VERSION: 3.6"
+  --reply_msg(msg.id,"⚙Settings SuperGroup ["..msg.to.title.."] (Lock):\n____________________\n》Lock RTL: "..settings.lock_rtl.."\n》Lock TGservice : "..settings.lock_tgservice.."\n》Lock Badwords: "..settings.lock_badwords.."\n》Lock Join Members: "..settings.lock_member.."\n》Lock Arabic/Persian: "..settings.lock_arabic.."\n》Lock Stickers: "..settings.lock_sticker.."\n》Lock Security Pro: "..settings.lock_security.."\n》Lock Strict: "..settings.strict.."\n》Lock Spam: "..settings.lock_spam.."\n》Lock join BOTs(API): "..bots_protection.."\n》Lock publicy: "..settings.lock_public.."\n》Lock links : "..settings.lock_link.."\n》Lock Tags: "..settings.lock_tags.."\n》Lock Commands: "..settings.lock_commands.."\n》Lock Webpage : "..settings.lock_webpage.."\n》Lock links Pro: "..settings.lock_linkpro.."\n》Lock Operator: "..settings.lock_operator.."\n》Lock entry robot: "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6",ok_cb,true)
   local text = string.gsub(text,'yes','[Yes | 🔐]')
   local text = string.gsub(text,'no','[No | 🔓]')
   return reply_msg(msg.id, text, ok_cb, false)
@@ -4011,7 +4011,7 @@ end
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  local text = ">تنظیمات کلی سوپرگروه\n____________________\n>نام گروه: ["..msg.to.title.."]\n>شناسه گروه ["..msg.to.id.."]\n____________________\n>قفل ها:\n》قفل راست به چپ: "..settings.lock_rtl.."\n》قفل خدمات تلگرام : "..settings.lock_tgservice.."\n》قفل کلمات توهین آمیز: "..settings.lock_badwords.."\n》قفل ورود اعضا: "..settings.lock_member.."\n》قفل عربی/فارسی: "..settings.lock_arabic.."\n》قفل برچسب: "..settings.lock_sticker.."\n》قفل امنیتی پیشرفته: "..settings.lock_security.."\n》تنظیمات سخت گیرانه: "..settings.strict.."\n》قفل هرزنامه: "..settings.lock_spam.."\n》قفل ورود ربات: "..bots_protection.."\n》قفل پیشرفته تبلیغات: "..settings.lock_public.."\n》قفل لینک : "..settings.lock_link.."\n》قفل تگ: "..settings.lock_tags.."\n》قفل دستورات: "..settings.lock_commands.."\n》قفل دستورات کاربران: "..settings.lock_commandsuser.."\n》قفل صفحات اینترنتی : "..settings.lock_webpage.."\n》قفل ارسال لینک پیشرفته: "..settings.lock_linkpro.."\n》قفل تبلیغات اپراتور: "..settings.lock_operator.."\n》قفل ورود ربات(Cli): "..settings.lock_antispambot.."\n》قفل پرسش و پاسخ(گروه): "..settings.lock_qa.."\n》قفل کمکی متن(گفتگو): "..settings.lock_dialogue.."\n》قفل ارسال پیام متوالی: "..settings.flood.."\n》حساسیت نسبت به ارسال پیام : "..NUM_MSG_MAX.."\n》قفل تصاویر پورن: "..settings.lock_porn.."\n》قفل کلمات(مستهجن): "..settings.lock_pornword.."\n》قفل پشتیبانی(Sudo): "..settings.lock_support.."\n》قفل استفاده از دستور(kickme): "..settings.lock_kickme.."\n》کارکرد ترافیک سنگین: "..settings.lock_high.."\n》کارکرد ترافیک سبک: "..settings.lock_low.."\n》حالت خانواده: "..settings.lock_family.."\n》قفل تمامی تنظیمات: "..settings.lock_all.."\n》پیغام خوش آمد گویی: "..Welcome.."\n》نوع گروه: "..gp_type.."\n》تاریخ انقضای گروه: "..expire.." روز دیگر\n>تعداد ادمین ها: "..result.admins_count.."\n>تعداد کاربران: "..result.participants_count.."\n>تعداد کاربران اخراج شده: "..result.kicked_count.."\nمالک گروه: "..group_owner.."\nلینک گروه: "..group_link.."\nلیست مدیران:\n "..adminslist.."____________________\nBOT VERSION: 3.6"
+  local text = ">تنظیمات کلی سوپرگروه\n____________________\n>نام گروه: ["..msg.to.title.."]\n>شناسه گروه ["..msg.to.id.."]\n____________________\n>قفل ها:\n》قفل راست به چپ: "..settings.lock_rtl.."\n》قفل خدمات تلگرام : "..settings.lock_tgservice.."\n》قفل کلمات توهین آمیز: "..settings.lock_badwords.."\n》قفل ورود اعضا: "..settings.lock_member.."\n》قفل عربی/فارسی: "..settings.lock_arabic.."\n》قفل برچسب: "..settings.lock_sticker.."\n》قفل امنیتی پیشرفته: "..settings.lock_security.."\n》تنظیمات سخت گیرانه: "..settings.strict.."\n》قفل هرزنامه: "..settings.lock_spam.."\n》قفل ورود ربات: "..bots_protection.."\n》قفل پیشرفته تبلیغات: "..settings.lock_public.."\n》قفل لینک : "..settings.lock_link.."\n》قفل تگ: "..settings.lock_tags.."\n》قفل دستورات: "..settings.lock_commands.."\n》قفل دستورات کاربران: "..settings.lock_commandsuser.."\n》قفل صفحات اینترنتی : "..settings.lock_webpage.."\n》قفل ارسال لینک پیشرفته: "..settings.lock_linkpro.."\n》قفل تبلیغات اپراتور: "..settings.lock_operator.."\n》قفل ورود ربات: "..settings.lock_antispambot.."\n》قفل پرسش و پاسخ(گروه): "..settings.lock_qa.."\n》قفل کمکی متن(گفتگو): "..settings.lock_dialogue.."\n》قفل ارسال پیام متوالی: "..settings.flood.."\n》حساسیت نسبت به ارسال پیام : "..NUM_MSG_MAX.."\n》قفل تصاویر پورن: "..settings.lock_porn.."\n》قفل کلمات(مستهجن): "..settings.lock_pornword.."\n》قفل پشتیبانی(Sudo): "..settings.lock_support.."\n》قفل استفاده از دستور(kickme): "..settings.lock_kickme.."\n》کارکرد ترافیک سنگین: "..settings.lock_high.."\n》کارکرد ترافیک سبک: "..settings.lock_low.."\n》حالت خانواده: "..settings.lock_family.."\n》قفل تمامی تنظیمات: "..settings.lock_all.."\n》پیغام خوش آمد گویی: "..Welcome.."\n》نوع گروه: "..gp_type.."\n》تاریخ انقضای گروه: "..expire.." روز دیگر\n>تعداد ادمین ها: "..result.admins_count.."\n>تعداد کاربران: "..result.participants_count.."\n>تعداد کاربران اخراج شده: "..result.kicked_count.."\nمالک گروه: "..group_owner.."\nلینک گروه: "..group_link.."\nلیست مدیران:\n "..adminslist.."____________________\nBOT VERSION: 3.6"
    local text = string.gsub(text,'yes','[قفل | 🔐]')
   local text = string.gsub(text,'no','[آزاد | 🔓]')
   send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
@@ -4019,7 +4019,7 @@ end
            return "ℹ️کلیه اطلاعات سوپرگروه به خصوصی شما ارسال شد(FA)"
 else
 local text = ">General Settings SuperGroup\n____________________\n>Group name: ["..msg.to.title.."]\n>Group ID ["..msg.to.id.."]\n____________________\n>Lock(s):\n》Lock RTL: "..settings.lock_rtl.."\n》Lock TGservice : "..settings.lock_tgservice.."\n》Lock Badwords: "..settings.lock_badwords.."\n》Lock Join Members: ".."\n》Lock Arabic/Persian: "..settings.lock_arabic.."\n》Lock Stickers: "..settings.lock_sticker.."\n》Lock Security Pro: "..settings.lock_security.."\n》Lock Strict: "..settings.strict.."\n》Lock Spam: "..settings.lock_spam.."\n》Lock join BOTs(API): "..bots_protection.."\n》Lock publicy pro: "..settings.lock_public.."\n》Lock links : "..settings.lock_link.."\n》Lock Tags: "..settings.lock_tags.."\n》Lock Commands: "..settings.lock_commands.."\n》Lock Commands user: ".."\n》Lock Webpage : "..settings.lock_webpage.."\n》Lock links Pro: "..settings.lock_linkpro.."\n》Lock Operator: "..settings.lock_operator.."\n》Lock entry robot(Cli): "..settings.lock_antispambot.."\n》Lock FAQ (in the group): "..settings.lock_qa.."\n》Text auxiliary lock (dialogue): "..settings.lock_dialogue.."\n》Lock flood: "..settings.flood.."\n》Flood sensitivity : "..NUM_MSG_MAX.."\n》Lock porn pictures: "..settings.lock_porn.."\n》Lock porn Words: ".."\n》Lock Support(Sudo): "..settings.lock_support.."\n》Lock Kickme command: "..settings.lock_kickme.."\n》Heavy traffic operation: "..settings.lock_high.."\n》Light traffic operation: "..settings.lock_low.."\n》Mode family: "..settings.lock_family.."\n》Lock All Settings: ".."\n____________________\n》Welcome Message: "..Welcome.."\n》Type Group: ["..gp_type.."]\n》Group expiry date: ["..expire.."] other day\n____________________\n>Administrators: [Fault]".."\n>number of users: [Fault]".."\n>Members expelled: [Fault]".."\n____________________\n>Group Owner: ["..group_owner.."]\n>Group link: ["..group_link.."]\n____________________\n>Managers list ["..adminslist.."]\n____________________\n>Group Rules : [".."] \n____________________\nBOT VERSION: 3.6"
-  --reply_msg(msg.id,"<code>⚙Settings SuperGroup ["..msg.to.title.."] (Lock):\n____________________\n》#Lock RTL: "..settings.lock_rtl.."\n》#Lock TGservice : "..settings.lock_tgservice.."\n》#Lock Badwords: "..settings.lock_badwords.."\n》#Lock Join Members: "..settings.lock_member.."\n》#Lock Arabic/Persian: "..settings.lock_arabic.."\n》#Lock Stickers: "..settings.lock_sticker.."\n》#Lock Security Pro: "..settings.lock_security.."\n》#Lock Strict: "..settings.strict.."\n》#Lock Spam: "..settings.lock_spam.."\n》#Lock join BOTs(API): "..bots_protection.."\n》#Lock publicy: "..settings.lock_public.."\n》#Lock links : "..settings.lock_link.."\n》#Lock Tags: "..settings.lock_tags.."\n》#Lock Commands: "..settings.lock_commands.."\n》#Lock Webpage : "..settings.lock_webpage.."\n》#Lock links Pro: "..settings.lock_linkpro.."\n》#Lock Operator: "..settings.lock_operator.."\n》#Lock entry robot(Cli): "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6</code>",ok_cb,true)
+  --reply_msg(msg.id,"⚙Settings SuperGroup ["..msg.to.title.."] (Lock):\n____________________\n》Lock RTL: "..settings.lock_rtl.."\n》Lock TGservice : "..settings.lock_tgservice.."\n》Lock Badwords: "..settings.lock_badwords.."\n》Lock Join Members: "..settings.lock_member.."\n》Lock Arabic/Persian: "..settings.lock_arabic.."\n》Lock Stickers: "..settings.lock_sticker.."\n》Lock Security Pro: "..settings.lock_security.."\n》Lock Strict: "..settings.strict.."\n》Lock Spam: "..settings.lock_spam.."\n》Lock join BOTs(API): "..bots_protection.."\n》Lock publicy: "..settings.lock_public.."\n》Lock links : "..settings.lock_link.."\n》Lock Tags: "..settings.lock_tags.."\n》Lock Commands: "..settings.lock_commands.."\n》Lock Webpage : "..settings.lock_webpage.."\n》Lock links Pro: "..settings.lock_linkpro.."\n》Lock Operator: "..settings.lock_operator.."\n》Lock entry robot: "..settings.lock_antispambot.."\n____________________\nBOT VERSION: 3.6</code>",ok_cb,true)
   local text = string.gsub(text,'yes','[Yes | 🔐]')
   local text = string.gsub(text,'no','[No | 🔓]')
   send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
@@ -4076,12 +4076,12 @@ local settings = data[tostring(target)]['settings']
 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  local text = "⚙لیست سوئیچ های موجود:\n____________________\n🗃#کارکرد ربات روی حالت سنگین: "..settings.lock_high.."\n🗃#کارکرد ربات روی حالت نرمال: "..settings.lock_low.."\n🗃#حالت خانواده(معمولی): "..settings.lock_family.."\n🗃#کارکرد ربات روی حالت امنیتی : "..settings.lock_security.."\n🗃#قفل تمامی تنظیمات: "..settings.lock_all.."\n____________________\nنسخه ربات: 3.7"
+  local text = "⚙لیست سوئیچ های موجود:\n____________________\n🗃کارکرد ربات روی حالت سنگین: "..settings.lock_high.."\n🗃کارکرد ربات روی حالت نرمال: "..settings.lock_low.."\n🗃حالت خانواده(معمولی): "..settings.lock_family.."\n🗃کارکرد ربات روی حالت امنیتی : "..settings.lock_security.."\n🗃قفل تمامی تنظیمات: "..settings.lock_all.."\n____________________\nنسخه ربات: 3.7"
   local text = string.gsub(text,'yes','[قفل | 🔐]')
   local text = string.gsub(text,'no','[آزاد | 🔓]')
   return reply_msg(msg.id, text, ok_cb, false)
 else
-local text = "⚙Switch list available:\n____________________\n》#Heavy traffic operation: "..settings.lock_high.."\n》#Light traffic operation: "..settings.lock_low.."\n》#Mode family: "..settings.lock_family.."\n》#Switches to security mode : "..settings.lock_security.."\n》#Lock All Settings: "..settings.lock_all.."\n____________________\nBOT VERSION: 3.6"
+local text = "⚙Switch list available:\n____________________\n》Heavy traffic operation: "..settings.lock_high.."\n》Light traffic operation: "..settings.lock_low.."\n》Mode family: "..settings.lock_family.."\n》Switches to security mode : "..settings.lock_security.."\n》Lock All Settings: "..settings.lock_all.."\n____________________\nBOT VERSION: 3.6"
  local text = string.gsub(text,'yes','[Yes | 🔐]')
   local text = string.gsub(text,'no','[No | 🔓]')
   return reply_msg(msg.id, text, ok_cb, false)
@@ -4168,14 +4168,14 @@ function show_supergroup_mutes(msg, target)
    local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  	local text = "<i> 🔕لیست فیلتر های سوپرگروه:  </i> [<b>"..msg.to.print_name:gsub("_"," ").."</b>]:\n____________________\n><i> فیلتر گفتگو: </i> "..settings.mute_all.."\n><i> فیلتر متن: </i> "..settings.mute_text.."\n><i> فیلتر تصاویر: </i> "..settings.mute_photo.."\n><i> فیلتر برچسب: </i> "..settings.lock_sticker.."\n><i> فیلتر ویدئو: </i> "..settings.mute_video.."\n><i> فیلتر صدا: </i> "..settings.mute_audio.."\n><i> فیلتر اشتراک مخاطبین: </i> "..settings.lock_contact.."\n><i> فیلتر تصاویر متحرک: </i> "..settings.mute_gif.."\n><i> فیلتر فایل: </i> "..settings.mute_doc.."\n><i> فیلتر فوروارد: </i> "..settings.mute_forward.."\n><i> فیلتر محتوای بزرگسالان: </i> "..settings.lock_porn.."\n><i> فیلتر خدمات تلگرام: </i> "..settings.mute_service.."\n><i> فیلتر تمامی رسانه ها: </i> "..settings.mute_media..""
-  local text = string.gsub(text,'yes','|<i>حذف</i>|')
-  local text = string.gsub(text,'no','|<i>غیرفعال</i>|')
+  	local text = " 🔕لیست فیلتر های سوپرگروه:   ["..msg.to.print_name:gsub("_"," ").."]:\n____________________\n> فیلتر گفتگو:  "..settings.mute_all.."\n> فیلتر متن:  "..settings.mute_text.."\n> فیلتر تصاویر:  "..settings.mute_photo.."\n> فیلتر برچسب:  "..settings.lock_sticker.."\n> فیلتر ویدئو:  "..settings.mute_video.."\n> فیلتر صدا:  "..settings.mute_audio.."\n> فیلتر اشتراک مخاطبین:  "..settings.lock_contact.."\n> فیلتر تصاویر متحرک:  "..settings.mute_gif.."\n> فیلتر فایل:  "..settings.mute_doc.."\n> فیلتر فوروارد:  "..settings.mute_forward.."\n> فیلتر محتوای بزرگسالان:  "..settings.lock_porn.."\n> فیلتر خدمات تلگرام:  "..settings.mute_service.."\n> فیلتر تمامی رسانه ها:  "..settings.mute_media..""
+  local text = string.gsub(text,'yes','|حذف|')
+  local text = string.gsub(text,'no','|غیرفعال|')
 return reply_msg(msg.id, text, ok_cb, false)
 else
-local text = "🔕 <i>Filter the list of Super Group:</i> [<b>"..msg.to.print_name:gsub("_"," ").."</b>]:\n____________________\n><i> Vintage filter: </i> "..settings.mute_all.."\n><i> Text Filter: </i> "..settings.mute_text.."\n><i> Filter pictures: </i> "..settings.mute_photo.."\n><i> Filter Tags: </i> "..settings.lock_sticker.."\n><i> Video filter: </i> "..settings.mute_video.."\n><i> Audio filter: </i> "..settings.mute_audio.."\n><i> Share filtering contacts: </i> "..settings.lock_contact.."\n><i> Filter animated images: </i> "..settings.mute_gif.."\n><i> The file filter: </i> "..settings.mute_doc.."\n><i> Forward filter: </i> "..settings.mute_forward.."\n><i> Filter adult content: </i> "..settings.lock_porn.."\n><i> Filter Telegram Service: </i> "..settings.mute_service.."\n><i> Filter all media: </i> "..settings.mute_media..""
-  local text = string.gsub(text,'yes','|<b>Delete</b>|')
-  local text = string.gsub(text,'no','|<b>Ok</b>|')
+local text = "🔕 Filter the list of Super Group: ["..msg.to.print_name:gsub("_"," ").."]:\n____________________\n> Vintage filter:  "..settings.mute_all.."\n> Text Filter:  "..settings.mute_text.."\n> Filter pictures:  "..settings.mute_photo.."\n> Filter Tags:  "..settings.lock_sticker.."\n> Video filter:  "..settings.mute_video.."\n> Audio filter:  "..settings.mute_audio.."\n> Share filtering contacts:  "..settings.lock_contact.."\n> Filter animated images:  "..settings.mute_gif.."\n> The file filter:  "..settings.mute_doc.."\n> Forward filter:  "..settings.mute_forward.."\n> Filter adult content:  "..settings.lock_porn.."\n> Filter Telegram Service:  "..settings.mute_service.."\n> Filter all media:  "..settings.mute_media..""
+  local text = string.gsub(text,'yes','|Delete|')
+  local text = string.gsub(text,'no','|Ok|')
 return reply_msg(msg.id, text, ok_cb, false)
 end
 end
@@ -4256,7 +4256,7 @@ function show_supergroup_mutesar(msg, target)
 		end
 	end
   local settings = data[tostring(target)]['settings']
-  	local text = "🔕تصفية قائمة السوبر المجموعة: ["..msg.to.print_name:gsub("_"," ").."]:\n____________________\n> 🔇مرشح خمر: "..settings.mute_all.."\n> 🔇تصفية النص: "..settings.mute_text.."\n> 🔇تصفية الصور: "..settings.mute_photo.."\n> 🔇مرشح للخلف: "..settings.lock_sticker.."\n> 🔇تصفية الفيديو: "..settings.mute_video.."\n> 🔇تصفية الصوت: "..settings.mute_audio.."\n> 🔇اتصالات حصة تصفية: "..settings.lock_contact.."\n> 🔇تصفية الصور المتحركة: "..settings.mute_gif.."\n> 🔇ملف الترشيح: "..settings.mute_doc.."\n> 🔇مرشح إلى الأمام: "..settings.mute_forward.."\n> 🔇محتوى للبالغين فلتر: "..settings.lock_porn.."\n> 🔇تصفية خدمة برقية: "..settings.mute_service.."\n> 🔇تصفية جميع وسائل الإعلام: "..settings.mute_media.."\n____________________\nالأمناء صيغة: 3⃣.7⃣\nسودو : @AliReza_PT"
+  	local text = "🔕تصفية قائمة السوبر المجموعة: ["..msg.to.print_name:gsub("_"," ").."]:\n____________________\n> 🔇مرشح خمر: "..settings.mute_all.."\n> 🔇تصفية النص: "..settings.mute_text.."\n> 🔇تصفية الصور: "..settings.mute_photo.."\n> 🔇مرشح للخلف: "..settings.lock_sticker.."\n> 🔇تصفية الفيديو: "..settings.mute_video.."\n> 🔇تصفية الصوت: "..settings.mute_audio.."\n> 🔇اتصالات حصة تصفية: "..settings.lock_contact.."\n> 🔇تصفية الصور المتحركة: "..settings.mute_gif.."\n> 🔇ملف الترشيح: "..settings.mute_doc.."\n> 🔇مرشح إلى الأمام: "..settings.mute_forward.."\n> 🔇محتوى للبالغين فلتر: "..settings.lock_porn.."\n> 🔇تصفية خدمة برقية: "..settings.mute_service.."\n> 🔇تصفية جميع وسائل الإعلام: "..settings.mute_media.."\n____________________\nالأمناء صيغة: 3⃣.7⃣\nسودو : @H_Terminal"
   local text = string.gsub(text,'yes','[القفل | 🔕]')
   local text = string.gsub(text,'no','[مفتوح | 🔔]')
 return reply_msg(msg.id, text, ok_cb, false)
@@ -4341,16 +4341,16 @@ function show_supergroup_mutespv(msg, target)
   local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-  	local text = "<i> 🔕لیست فیلتر های سوپرگروه:  </i> [<b>"..msg.to.print_name:gsub("_"," ").."</b>]:\n____________________\n><i> فیلتر گفتگو: </i> "..settings.mute_all.."\n><i> فیلتر متن: </i> "..settings.mute_text.."\n><i> فیلتر تصاویر: </i> "..settings.mute_photo.."\n><i> فیلتر برچسب: </i> "..settings.lock_sticker.."\n><i> فیلتر ویدئو: </i> "..settings.mute_video.."\n><i> فیلتر صدا: </i> "..settings.mute_audio.."\n><i> فیلتر اشتراک مخاطبین: </i> "..settings.lock_contact.."\n><i> فیلتر تصاویر متحرک: </i> "..settings.mute_gif.."\n><i> فیلتر فایل: </i> "..settings.mute_doc.."\n><i> فیلتر فوروارد: </i> "..settings.mute_forward.."\n><i> فیلتر محتوای بزرگسالان: </i> "..settings.lock_porn.."\n><i> فیلتر خدمات تلگرام: </i> "..settings.mute_service.."\n><i> فیلتر تمامی رسانه ها: </i> "..settings.mute_media..""
-  local text = string.gsub(text,'yes','|<i> حذف </i>|')
-  local text = string.gsub(text,'no','|<i> غیرفعال </i>|')
+  	local text = " 🔕لیست فیلتر های سوپرگروه: ["..msg.to.print_name:gsub("_"," ").."]:\n____________________\n> فیلتر گفتگو: "..settings.mute_all.."\n> فیلتر متن: "..settings.mute_text.."\n> فیلتر تصاویر: "..settings.mute_photo.."\n> فیلتر برچسب: "..settings.lock_sticker.."\n> فیلتر ویدئو: "..settings.mute_video.."\n> فیلتر صدا: "..settings.mute_audio.."\n> فیلتر اشتراک مخاطبین: "..settings.lock_contact.."\n> فیلتر تصاویر متحرک:  "..settings.mute_gif.."\n> فیلتر فایل: "..settings.mute_doc.."\n> فیلتر فوروارد: "..settings.mute_forward.."\n> فیلتر محتوای بزرگسالان: "..settings.lock_porn.."\n> فیلتر خدمات تلگرام: "..settings.mute_service.."\n> فیلتر تمامی رسانه ها: "..settings.mute_media..""
+  local text = string.gsub(text,'yes','|حذف|')
+  local text = string.gsub(text,'no','|غیرفعال|')
 send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
 --send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/send.webp", ok_cb, false)
            return "ℹ️لیست تنظیمات فیلتر شده به خصوصی شما ارسال شد(Fa)"
 else
-local text = "🔕 <i>Filter the list of Super Group:</i> [<b>"..msg.to.print_name:gsub("_"," ").."</b>]:\n____________________\n><i> Vintage filter: </i> "..settings.mute_all.."\n><i> Text Filter: </i> "..settings.mute_text.."\n><i> Filter pictures: </i> "..settings.mute_photo.."\n><i> Filter Tags: </i> "..settings.lock_sticker.."\n><i> Video filter: </i> "..settings.mute_video.."\n><i> Audio filter: </i> "..settings.mute_audio.."\n><i> Share filtering contacts: </i> "..settings.lock_contact.."\n><i> Filter animated images: </i> "..settings.mute_gif.."\n><i> The file filter: </i> "..settings.mute_doc.."\n><i> Forward filter: </i> "..settings.mute_forward.."\n><i> Filter adult content: </i> "..settings.lock_porn.."\n><i> Filter Telegram Service: </i> "..settings.mute_service.."\n><i> Filter all media: </i> "..settings.mute_media..""
-  local text = string.gsub(text,'yes','|<b>Delete</b>|')
-  local text = string.gsub(text,'no','|<b>Ok</b>|')
+local text = "🔕Filter the list of Super Group: ["..msg.to.print_name:gsub("_"," ").."]:\n____________________\n> Vintage filter: "..settings.mute_all.."\n> Text Filter: "..settings.mute_text.."\n> Filter pictures: "..settings.mute_photo.."\n> Filter Tags: "..settings.lock_sticker.."\n> Video filter: "..settings.mute_video.."\n> Audio filter: "..settings.mute_audio.."\n> Share filtering contacts: "..settings.lock_contact.."\n> Filter animated images: "..settings.mute_gif.."\n> The file filter: "..settings.mute_doc.."\n> Forward filter: "..settings.mute_forward.."\n> Filter adult content: "..settings.lock_porn.."\n> Filter Telegram Service: "..settings.mute_service.."\n> Filter all media: "..settings.mute_media..""
+  local text = string.gsub(text,'yes','|Delete|')
+  local text = string.gsub(text,'no','|Ok|')
 send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
 --send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/send.webp", ok_cb, false)
            return "ℹ️لیست تنظیمات فیلتر شده به خصوصی شما ارسال شد(En)"
@@ -4400,8 +4400,8 @@ local function demote_admin(receiver, member_username, user_id)
     return
   end
   if not data[group]['moderators'][tostring(user_id)] then
-    return send_large_msg(receiver, '🔖#کاربر ['..member_tag_username..'] دسترسی برای مدیریت گروه ندارد(مجدد سعی نکنید)')
-	--return reply_msg(msg.id,"🔖#کاربر ["..member_tag_username.."] دسترسی برای مدیریت گروه ندارد(مجدد سعی نکنید)",ok_cb,true)
+    return send_large_msg(receiver, '🔖کاربر ['..member_tag_username..'] دسترسی برای مدیریت گروه ندارد(مجدد سعی نکنید)')
+	--return reply_msg(msg.id,"🔖کاربر ["..member_tag_username.."] دسترسی برای مدیریت گروه ندارد(مجدد سعی نکنید)",ok_cb,true)
   end
   data[group]['moderators'][tostring(user_id)] = nil
   save_data(_config.moderation.data, data)
@@ -4415,11 +4415,11 @@ local function promote2(receiver, member_username, user_id)
     return send_large_msg(receiver, 'سوپرگروه اضافه نشده است')
   end
   if data[group]['moderators'][tostring(user_id)] then
-    return send_large_msg(receiver, '🔖#کاربر['..member_username..'] از قبل به مقام مدیریت ارتقاء یافته است(مجدد سعی نکنید)')
+    return send_large_msg(receiver, '🔖کاربر['..member_username..'] از قبل به مقام مدیریت ارتقاء یافته است(مجدد سعی نکنید)')
   end
   data[group]['moderators'][tostring(user_id)] = member_tag_username
   save_data(_config.moderation.data, data)
-  send_large_msg(receiver, '🔖 <i>انجام شد!</i> \n> <i> مدیریت جدید: </i> ['..member_username..'] ')
+  send_large_msg(receiver, '🔖 انجام شد! \n> مدیریت جدید: ['..member_username..'] ')
   --reply_msg(msg.id,"🔖ارتقاء مقام مدیریت به کاربر ["..member_username.."] انجام شد!",ok_cb,true)
 end
 
@@ -4431,12 +4431,12 @@ local function demote2(receiver, member_username, user_id)
     return send_large_msg(receiver, 'سوپرگروه اضاف نشده است!')
   end
   if not data[group]['moderators'][tostring(user_id)] then
-    return send_large_msg(receiver, '🔖#کاربر ['..member_tag_username..'] دسترسی برای مدیریت گروه ندارد(مجدد سعی نکنید)')
-	 --return reply_msg(msg.id,"🔖#کاربر ["..member_tag_username.."] دسترسی برای مدیریت گروه ندارد(مجدد سعی نکنید)",ok_cb,true)
+    return send_large_msg(receiver, '🔖کاربر ['..member_tag_username..'] دسترسی برای مدیریت گروه ندارد(مجدد سعی نکنید)')
+	 --return reply_msg(msg.id,"🔖کاربر ["..member_tag_username.."] دسترسی برای مدیریت گروه ندارد(مجدد سعی نکنید)",ok_cb,true)
   end
   data[group]['moderators'][tostring(user_id)] = nil
   save_data(_config.moderation.data, data)
-  send_large_msg(receiver, '🔖 <i>انجام شد!</i> \n> ['..member_username..'] <i>هم اکنون کاربر عادی است </i>')
+  send_large_msg(receiver, '🔖 انجام شد! \n> ['..member_username..'] هم اکنون کاربر عادی است ')
   --reply_msg(msg.id,"🔖عزل مقام مدیریت از کاربر ["..member_username.."] انجام شد",ok_cb,true)
 end
 
@@ -4456,7 +4456,7 @@ local function modlist(msg)
  local modlist_hash = 'modlist:'..hour..':'..msg.from.id
  local is_modlist = redis:get(modlist_hash)
 if is_modlist then
-    return "🔖#user (@"..msg.from.username..") After 1 hour try again"
+    return "🔖user (@"..msg.from.username..") After 1 hour try again"
      elseif not is_modlist then
      redis:set(modlist_hash, true)
   local message = '\n👥لیست ادمین های گروه ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
@@ -4477,7 +4477,7 @@ function get_message_callback(extra, success, result)
 	local print_name = user_print_name(msg.from):gsub("‮", "")
 	local name_log = print_name:gsub("_", " ")
 	if type(result) == 'boolean' then
-     return reply_msg(msg.id, '><code> متاسفم.قادر به خواندن این پیام نیستم. </code>\n<b>[Not supported] This is a old message!</b>', ok_cb, false)
+     return reply_msg(msg.id, '> متاسفم.قادر به خواندن این پیام نیستم. \n [Not supported] This is a old message!', ok_cb, false)
    end
     if get_cmd == "id" and not result.action then
 		local channel = 'channel#id'..result.to.peer_id
@@ -4503,30 +4503,30 @@ function get_message_callback(extra, success, result)
 		local member_id = result.from.peer_id
 		local channel_id = result.to.peer_id
     if member_id == msg.from.id then
-      return send_large_msg("channel#id"..channel_id, "<i>ℹ️شما نمیتوانید خودتان را اخراج نمایید</i>")
+      return send_large_msg("channel#id"..channel_id, "ℹ️شما نمیتوانید خودتان را اخراج نمایید")
     end
     if is_momod2(member_id, channel_id) and not is_admin2(msg.from.id) then
-			   return send_large_msg("channel#id"..channel_id, "<i>ℹ️شما نمیتوانید مالک گروه/مدیرها/ادمین ها را اخراج کنید</i>")
+			   return send_large_msg("channel#id"..channel_id, "ℹ️شما نمیتوانید مالک گروه/مدیرها/ادمین ها را اخراج کنید")
     end
     if is_admin2(member_id) then
-         return send_large_msg("channel#id"..channel_id, "<i>ℹ️شما نمیتوانید دیگر ادمین ها را اخراج کنید</i>")
+         return send_large_msg("channel#id"..channel_id, "ℹ️شما نمیتوانید دیگر ادمین ها را اخراج کنید")
     end
 		--savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked: ["..user_id.."] by reply")
-				 --send_large_msg("channel#id"..channel_id, "🎟To request the #user to manage [@"..(msg.from.username or "---").."] Was expelled from the group")
-				 -- reply_msg("channel#id"..channel_id, "🎟#User Target Upon Request Management [@"..(msg.from.username or "---").."] Was Expelled From The Group")
-				 reply_msg(msg.reply_id,"》<i>کاربر مورد نظر از گروه اخراج گردید</i>",ok_cb,true) 
+				 --send_large_msg("channel#id"..channel_id, "🎟To request the user to manage [@"..(msg.from.username or "---").."] Was expelled from the group")
+				 -- reply_msg("channel#id"..channel_id, "🎟User Target Upon Request Management [@"..(msg.from.username or "---").."] Was Expelled From The Group")
+				 reply_msg(msg.reply_id,"》کاربر مورد نظر از گروه اخراج گردید",ok_cb,true) 
 		kick_user(member_id, channel_id)
 	elseif get_cmd == 'channel_block' and result.action and result.action.type == 'chat_add_user' then
 		local user_id = result.action.user.peer_id
 		local channel_id = result.to.peer_id
     if member_id == msg.from.id then
-      return send_large_msg("channel#id"..channel_id, "<i>ℹ️شما نمیتوانید خودتان را اخراج نمایید</i>")
+      return send_large_msg("channel#id"..channel_id, "ℹ️شما نمیتوانید خودتان را اخراج نمایید")
     end
     if is_momod2(member_id, channel_id) and not is_admin2(msg.from.id) then
-			   return send_large_msg("channel#id"..channel_id, "<i>ℹ️شما نمیتوانید مالک گروه/مدیرها/ادمین ها را اخراج کنید</i>")
+			   return send_large_msg("channel#id"..channel_id, "ℹ️شما نمیتوانید مالک گروه/مدیرها/ادمین ها را اخراج کنید")
     end
     if is_admin2(member_id) then
-         return send_large_msg("channel#id"..channel_id, "<i>ℹ️شما نمیتوانید دیگر ادمین ها را اخراج کنید</i>")
+         return send_large_msg("channel#id"..channel_id, "ℹ️شما نمیتوانید دیگر ادمین ها را اخراج کنید")
     end
 		savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked: ["..user_id.."] by reply to sev. msg.")
 		kick_user(user_id, channel_id)
@@ -4538,10 +4538,10 @@ function get_message_callback(extra, success, result)
 		local channel_id = "channel#id"..result.to.peer_id
 		channel_set_admin(channel_id, "user#id"..user_id, ok_cb, false)
 		if result.from.username then
-			text = "🔖 <i>انجام شد</i> > 👤 <i> ادمین جدید: </i> (@"..result.from.username..")--{<b>"..result.from.id.."</b>}"
+			text = "🔖 انجام شد > 👤  ادمین جدید:  (@"..result.from.username..")--{"..result.from.id.."}"
 		else
 			--text = "👤کاربر [ "..user_id.." ] به مقام ادمین گروه ارتقاء یافت"
-			text = "🔖 <i>انجام شد</i> > 👤 <i> ادمین جدید: </i> ("..user_id..")"
+			text = "🔖 انجام شد > 👤  ادمین جدید: ("..user_id..")"
 		end
 		savelog(msg.to.id, name_log.." ["..msg.from.id.."] set: ["..user_id.."] as admin by reply")
 		send_large_msg(channel_id, text)
@@ -4554,10 +4554,10 @@ function get_message_callback(extra, success, result)
 		channel_demote(channel_id, "user#id"..user_id, ok_cb, false)
 		if result.from.username then
 			--text = "👤کاربر (@"..result.from.username..") از مقام مدیریت گروه عزل شد"
-			text = "🔖 <i>انجام شد </i>\n>👤 <i> توانایی مدیریت گروه از کاربر: </i> (@"..result.from.username..")--{<b>"..result.from.id.."</b>} <i> گرفته شد! </i>\n<i> هم اکنون کاربر عادی است </i>"
+			text = "🔖 انجام شد \n>👤  توانایی مدیریت گروه از کاربر:  (@"..result.from.username..")--{"..result.from.id.."}  گرفته شد! \n هم اکنون کاربر عادی است "
 		else
 			--text = "👤کاربر [ "..user_id.." ] از مقام مدیریت گروه عزل شد"
-			text = "🔖 <i>انجام شد </i>\n>👤 <i> توانایی مدیریت گروه از کاربر: </i> ("..user_id..") <i> گرفته شد! </i>\n<i> هم اکنون کاربر عادی است </i>"
+			text = "🔖 انجام شد \n>👤  توانایی مدیریت گروه از کاربر:  ("..user_id..")  گرفته شد! \n هم اکنون کاربر عادی است "
 		end
 		savelog(msg.to.id, name_log.." ["..msg.from.id.."] demoted: ["..user_id.."] from admin by reply")
 		send_large_msg(channel_id, text)
@@ -4576,10 +4576,10 @@ function get_message_callback(extra, success, result)
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] set: ["..result.from.peer_id.."] as owner by reply")
 			if result.from.username then
 				--text = "》کاربر [@"..result.from.username.."] با شناسه [ "..result.from.peer_id.." ] به مقام مالک گروه ارتقاء یافت"
-				text = "🔖 <i>انجام شد </i>\n>⭐️ <i> اطلاعات مالک جدید گروه: </i>\n > [@"..result.from.username.."]-{<b>"..result.from.peer_id.."</b>}"
+				text = "🔖 انجام شد \n>⭐️ اطلاعات مالک جدید گروه: \n > [@"..result.from.username.."]-{"..result.from.peer_id.."}"
 			else
 				--text = "》کاربر [ "..result.from.peer_id.." ] به مقام مالک گروه ارتقاء یافت"
-				text = "🔖 <i>انجام شد </i>\n>⭐️ <i> اطلاعات مالک جدید گروه: </i>\n > [<b>"..result.from.peer_id.."</b>]"
+				text = "🔖 انجام شد \n>⭐️ اطلاعات مالک جدید گروه: \n > ["..result.from.peer_id.."]"
 			end
 			send_large_msg(channel_id, text)
 		end
@@ -4637,11 +4637,11 @@ function get_message_callback(extra, success, result)
 		if is_muted_user(chat_id, user_id) then
 			unmute_user(chat_id, user_id)
 			--send_large_msg(receiver, "🎫کاربر ["..user_id.."] 🔔از لیست سکوت خارج شد(اکنون توانایی گفتگو در گروه را داراست)")
-			reply_msg(msg.reply_id,"🔖 <i>انجام شد </i>\n🔊 ><i>  از لیست سکوت کاربران حذف گردید  </i>\n><i> مشخصات کاربر: </i> [@"..(user_name or "—-").."]--[<b>"..user_id.."</b>] ",ok_cb,true)
+			reply_msg(msg.reply_id,"🔖 انجام شد \n🔊 > از لیست سکوت کاربران حذف گردید \n> مشخصات کاربر: [@"..(user_name or "—-").."]--["..user_id.."] ",ok_cb,true)
 		elseif is_admin1(msg) then
 			mute_user(chat_id, user_id)
 			--send_large_msg(receiver, "》کاربر ["..user_id.."] 🔕به لیست سکوت افزوده شد(اکنون توانایی گفتگو در گروه را از دست داد)")
-			reply_msg(msg.reply_id,"🔖 <i>انجام شد </i>\n🔇 ><i>  به لیست سکوت کاربران افزوده گردید  </i>\n><i> مشخصات کاربر: </i> [@"..(user_name or "—-").."]--[<b>"..user_id.."</b>]",ok_cb,true)
+			reply_msg(msg.reply_id,"🔖 انجام شد \n🔇 > به لیست سکوت کاربران افزوده گردید  \n> مشخصات کاربر: [@"..(user_name or "—-").."]--["..user_id.."]",ok_cb,true)
 		end
 	end
 end
@@ -4670,11 +4670,11 @@ local function cb_user_info(extra, success, result)
 		channel_demote(receiver, user_id, ok_cb, false)
 		if result.username then
 			--text = "👤کاربر (@"..result.from.username..") از مقام مدیریت گروه عزل شد"
-			text = "🔖 <i>انجام شد </i>\n>👤 <i>توانایی مدیریت گروه از کاربر: </i> (@"..result.from.username..") <i> گرفته شد! </i>\n<i> هم اکنون کاربر عادی است </i>"
+			text = "🔖 انجام شد \n>👤 توانایی مدیریت گروه از کاربر: (@"..result.from.username..") گرفته شد! \n هم اکنون کاربر عادی است "
 			send_large_msg(receiver, text)
 		else
 			--text = "👤کاربر [ "..user_id.." ] از مقام مدیریت گروه عزل شد"
-			text = "🔖 <i>انجام شد </i>\n>👤 <i>توانایی مدیریت گروه از کاربر: </i> ("..user_id..") <i> گرفته شد! </i>\n<i> هم اکنون کاربر عادی است </i>"
+			text = "🔖 انجام شد \n>👤 توانایی مدیریت گروه از کاربر: ("..user_id..") گرفته شد! \n هم اکنون کاربر عادی است "
 			send_large_msg(receiver, text)
 		end
 	elseif get_cmd == "promote" then
@@ -4703,7 +4703,7 @@ local function callbackres(extra, success, result)
 		local user = result.peer_id
 		local name = string.gsub(result.print_name, "_", " ")
 		local channel = 'channel#id'..extra.channelid
-		send_large_msg(channel,"》 <i>نام کامل:</i> {<b>"..name.."</b>}\n》 <i>شناسه کاربری:</i> [<b>"..user.."</b>]")
+		send_large_msg(channel,"》 نام کامل: {"..name.."}\n》 شناسه کاربری: ["..user.."]")
 		--reply_msg(channel,"》شناسه کاربری: ["..user.."]\n_______________\n》نام کامل: {"..name.."}")
 		return user
 	elseif get_cmd == "id" then
@@ -4777,16 +4777,16 @@ local function callbackres(extra, success, result)
 		local user_id = "user#id"..result.peer_id
 		local channel_id = extra.channel
 		if is_admin2(result.peer_id) then
-			return send_large_msg(channel_id, "<i> ℹ️شما نمیتوانید ادمین های اصلی را برکنار کنید </i>")
+			return send_large_msg(channel_id, " ℹ️شما نمیتوانید ادمین های اصلی را برکنار کنید ")
 		end
 		channel_demote(channel_id, user_id, ok_cb, false)
 		if result.username then
-			--text = "<i> 👤کاربر </i> (@"..result.from.username..") <i> از مقام مدیریت گروه عزل شد</i> "
-			text = "🔖 <i>انجام شد </i>\n>👤 <i> توانایی مدیریت گروه از کاربر: </i> (@"..result.from.username..") <i> گرفته شد! </i>\n<i> هم اکنون کاربر عادی است </i>"
+			--text = " 👤کاربر (@"..result.from.username..") از مقام مدیریت گروه عزل شد "
+			text = "🔖 انجام شد \n>👤  توانایی مدیریت گروه از کاربر: (@"..result.from.username..") گرفته شد! \n هم اکنون کاربر عادی است "
 			send_large_msg(channel_id, text)
 		else
-			--text = "<i> 👤کاربر </i> [ "..user_id.." ] <i> از مقام مدیریت گروه عزل شد </i>"
-			text = "🔖 <i>انجام شد </i>\n>👤 <i> توانایی مدیریت گروه از کاربر: </i> ("..user_id..") <i> گرفته شد! </i>\n<i> هم اکنون کاربر عادی است </i>"
+			--text = " 👤کاربر  [ "..user_id.." ] از مقام مدیریت گروه عزل شد "
+			text = "🔖 انجام شد \n>👤  توانایی مدیریت گروه از کاربر: ("..user_id..") گرفته شد! \n هم اکنون کاربر عادی است"
 			send_large_msg(channel_id, text)
 		end
 		local receiver = extra.channel
@@ -4800,14 +4800,14 @@ local function callbackres(extra, success, result)
 		local chat_id = string.gsub(receiver, 'channel#id', '')
 		if is_muted_user(chat_id, user_id) then
 			unmute_user(chat_id, user_id)
-			--send_large_msg(receiver, "🔖 <i>انجام شد </i>\n🔇 ><i> از لیست سکوت کاربران حذف گردید  </i>\n><i> مشخصات کاربر: </i> [@---]--[<b>"..user_id.."</b>]")
-			  reply_msg(extra.msg.id, "🔖 <i>انجام شد </i>\n🔇 ><i> از لیست سکوت کاربران حذف گردید  </i>\n><i> مشخصات کاربر: </i> [@---]--[<b>"..user_id.."</b>]", ok_cb, true)
-			--reply_msg(receiver,"🔖 <i>انجام شد </i>\n><i> از لیست سکوت کاربران حذف گردید </i>\n><i> مشخصات کاربر: </i> [---]--[<b>"..user_id.."</b>]",ok_cb,true)
+			--send_large_msg(receiver, "🔖 انجام شد \n🔇 > از لیست سکوت کاربران حذف گردید \n> مشخصات کاربر: [@---]--["..user_id.."]")
+			  reply_msg(extra.msg.id, "🔖 انجام شد \n🔇 > از لیست سکوت کاربران حذف گردید \n> مشخصات کاربر: [@---]--["..user_id.."]", ok_cb, true)
+			--reply_msg(receiver,"🔖 انجام شد \n> از لیست سکوت کاربران حذف گردید \n> مشخصات کاربر: [---]--["..user_id.."]",ok_cb,true)
 		elseif is_owner(extra.msg) then
 			mute_user(chat_id, user_id)
-			--send_large_msg(receiver, "🔖 <i>انجام شد </i>\n🔊 ><i> به لیست سکوت کاربران افزوده گردید  </i>\n><i> مشخصات کاربر: </i> [@---]--[<b>"..user_id.."</b>]")
-			--reply_msg(receiver,"🔖 <i>انجام شد </i>\n><i> به لیست سکوت کاربران افزوده گردید </i>\n><i> مشخصات کاربر: </i> [---]--[<b>"..user_id.."</b>]",ok_cb,true)
-			reply_msg(extra.msg.id, "🔖 <i>انجام شد </i>\n🔊 ><i> به لیست سکوت کاربران افزوده گردید  </i>\n><i> مشخصات کاربر: </i> [@---]--[<b>"..user_id.."</b>]", ok_cb, true)
+			--send_large_msg(receiver, "🔖 انجام شد \n🔊 > به لیست سکوت کاربران افزوده گردید  \n> مشخصات کاربر: [@---]--["..user_id.."]")
+			--reply_msg(receiver,"🔖 انجام شد \n> به لیست سکوت کاربران افزوده گردید \n> مشخصات کاربر: [---]--["..user_id.."]",ok_cb,true)
+			reply_msg(extra.msg.id, "🔖 انجام شد \n🔊 > به لیست سکوت کاربران افزوده گردید  \n> مشخصات کاربر: [@---]--["..user_id.."]", ok_cb, true)
 		end
 	end
 end
@@ -4837,13 +4837,13 @@ if get_cmd == "channel_block" then
      local channel_id = cb_extra.msg.to.id
      local sender = cb_extra.msg.from.id
       if user_id == sender then
-        return send_large_msg("channel#id"..channel_id, " <i>ℹ️شما نمیتوانید خودتان را اخراج نمایید</i>")
+        return send_large_msg("channel#id"..channel_id, " ℹ️شما نمیتوانید خودتان را اخراج نمایید")
       end
       if is_momod2(user_id, channel_id) and not is_admin2(sender) then
-        return send_large_msg("channel#id"..channel_id, "<i>شما نمیتوانید مالک گروه/مدیر/ادمین ها را اخراج کنید</i>")
+        return send_large_msg("channel#id"..channel_id, "شما نمیتوانید مالک گروه/مدیر/ادمین ها را اخراج کنید")
       end
       if is_admin2(user_id) then
-        return send_large_msg("channel#id"..channel_id, " <i>شما نمیتوانید سایر ادمین ها را اخراج کنید</i>")
+        return send_large_msg("channel#id"..channel_id, " شما نمیتوانید سایر ادمین ها را اخراج کنید")
       end
       if v.username then
         text = ""
@@ -4853,9 +4853,9 @@ if get_cmd == "channel_block" then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked: ["..v.peer_id.."]")
       end
       kick_user(user_id, channel_id)
-      local text = '><i>کاربر مورد نظر از گروه اخراج گردید</i>'
+      local text = '>کاربر مورد نظر از گروه اخراج گردید'
 			return reply_msg(msg.id, text, ok_cb, false)
-			--reply_msg(msg.reply_id,"🎟#کاربر به درخواست  [@"..(msg.from.username or "—-").."] از گروه اخراج گردید :(",ok_cb,true) 
+			--reply_msg(msg.reply_id,"🎟کاربر به درخواست  [@"..(msg.from.username or "—-").."] از گروه اخراج گردید :(",ok_cb,true) 
     end
   end
 elseif get_cmd == "setadmin" then
@@ -4868,11 +4868,11 @@ elseif get_cmd == "setadmin" then
       channel_set_admin(channel_id, user_id, ok_cb, false)
       if v.username then
         --text = "👤کاربر (@"..v.username..") با شناسه [ "..v.peer_id.." ] به مقام ادمین گروه ارتقاء یافت"
-		text = "🔖 <i>انجام شد </i>\n>👤 <i>ادمین جدید: </i> (@"..v.username..")--{<b>"..user_id.."</b>}"
+		text = "🔖 انجام شد \n>👤 ادمین جدید: (@"..v.username..")--{"..user_id.."}"
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] set admin @"..v.username.." ["..v.peer_id.."]")
       else
        --text = "👤کاربر [ "..v.peer_id.." ] به مقام ادمین گروه ارتقاء یافت"
-	   text = "🔖 <i>انجام شد </i>\n>👤 <i>ادمین جدید: </i> (@"..v.username..")--{<b>"..user_id.."</b>}"
+	   text = "🔖 انجام شد \n>👤 ادمین جدید: (@"..v.username..")--{"..user_id.."}"
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] set admin "..v.peer_id)
       end
 	  if v.username then
@@ -4908,10 +4908,10 @@ elseif get_cmd == "setadmin" then
 					savelog(channel, name_log.."["..from_id.."] set ["..v.peer_id.."] as owner by username")
 				if result.username then
 					--text = member_username.."🔖کاربر ["..v.peer_id.."] به مقام مالک گروه ارتقاء یافت"
-					text = member_username.."🔖 <i>انجام شد </i>\n> <i> اطلاعات مالک جدید گروه: </i>\n> [<b>"..v.peer_id.."</b>]"
+					text = member_username.."🔖 انجام شد \n> اطلاعات مالک جدید گروه: \n> ["..v.peer_id.."]"
 				else
 					--text = "🔖کاربر ["..v.peer_id.."] به مقام مالک گروه ارتقاء یافت"
-					text = "🔖 <i>انجام شد </i>\n> <i> اطلاعات مالک جدید گروه: </i>\n > [<b>"..v.peer_id.."</b>]"
+					text = "🔖 انجام شد \n> اطلاعات مالک جدید گروه: \n > ["..v.peer_id.."]"
 				end
 			end
 		elseif memberid and vusername ~= member and vpeer_id ~= memberid then
@@ -4927,7 +4927,7 @@ elseif get_cmd == "setadmin" then
 				save_data(_config.moderation.data, data)
 				savelog(channel, name_log.."["..from_id.."] set ["..memberid.."] as owner by username")
 				--text = "🔖کاربر ["..memberid.."] به مقام مالک گروه ارتقاء یافت"
-				text = "🔖 <i>انجام شد </i>\n> <i> اطلاعات مالک جدید گروه: </i>\n  >[<b>"..memberid.."</b>]"
+				text = "🔖 انجام شد \n> اطلاعات مالک جدید گروه: \n  >["..memberid.."]"
 			end
 		end
 	end
@@ -5019,7 +5019,7 @@ deleted = deleted + 1
  kick_user(v.peer_id,msg.to.id)
  end
  end
- send_large_msg(receiver, "<i> تعداد </i> [<b>"..deleted.."</b>] <i> کاربر حذف حساب کاربری شده در گروه با موفقیت حذف گردید! </i>")
+ send_large_msg(receiver, " تعداد  ["..deleted.."] کاربر حذف حساب کاربری شده در گروه با موفقیت حذف گردید! ")
  end 
  
 --Run function
@@ -5051,7 +5051,7 @@ local function run(msg, matches)
 				return
 			end
 			if is_super_group(msg) then
-				return reply_msg(msg.id, 'ℹ️سوپر گروه [<b>'..msg.to.title..'</b>] از قبل به لیست دسترسی های مدیریت اضافه شده است', ok_cb, false)
+				return reply_msg(msg.id, 'ℹ️سوپر گروه ['..msg.to.title..'] از قبل به لیست دسترسی های مدیریت اضافه شده است', ok_cb, false)
 			end
 			print("SuperGroup "..msg.to.print_name.."("..msg.to.id..") added")
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] added SuperGroup")
@@ -5064,7 +5064,7 @@ local function run(msg, matches)
 				return
 			end
 			if not is_super_group(msg) then
-				return reply_msg(msg.id, 'ℹ️سوپرگروه [<b>'..msg.to.title..'</b>] به لیست دسترسی های مدیریتی اضافه نشده است', ok_cb, false)
+				return reply_msg(msg.id, 'ℹ️سوپرگروه ['..msg.to.title..'] به لیست دسترسی های مدیریتی اضافه نشده است', ok_cb, false)
 			end
 			print("SuperGroup "..msg.to.print_name.."("..msg.to.id..") removed")
 			superrem(msg)
@@ -5115,18 +5115,18 @@ local function run(msg, matches)
 		if matches[1]:lower() == "holder" then
 			local group_owner = data[tostring(msg.to.id)]['set_owner']
 			if not group_owner then
-				return "#⃣مالک گروه یافت نشد!با @alireza_PT ارتباط برقرار کنید"
+				return "#⃣مالک گروه یافت نشد!با @H_Terminal ارتباط برقرار کنید"
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] used /owner")
 			local hour = os.date("%M") * 10
  local holder_hash = 'holder:'..hour..':'..msg.from.id
  local is_holder = redis:get(holder_hash)
 if is_holder then
-    return "🔖#کاربر (@"..msg.from.username..") برای دریافت شناسه مالک گروه دقایقی دیگر مجدد تلاش کنید!"
+    return "🔖کاربر (@"..msg.from.username..") برای دریافت شناسه مالک گروه دقایقی دیگر مجدد تلاش کنید!"
      elseif not is_holder then
      redis:set(holder_hash, true)
 			send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/owner.webp", ok_cb, false)
-			local text = "> <i> مالکین سوپرگروه </i> ["..msg.to.title.."]\n\n <b>1-</b> [<b>"..group_owner.."</b>]--[<i>@---</i>]"
+			local text = "> مالکین سوپرگروه ["..msg.to.title.."]\n\n 1- ["..group_owner.."]--[@---]"
 			return reply_msg(msg.id, text, ok_cb, false)
 		end
 		end
@@ -5137,7 +5137,7 @@ if is_holder then
 			end
 			local group_owner = data[tostring(msg.to.id)]['set_owner']
 			if not group_owner then
-				return "#⃣مالک گروه یافت نشد!با @alireza_PT ارتباط برقرار کنید"
+				return "#⃣مالک گروه یافت نشد!با @H_Terminal ارتباط برقرار کنید"
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] used /owner")
 			local text = "🎫مالک سوپر گروه ["..group_owner..']'
@@ -5322,8 +5322,8 @@ if is_ids then
 		if matches[1]:lower() == 'group id' and is_owner(msg) then
 			if msg.to.type == 'channel' then
             --local text = '》['..msg.to.id..']《'
-			return reply_msg(msg.id,'> <i>Group ID</i>: {<b>'..msg.to.id..'</b>}',ok_cb, false)
-			--..'<a href="http://telegram.me">'..msg.to.id..'</a>'
+			return reply_msg(msg.id,'> Group ID: {'..msg.to.id..'}',ok_cb, false)
+			--..'<a href="http://telegram.me">'..msg.to.id..''
 			end
 		end
 		----------------------------
@@ -5339,11 +5339,11 @@ if is_ids then
 				local user_id = matches[2]
 				if is_muted_user(chat_id, user_id) then 
 					--return "["..user_id.."] is already silented."
-					return reply_msg(msg.id,"><i> کاربر </i> ["..user_id.."] <i> از قبل در لیست سکوت کاربران قرار دارد. </i>",ok_cb,true)
+					return reply_msg(msg.id,"> کاربر ["..user_id.."] از قبل در لیست سکوت کاربران قرار دارد. ",ok_cb,true)
       else
 					mute_user(chat_id, user_id)
 					--return "["..user_id.."] added to silent users list."
-					return reply_msg(msg.id,"<i>انجام شد </i>\n><i>  به لیست سکوت کاربران افزوده گردید  </i>\n><i> مشخصات کاربر: </i> [<b>"..user_id.."</b>]",ok_cb,true)
+					return reply_msg(msg.id,"انجام شد \n> به لیست سکوت کاربران افزوده گردید  \n> مشخصات کاربر: ["..user_id.."]",ok_cb,true)
 			end
 			elseif matches[1]:lower() == "silent" and not string.match(matches[2], '^%d+$') then
 				local receiver = get_receiver(msg)
@@ -5367,10 +5367,10 @@ if is_ids then
 				if is_muted_user(chat_id, user_id) then
 					unmute_user(chat_id, user_id)
 					--return "["..user_id.."] removed from silent users list."
-					return reply_msg(msg.id,"<i>انجام شد </i>\n><i>  از لیست سکوت کاربران حذف گردید  </i>\n><i> مشخصات کاربر: </i> [<b>"..user_id.."</b>]",ok_cb,true)
+					return reply_msg(msg.id,"انجام شد \n> از لیست سکوت کاربران حذف گردید \n> مشخصات کاربر: ["..user_id.."]",ok_cb,true)
     else
 					--return "["..user_id.."] is not silented."
-					return reply_msg(msg.id,"><i> کاربر </i> ["..user_id.."] <i> در لیست حالت سکوت کاربران قرار ندارد. </i>",ok_cb,true)
+					return reply_msg(msg.id,"> کاربر ["..user_id.."] در لیست حالت سکوت کاربران قرار ندارد. ",ok_cb,true)
 				end
 			elseif matches[1]:lower() == "unsilent" and not string.match(matches[2], '^%d+$') then
 				local receiver = get_receiver(msg)
@@ -5390,7 +5390,7 @@ if is_ids then
 			local hash = "mute_user:"..chat_id
 					redis:del(hash)
 				--return "silent list has been cleaned."
-				return reply_msg(msg.id,"><i> لیست کاربران حالت سکوت با موفقیت بازنشانی گردید. </i>",ok_cb,true)
+				return reply_msg(msg.id,"> لیست کاربران حالت سکوت با موفقیت بازنشانی گردید. ",ok_cb,true)
 			end
        end
     --end
@@ -5400,19 +5400,19 @@ if is_ids then
 			local file = io.open("./info/"..msg.from.id..".txt", "r")
 		--if file ~= nil then
 		if not file then
-	local text = "<i> >کاربر </i> {<b>"..msg.from.first_name.."</b>}\n<i> ابتدا نیاز به تایید حساب کاربری خوددارید </i>\n<i> > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید </i>\n> /activation"
+	local text = " >کاربر {"..msg.from.first_name.."}\n ابتدا نیاز به تایید حساب کاربری خوددارید \n > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید \n> /activation"
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
 			local hour = os.date("%M")
  local userid_hash = 'userid:'..hour..':'..msg.from.id
  local is_userid = redis:get(userid_hash)
 if is_userid then
-    local text = "<i> 》کاربر </i> [@"..msg.from.username.."] <i> با توجه به محدودیت پیش آمده دقایقی دیگر مجدد تلاش کنید </i> ["..useridhash.."]"
+    local text = " 》کاربر [@"..msg.from.username.."] با توجه به محدودیت پیش آمده دقایقی دیگر مجدد تلاش کنید ["..useridhash.."]"
 	return reply_msg(msg.id, text, ok_cb, false)
      elseif not is_userid then
      redis:set(userid_hash, true)
           -- local text = '》['..msg.from.id..']《'
-			return reply_msg(msg.id,'> <i>User ID</i>: {<b>'..msg.from.id..'</b>}',ok_cb, false)
+			return reply_msg(msg.id,'> User ID: {'..msg.from.id..'}',ok_cb, false)
 			end
 		end
 		end
@@ -5443,7 +5443,7 @@ if matches[1]:lower() == 'setrank' then
 		ban_user(matches[2], msg.to.id)
 		ban_user(matches[3], msg.to.id)
 		ban_user(matches[4], msg.to.id)
-		local text = "> <i> دسترسی کاربران </i> \n >[<b>"..matches[2].."</b>] \n >[<b>"..matches[3].."</b>] \n >[<b>"..matches[4].."</b>] \n <i> برای ورود به این گروه مسدود گردید! </i>"
+		local text = "> دسترسی کاربران \n >["..matches[2].."] \n >["..matches[3].."] \n >["..matches[4].."] \n برای ورود به این گروه مسدود گردید!"
 		return reply_msg(msg.id, text, ok_cb, false)
 	end
 	
@@ -5452,7 +5452,7 @@ if matches[1]:lower() == 'setrank' then
 		unban_user(matches[2], msg.to.id)
 		unban_user(matches[3], msg.to.id)
 		unban_user(matches[4], msg.to.id)
-		local text = "> <i> دسترسی کاربران </i> \n >[<b>"..matches[2].."</b>] \n >[<b>"..matches[3].."</b>] \n >[<b>"..matches[4].."</b>] \n <i> برای ورود به این گروه بازگردانده شد! </i>"
+		local text = "> دسترسی کاربران \n >["..matches[2].."] \n >["..matches[3].."] \n >["..matches[4].."] \n برای ورود به این گروه بازگردانده شد!"
 		return reply_msg(msg.id, text, ok_cb, false)
 	end
 	
@@ -5461,7 +5461,7 @@ if matches[1]:lower() == 'setrank' then
 		ban_user(matches[2], msg.to.id)
 		ban_user(matches[3], msg.to.id)
 		ban_user(matches[4], msg.to.id)
-		local text = "> <i> کاربران </i> \n >[<b>"..matches[2].."</b>] \n >[<b>"..matches[3].."</b>] \n >[<b>"..matches[4].."</b>] \n <i> از گروه اخراج شدند </i>"
+		local text = "> کاربران \n >["..matches[2].."] \n >["..matches[3].."] \n >["..matches[4].."] \n از گروه اخراج شدند"
 		return reply_msg(msg.id, text, ok_cb, false)
 	end]]
 	---------kickme---------------
@@ -5470,18 +5470,18 @@ if matches[1]:lower() == 'kickme' then
 			local file = io.open("./info/"..msg.from.id..".txt", "r")
 		--if file ~= nil then
 		if not file then
-	local text = "<i> >کاربر </i> {<b>"..msg.from.first_name.."</b>}\n<i> ابتدا نیاز به تایید حساب کاربری خوددارید </i>\n<i> > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید </i>\n> /activation"
+	local text = ">کاربر {"..msg.from.first_name.."}\n ابتدا نیاز به تایید حساب کاربری خوددارید \n > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید \n> /activation"
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
 			local hour = os.date("%M") * 30
  local kickme_hash = 'kickme:'..hour..':'..msg.from.id
  local is_kickme = redis:get(kickme_hash)
 if is_kickme then
-    local text = " 》#کاربر (@"..msg.from.username..") از ارسال درخواست حذف مجدد خود از گروه خودداری کنید!(با کلیک بر روی گزینه Leave از گروه خارج شوید)"
+    local text = " 》کاربر (@"..msg.from.username..") از ارسال درخواست حذف مجدد خود از گروه خودداری کنید!(با کلیک بر روی گزینه Leave از گروه خارج شوید)"
 	return reply_msg(msg.id, text, ok_cb, false)
      elseif not is_kickme then
      redis:set(kickme_hash, true)
-            local text = "》<i> کاربر </i> ("..msg.from.first_name..") <i> این قابلیت غیرفعال است </i> (در صورت تمایل از گروه خارج شوید)"
+            local text = "》کاربر ("..msg.from.first_name..") این قابلیت غیرفعال است (در صورت تمایل از گروه خارج شوید)"
 			return reply_msg(msg.id, text, ok_cb, false)
 			end
 		end
@@ -5489,7 +5489,7 @@ if is_kickme then
 		end
 		if matches[1]:lower() == 'info' and msg.reply_id then
 			if msg.to.type == 'channel' then
-            local text = '<i> 》شما فقط قادر به دریافت اطلاعات خود هستید! </i>'
+            local text = '》شما فقط قادر به دریافت اطلاعات خود هستید!'
 			return reply_msg(msg.id, text, ok_cb, false)
 			end
 		end
@@ -5500,21 +5500,21 @@ if not is_owner(msg) then
        end
 local photos = '/root/TeleSeed/userinfo/ax.png'
 local receiver = get_receiver(msg)
-local text = 'Security BOT Version 3.6 :) by    @alireza_PT.'
+local text = 'BOT Version 3.6 :) by    @H_Terminal.'
  send_photo2(receiver,photos,text,ok_cb,false)
 --send_photo2(receiver, photos, text, rmtmp_cb, cb_extra)
 end
 ----------inprivate-----------
 	if matches[1] == 'help' then
 	if msg.to.type == 'user' then
-		local text = 'ℹ️خوش آمدید به ربات Security\n\n ℹ️برای دریافت گروه با ربات Security, با ادمین ارتباط برقرار کنید:\n\n #⃣Admin:🆔 @alireza_PT or @CliApi\n\n ℹ️برای اطلاعات بیشتر, channel:\n@create_antispam_bot [Persian]'
+		local text = 'ℹ️خوش آمدید به ربات BoomBoom\n\n ℹ️برای دریافت گروه با ربات BoomBoom, با ادمین ارتباط برقرار کنید:\n\n #⃣Admin:🆔 @H_Terminal'
      	return reply_msg(msg.id, text, ok_cb, false)
     end
 	end
 	---------------user inpm------------
 	if matches[1]:lower() == 'help' then
 	if msg.to.type == 'user' then
-			 local text = "> سلام ["..msg.from.first_name.."] عزیز\n\nℹ️خوش آمدید به ربات Security\n\nℹ️برای دریافت گروه با ربات SecurityBOT, با ادمین ارتباط برقرار کنید:\n\n >Admin: @CliApi\n >PMresan: @alireza_PT_BOT\n\n ℹ️برای اطلاعات بیشتر:\n>channel: @create_antispam_bot [Persian]"
+			 local text = "> سلام ["..msg.from.first_name.."] عزیز\n\nℹ️خوش آمدید به ربات BoomBoom\n\nℹ️برای دریافت گروه با ربات BoomBoom, با ادمین ارتباط برقرار کنید:\n\n >Admin: @H_Terminal"
 			reply_msg(msg.id, text, ok_cb, false)
 	end
 	end
@@ -5545,7 +5545,7 @@ end
 	local file = io.open("./info/"..msg.from.id..".txt", "r")
 		--if file ~= nil then
 		if not file then
-	local text = "<i> >کاربر </i> {<b>"..msg.from.first_name.."</b>}\n<i> ابتدا نیاز به تایید حساب کاربری خوددارید </i>\n<i> > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید </i>\n> /activation"
+	local text = " >کاربر {"..msg.from.first_name.."}\n ابتدا نیاز به تایید حساب کاربری خوددارید \n > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید \n> /activation"
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
 	 fwd_msg('channel#id'..msg.to.id,'01000000eeb187094ba20000000000006b78cf56857533c7',ok_cb,false)
@@ -5556,7 +5556,7 @@ end
 	local file = io.open("./info/"..msg.from.id..".txt", "r")
 		--if file ~= nil then
 		if not file then
-	local text = "<i> >کاربر </i> {<b>"..msg.from.first_name.."</b>}\n<i> ابتدا نیاز به تایید حساب کاربری خوددارید </i>\n<i> > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید </i>\n> /activation"
+	local text = " >کاربر {"..msg.from.first_name.."}\n ابتدا نیاز به تایید حساب کاربری خوددارید \n > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید \n> /activation"
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
 	 fwd_msg('channel#id'..msg.to.id,'01000000eeb18709cc090100000000006b78cf56857533c7',ok_cb,false)
@@ -5565,39 +5565,39 @@ end
 
 -----------------cheak online bots------------------
 --[[if string.find(msg.from.username , 'O_o_maghze_falaj_o_O') then
-local text = '<i> >کاربر گرامی لطفا نسبت به تغییر نام خود اقدام کنید </i>'
+local text = ' >کاربر گرامی لطفا نسبت به تغییر نام خود اقدام کنید '
 return reply_msg(msg.id, text, ok_cb, false)
 end
 if string.find(msg.from.username , 'Tele_jooker') then
-local text = '<i> یوهوووووووووووووووووووو </i>'
+local text = ' یوهوووووووووووووووووووو '
 return reply_msg(msg.id, text, ok_cb, false)
 end]]
 		if matches[1]:lower() == 'bot' and is_owner(msg) then
 			if msg.to.type == 'channel' then
-            --local answers = {'<i>ربات فعال میباشد </i> ','<b>The robot is activated</b> ✅'}
+            --local answers = {'ربات فعال میباشد  ','The robot is activated ✅'}
             --return answers[math.random(#answers)] 
-			return reply_msg(msg.id, '<b>BOT Online!</b>', ok_cb, false)
+			return reply_msg(msg.id, 'BOT Online!', ok_cb, false)
 			end
 			end
 			if matches[1]:lower() == 'ping' then
 			if msg.to.type == 'channel' then
-			return reply_msg(msg.id, '<code>PONG!</code>', ok_cb, false)
+			return reply_msg(msg.id, 'PONG!', ok_cb, false)
 			end
 			end
 			if matches[1]:lower() == 'pin' then
 			if msg.to.type == 'channel' then
-			return reply_msg(msg.id, '><b>YOUR HASH CODE:</b> <code>'..msg.from.access_hash..'</code>\n----------\n><b>YOUR Proprietary code:</b> <code>'..msg.from.flags..'</code>\n----------\n><b>Code statistically secret:</b> <code>'..msg.to.participants_count..'</code>', ok_cb, false)
+			return reply_msg(msg.id, '>YOUR HASH CODE: '..msg.from.access_hash..'\n----------\n>YOUR Proprietary code: '..msg.from.flags..'\n----------\n>Code statistically secret: '..msg.to.participants_count..'', ok_cb, false)
 			end
 			end
 		
 			if matches[1] == "group reports" and is_owner(msg) then
 if matches[2] == "enable" then
 redis:set("reports:"..msg.to.id, true)
-return reply_msg(msg.id, '<b>Activated!</b>\n<code>Now all changes made in the group will be announced by BOT</code>', ok_cb, false)
+return reply_msg(msg.id, 'Activated!\n Now all changes made in the group will be announced by BOT', ok_cb, false)
 end
 if matches[2] == "disable" then
 redis:del("reports:"..msg.to.id)
-return reply_msg(msg.id, '<b>Deactivated.</b>\n<code>Now a group report is not sent!</code>', ok_cb, false)
+return reply_msg(msg.id, 'Deactivated.\n Now a group report is not sent!', ok_cb, false)
 end
 end
 			if msg.service then 
@@ -5611,11 +5611,11 @@ end
 if res ~= 200 then
  return 
   end
-return reply_msg(msg.id, '>تغییر تصویر پروفایل گروه توسط کاربر [<code>'..msg.from.first_name..'</code>] در تاریخ {'..jdat.FAdate..'} و در ساعت {'..jdat.FAtime..'} انجام شد.', ok_cb, false)
+return reply_msg(msg.id, '>تغییر تصویر پروفایل گروه توسط کاربر ['..msg.from.first_name..'] در تاریخ {'..jdat.FAdate..'} و در ساعت {'..jdat.FAtime..'} انجام شد.', ok_cb, false)
 elseif msg.action.type == "chat_delete_photo" then
-return reply_msg(msg.id, '>تصویر پروفایل گروه توسط کاربر [<code>'..msg.from.first_name..'</code>] حذف گردید.', ok_cb, false)
+return reply_msg(msg.id, '>تصویر پروفایل گروه توسط کاربر ['..msg.from.first_name..'] حذف گردید.', ok_cb, false)
 elseif msg.action.type == "chat_rename" then
-return reply_msg(msg.id, '>نام گروه فعلی به نام جدید (<b>'..msg.to.title..'</b>) توسط کاربر [<code>'..msg.from.first_name..'</code>] تغییر یافت.', ok_cb, false)
+return reply_msg(msg.id, '>نام گروه فعلی به نام جدید ('..msg.to.title..') توسط کاربر ['..msg.from.first_name..'] تغییر یافت.', ok_cb, false)
 elseif msg.action.type == "delete_cnt" then 	
 return "....."
 end  
@@ -5627,7 +5627,7 @@ if matches[1]:lower() == 'mutechat' and is_owner(msg) then
        local hash = 'muteallchat:'..msg.to.id
        if not matches[2] then
               redis:set(hash, true)
-			 return reply_msg(msg.id, '><code>فیلتر تمامی گفتگو ها فعال گردید!</code>', ok_cb, false)
+			 return reply_msg(msg.id, '>فیلتر تمامی گفتگو ها فعال گردید!', ok_cb, false)
  else 
 local hour = string.gsub(matches[2], 'h', '')
  local num1 = tonumber(hour) * 3600
@@ -5638,20 +5638,20 @@ local second = string.gsub(matches[4], 's', '')
 local num4 = tonumber(num1 + num2 + num3)
 redis:setex(hash, num4, true)
 -- return "mute all has been enabled for\n⏺ hour(s) : "..matches[2].."\n⏺ minute(s) : "..matches[3].." \n⏺ second(s) : "..matches[4]..""
- return reply_msg(msg.id, '><code>فیلتر تمامی گفتگو ها برای مدت زمان</code>\n>[<b>'..matches[2]..'</b>]{ساعت}\n>[<b>'..matches[3]..'</b>]{دقیقه}\n>[<b>'..matches[4]..'</b>]{ثانیه}\n <code>فعال گردید</code>\n------------\n<code>پس از پایان مدت زمان تنظیم شده گروه به طور خودکار از حالت فیلتر خارج میگردد و نیاز به غیرفعال سازی به طور دستی نیست!</code>', ok_cb, false)
+ return reply_msg(msg.id, '>فیلتر تمامی گفتگو ها برای مدت زمان\n>['..matches[2]..']{ساعت}\n>['..matches[3]..']{دقیقه}\n>['..matches[4]..']{ثانیه}\n فعال گردید\n------------\n پس از پایان مدت زمان تنظیم شده گروه به طور خودکار از حالت فیلتر خارج میگردد و نیاز به غیرفعال سازی به طور دستی نیست!', ok_cb, false)
  end
  end
 if matches[1]:lower() == 'unmutechat' and is_owner(msg) then
                local hash = 'muteallchat:'..msg.to.id
         redis:del(hash)
-		   return reply_msg(msg.id, '><code>فیلتر تمامی گفتگو ها غیرفعال گردید!</code>', ok_cb, false)
+		   return reply_msg(msg.id, '>فیلتر تمامی گفتگو ها غیرفعال گردید!', ok_cb, false)
   end
   --[[if matches[1] == '!id' or matches[1] == '/id'  then
 			if msg.to.type == 'channel' then
 			local file = io.open("./info/"..msg.from.id..".txt", "r")
 		--if file ~= nil then
 		if not file then
-	local text = "<i> >کاربر </i> {<b>"..msg.from.first_name.."</b>}\n<i> ابتدا نیاز به تایید حساب کاربری خوددارید </i>\n<i> > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید </i>\n> /activation"
+	local text = " >کاربر  {"..msg.from.first_name.."}\n ابتدا نیاز به تایید حساب کاربری خوددارید \n > برای تکمیل فرایند عضویت روی عبارت زیر کلیک کنید \n> /activation"
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
             local text = ':|'
@@ -5820,7 +5820,7 @@ local k = bot10[math.random(#bot10)]
 	end
 	if matches[1] == '/unsubscribe' and is_sudo(msg) then
 		local azlemagham = io.popen('rm ./info/'..matches[2]..'.txt'):read('*all')
-		local security = '> عضویت کاربر [<b>'..matches[2]..'</b>] لغو گردید\n> شناسه پیگیری: [<b>'..a..b..c..d..e..f..g..h..i..j..k..'</b>] (پیگیری های لازم در مواقع ضروری از طریق این شناسه امکان پذیر است)'
+		local security = '> عضویت کاربر ['..matches[2]..'] لغو گردید\n> شناسه پیگیری: ['..a..b..c..d..e..f..g..h..i..j..k..'] (پیگیری های لازم در مواقع ضروری از طریق این شناسه امکان پذیر است)'
 		send_large_msg('channel#id'..1070428460, security.."\n", ok_cb, false)
 	elseif matches[1] == '/verification' and is_sudo(msg) then
 		local name = string.sub(matches[2], 1, 50)
@@ -5830,7 +5830,7 @@ local k = bot10[math.random(#bot10)]
 		file:write(text)
 		file:flush()
 		file:close() 
-		local alireza = ">درخواست تایید عضویت حساب کاربر: (<b>"..matches[2].."</b>) با شناسه پیگیری [<b>"..a..b..c..d..e..f.."</b>] توسط [@CliApi] در ربات تایید شد✅"
+		local alireza = ">درخواست تایید عضویت حساب کاربر: ("..matches[2]..") با شناسه پیگیری ["..a..b..c..d..e..f.."] توسط [@H_Terminal] در ربات تایید شد✅"
 	send_large_msg('channel#id'..1070428460, alireza.."\n", ok_cb, false)
 	elseif #matches == 2 then
 		local cbres_extra = {chatid = msg.to.id}
@@ -5842,7 +5842,7 @@ local k = bot10[math.random(#bot10)]
 		end
 		if matches[1] == '/rejected' and is_sudo(msg) then
 		local azlemagham = io.popen('rm ./info/'..matches[2]..'.txt'):read('*all')
-		local security = '> درخواست تایید حساب کاربر [@'..(matches[2] or '---')..']--(<b>'..matches[3]..'</b>) تایید نشد!🚫'
+		local security = '> درخواست تایید حساب کاربر [@'..(matches[2] or '---')..']--('..matches[3]..') تایید نشد!🚫'
 		send_large_msg('channel#id'..1070428460, security.."\n", ok_cb, false)
 		end
 ------درخواست تایید کاربر-------
@@ -5850,7 +5850,7 @@ local k = bot10[math.random(#bot10)]
 	local file = io.open("./info/"..msg.from.id..".txt", "r")
 		--if file ~= nil then
 		if file then
-	local text = "> اکانت کاربری شما به مشخصات [@"..(msg.from.username or "---").."]--(<b>"..msg.from.id.."</b>) در دیتابیس موجود است و نیاز به تایید مجدد نیست"
+	local text = "> اکانت کاربری شما به مشخصات [@"..(msg.from.username or "---").."]--("..msg.from.id..") در دیتابیس موجود است و نیاز به تایید مجدد نیست"
 	return reply_msg(msg.id, text, ok_cb, false)
 	else
 local text3 = "لطفا اکانت کاربری من را تایید کنید"
@@ -5863,8 +5863,8 @@ group_link = "ثبت نشده است"
 end
 local exppm = '🔊 درخواست فعال سازی اکانت کاربری\n'
 ..'----------------------------------\n'
-..'> نام گروه : [<b>'..msg.to.title..'</b>] \n'
-..'> شناسه گروه : [<b>'..msg.to.id..'</b>] \n'
+..'> نام گروه : ['..msg.to.title..'] \n'
+..'> شناسه گروه : ['..msg.to.id..'] \n'
 ..'> لینک ورود به گروه : ['..group_link..'] \n'
 ..'> متن ارسالی:\n['..text3..'] \n'
 ..'----------------------------------\n'
@@ -5877,18 +5877,17 @@ local exppm = '🔊 درخواست فعال سازی اکانت کاربری\n'
 ..'🔖امتناع از پذیرش تایید حساب :\n'
 ..'/rejected_'..msg.from.username..'_'..msg.from.id..'\n'
 ..'----------------------------------\n'
-..'@TGSecurityBOT'
 			local sends = send_msg(user, exppm, ok_cb, false)
 			--send_large_msg('channel#id'..1051256714, exppm.."\n", ok_cb, false)
 			local hour = os.date("%M") * 60
  local activation_hash = 'activation:'..hour..':'..msg.to.id
  local is_activation = redis:get(activation_hash)
 if is_activation then
-    local text = "<i> >کاربر </i> (<b>"..msg.from.first_name.."</b>) <i> درخواست شما درحال بررسی است... </i>\n<i> تا زمان تاییده نهایی منتظر بمانید و از ارسال درخواست مجدد خودداری کنید </i>"
+    local text = " >کاربر  ("..msg.from.first_name..") درخواست شما درحال بررسی است... \n تا زمان تاییده نهایی منتظر بمانید و از ارسال درخواست مجدد خودداری کنید "
 	return reply_msg(msg.id, text, ok_cb, false)
      elseif not is_activation then
      redis:set(activation_hash, true)
-		local text = "<i> > درخواست تایید اکانت کاربری خود ارسال گردید\nپس از تایید در گروه به نمایش درخواهد آمد </i>"
+		local text = " > درخواست تایید اکانت کاربری خود ارسال گردید\nپس از تایید در گروه به نمایش درخواهد آمد "
 		return reply_msg(msg.id, text, ok_cb, false)
 end
 end
@@ -5897,23 +5896,23 @@ end
 if matches[1]:lower() == "setwelcome" and is_owner(msg) then
 local alirezapt = "welcome"..msg.to.id
 redis:set(alirezapt, matches[2])
-local alireza = "><code>پیغام خوش آمد گویی جدید با موفقیت ذخیره و تغییر یافت :-)</code> "
+local alireza = "> پیغام خوش آمد گویی جدید با موفقیت ذخیره و تغییر یافت :-) "
 return reply_msg(msg.id, alireza, ok_cb, false)
 end
 if matches[1] == "delete welcome" and is_owner(msg) then
 local alirezapt = "welcome"..msg.to.id
 redis:del(alirezapt)
-local alireza = "><code>پیغام خوش آمد گویی بازنشانی شد و به حالت پیشفرض تنظیم شد</code>"
+local alireza = ">پیغام خوش آمد گویی بازنشانی شد و به حالت پیشفرض تنظیم شد"
 return reply_msg(msg.id, alireza, ok_cb, false)
 end
 if matches[1] == "welcome" and is_owner(msg) then
 if matches[2] == "on" then
 redis:set("welcome:"..msg.to.id, true)
-return reply_msg(msg.id, '><code>Welcome Message</code> <b>activated</b>\n<code>برای تغییر پیغام خوش آمد گویی به شکل زیر عمل کنید</code>\n<b>/setwelcome</b> <code>text</code>', ok_cb, false)
+return reply_msg(msg.id, '>Welcome Message activated\nبرای تغییر پیغام خوش آمد گویی به شکل زیر عمل کنید\n /setwelcome text', ok_cb, false)
 end
 if matches[2] == "off" then
 redis:del("welcome:"..msg.to.id)
-return reply_msg(msg.id, '><b>Deactivated</b> <code>welcome message!</code>', ok_cb, false)
+return reply_msg(msg.id, '>Deactivated welcome message!', ok_cb, false)
 end
 end
 if redis:get("welcome:"..msg.to.id) then
@@ -5921,16 +5920,16 @@ if matches[1] == "chat_add_user_link" then
 local alirezapt = "welcome"..msg.to.id
   local cliapi = redis:get(alirezapt)
             if cliapi then
-local alireza = '> <code>'..cliapi..'</code>'
+local alireza = '> '..cliapi..''
 return reply_msg(msg.id, alireza, ok_cb, false)
 else
 if not cliapi then
-local text = '><code>سلام</code>  '
-..'{<code>'..msg.from.print_name..'</code>}--'
+local text = '>سلام '
+..'{'..msg.from.print_name..'}--'
 ..'[@'..(msg.from.username or "---")..']\n'
 ..'<code>به گروه</code>  '
-..'(<b>'..msg.to.title..'</b>)  '
-..'<code>خوش آمدید</code>'
+..'('..msg.to.title..')  '
+..'خوش آمدید'
 return reply_msg(msg.id, text, ok_cb, false)
 end
 end
@@ -5945,14 +5944,14 @@ local alireza = '> <code>'..cliapi..'</code>'
 return reply_msg(msg.id, alireza, ok_cb, false)
 else
 if not cliapi then
-local text = '><code>سلام</code>  '
-..'{<code>'..msg.action.user.print_name..'</code>}--'
+local text = '>سلام '
+..'{'..msg.action.user.print_name..'}--'
 ..'[@'..(msg.action.user.username or "---")..']\n'
-..'<code>ورود شما را به واسطه</code>  '
-..'[<b>'..msg.from.print_name..'</b>]  '
-..'<code>به گروه</code>  '
-..'[<b>'..msg.to.title..'</b>]  '
-..'<code>خوش آمد عرض مینمایم :)</code>'
+..'ورود شما را به واسطه '
+..'['..msg.from.print_name..']  '
+..'به گروه '
+..'['..msg.to.title..']  '
+..'خوش آمد عرض مینمایم :)'
 return reply_msg(msg.id, text, ok_cb, false)
 end
 end
@@ -5961,7 +5960,7 @@ end
 	--[[if matches[1]:lower() == "setnumber" then
 local number = 'alirezapt7:'..msg.from.id
 redis:set(number, matches[2])
-local text = "🔖 <i> تغییرات با موفقیت اعمال شد :) </i> \n> <i> اکنون مجاز به استفاده از ربات هستید </i> <b>:)</b>\n"
+local text = "🔖 تغییرات با موفقیت اعمال شد :) \n> اکنون مجاز به استفاده از ربات هستید :) \n"
 return  reply_msg(msg.id, text, ok_cb, true)
 end]]
 	---------------admin.lua-----------------
@@ -6005,12 +6004,12 @@ end]]
     		return "》شما نمیتوانید ادمین ها را مسدود کنید"
     	end
     	block_user("user#id"..matches[2],ok_cb,false)
-    	local text = "》انجام شد! کاربر ["..matches[2].."] از اکانت کاربری ربات مسدود شد \n》یوزرنیم ربات: [ @TGSecurityBOT ]"
+    	local text = "》انجام شد! کاربر ["..matches[2].."] از اکانت کاربری ربات مسدود شد \n》یوزرنیم ربات: [ @H_Terminal ]"
 		return reply_msg(msg.id, text, ok_cb, false)
     end
     if matches[1] == "unblockuser" and is_sudo(msg) then
     	unblock_user("user#id"..matches[2],ok_cb,false)
-    	local text = "》انجام شد! کاربر ["..matches[2].."] از اکانت کاربری ربات رفع مسدودیت شد \n》یوزرنیم ربات: [ @TGSecurityBOT ]"
+    	local text = "》انجام شد! کاربر ["..matches[2].."] از اکانت کاربری ربات رفع مسدودیت شد \n》یوزرنیم ربات: [ @H_Terminal ]"
 		return reply_msg(msg.id, text, ok_cb, false)
     end
 	
@@ -6024,7 +6023,7 @@ end]]
 		reload_plugins(true)
 		post_msg(receiver, "", ok_cb, false)
 		--local text = "#Done Successfully :)"
-		return reply_msg(msg.id,'<b>Done Successfully!</b>',ok_cb, false) 
+		return reply_msg(msg.id,'Done Successfully!',ok_cb, false) 
 	end
 	
 	if matches[1] == 'addlog' and is_sudo(msg) and not matches[2] then
@@ -6095,10 +6094,10 @@ if  matches[1]:lower() == 'options lock' and matches[2] == 'supergroup' and data
 			local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-             local text = '<i> ⚙راهنمای بخش تنظیمات سوپرگروه: </i>\n____________________\n📕 <i> برای مشاهده بخش تنظیمات قفل های مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید </i>\n📂 #options lock\n____________________\n📕<i> برای مشاهده بخش تنظیمات سوئیچ ها و حالت های کارکرد ربات مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید </i>\n📂#options more\n\n____________________\n📕<i> برای مشاهده بخش تنظیمات  عمومی  مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید </i>\n📂#options general\n____________________\nمالک ربات : @AliReza_PT\nکانال من! :\n @Create_AntiSpam_Bot'
+             local text = '⚙راهنمای بخش تنظیمات سوپرگروه: \n____________________\n📕 برای مشاهده بخش تنظیمات قفل های مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید \n📂 options lock\n____________________\n📕 برای مشاهده بخش تنظیمات سوئیچ ها و حالت های کارکرد ربات مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید \n📂 options more\n\n____________________\n📕 برای مشاهده بخش تنظیمات  عمومی  مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید \n📂 options general\n____________________\nمالک ربات : @H_Terminal'
 			return reply_msg(msg.id, text, ok_cb, false)
 			else
-			local text = '<b> ⚙Directory Settings SuperGroup: </b>\n____________________\n📕 <b> To view the locking settings for setting up a super group submit the following words </b>\n📂 #options lock\n____________________\n📕<b> To view the switch settings and operation modes corresponding to the settings robot Svprgrvh submit the following words </b>\n📂#options more\n____________________\n📕<b> To view the General Settings section of the Settings Super Group to submit the following statement </b>\n📂#options general\n____________________\n<b> Robot owner: </b> @AliReza_PT\n<b> My channel!: </b>\n @Create_AntiSpam_Bot'
+			local text = '⚙Directory Settings SuperGroup: \n____________________\n📕 To view the locking settings for setting up a super group submit the following words \n📂 options lock\n____________________\n📕 To view the switch settings and operation modes corresponding to the settings robot Svprgrvh submit the following words \n📂 options more\n____________________\n📕 To view the General Settings section of the Settings Super Group to submit the following statement \n📂 options general\n____________________\n<b> Robot owner:  @H_Terminal'
 			
 			return reply_msg(msg.id, text, ok_cb, false)
 			end
@@ -6110,13 +6109,13 @@ if  matches[1]:lower() == 'options lock' and matches[2] == 'supergroup' and data
 			 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-             local text = '⚙راهنمای بخش تنظیمات سوپرگروه:\n____________________\n📕برای مشاهده بخش تنظیمات قفل های مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید\n📂 #options lock\n____________________\n📕برای مشاهده بخش تنظیمات سوئیچ ها و حالت های کارکرد ربات مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید\n📂#options more\n\n____________________\n📕برای مشاهده بخش تنظیمات  عمومی  مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید\n📂#options general\n____________________\nمالک ربات : @AliReza_PT\nکانال پشتیبانی ربات :\n @Create_AntiSpam_Bot :)'
+             local text = '⚙راهنمای بخش تنظیمات سوپرگروه:\n____________________\n📕برای مشاهده بخش تنظیمات قفل های مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید\n📂 options lock\n____________________\n📕برای مشاهده بخش تنظیمات سوئیچ ها و حالت های کارکرد ربات مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید\n📂 options more\n\n____________________\n📕برای مشاهده بخش تنظیمات  عمومی  مربوط به تنطیمات سوپرگروه عبارت زیر را ارسال کنید\n📂 options general\n____________________\nمالک ربات : @H_Terminal :)'
 			send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
            return "ℹ️راهنمای پخش های تنظیمات گروه به خصوصی شما ارسال شد(FA)"
 			else
-			local text = '<b>⚙Directory Settings SuperGroup:</b>\n____________________\n📕To view the locking settings for setting up a super group submit the following words\n📂 #options lock\n____________________\n📕To view the switch settings and operation modes corresponding to the settings robot Svprgrvh submit the following words\n📂#options more\n____________________\n📕To view the General Settings section of the Settings Super Group to submit the following statement\n📂#options general\n____________________\nRobot owner : @AliReza_PT\nBot Support Channel :\n @Create_AntiSpam_Bot :)'
+			local text = '⚙Directory Settings SuperGroup:\n____________________\n📕To view the locking settings for setting up a super group submit the following words\n📂 options lock\n____________________\n📕To view the switch settings and operation modes corresponding to the settings robot Svprgrvh submit the following words\n📂 options more\n____________________\n📕To view the General Settings section of the Settings Super Group to submit the following statement\n📂 options general\n____________________\nRobot owner : @H_Terminal :)'
 			send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
-           return "<b>ℹ️Guide your player was sent to a private group settings</b>(EN)"
+           return "ℹ️Guide your player was sent to a private group settings (EN)"
 			end
 		end
 		end
@@ -6129,7 +6128,7 @@ if  matches[1]:lower() == 'options lock' and matches[2] == 'supergroup' and data
 					data[tostring(msg.to.id)]['settings']['set_link'] = nil
 					save_data(_config.moderation.data, data)
 				else
-					send_large_msg(receiver, "<i> ℹ️لینک جدید برای ورود به گروه با موفقیت ساخته شد </i>")
+					send_large_msg(receiver, " ℹ️لینک جدید برای ورود به گروه با موفقیت ساخته شد ")
 					data[tostring(msg.to.id)]['settings']['set_link'] = result
 					save_data(_config.moderation.data, data)
 				end
@@ -6141,69 +6140,69 @@ if  matches[1]:lower() == 'options lock' and matches[2] == 'supergroup' and data
 		if matches[1]:lower() == 'setlink' and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_link'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return '<i> ℹ️اکنون لینک گروه را ارسال کنید </i>'
+			return ' ℹ️اکنون لینک گروه را ارسال کنید '
 		end
 
 		if msg.text then
 			if msg.text:match("^([https?://w]*.?telegram.me/joinchat/%S+)$") and data[tostring(msg.to.id)]['settings']['set_link'] == 'waiting' and is_owner(msg) then
 				data[tostring(msg.to.id)]['settings']['set_link'] = msg.text
 				save_data(_config.moderation.data, data)
-				return "<i> ℹ️لینک جدید تنظیم شد </i>"
+				return " ℹ️لینک جدید تنظیم شد "
 			end
 		end
 
 		if matches[1]:lower() == 'setlinkchannel' and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_linkchannel'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return '<i> 🔖اکنون لینک کانال را ارسال کنید </i>'
+			return ' 🔖اکنون لینک کانال را ارسال کنید '
 		end
 
 		if msg.text then
 			if msg.text:match("^([https?://w]*.?telegram.me/joinchat/%S+)$") and data[tostring(msg.to.id)]['settings']['set_linkchannel'] == 'waiting' and is_owner(msg) then
 				data[tostring(msg.to.id)]['settings']['set_linkchannel'] = msg.text
 				save_data(_config.moderation.data, data)
-				return "<i> 🔖لینک کانال با موفقیت ذخیره شد </i>"
+				return " 🔖لینک کانال با موفقیت ذخیره شد "
 			end
 		end
 		
 		if matches[1]:lower() == 'setuserchannel' and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_userchannel'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return '<i> 🔖اکنون یوزرنیم کانال را ارسال کنید </i>'
+			return ' 🔖اکنون یوزرنیم کانال را ارسال کنید '
 		end
 
 		if msg.text then
 			if msg.text:match("^@(.*)$") and data[tostring(msg.to.id)]['settings']['set_userchannel'] == 'waiting' and is_owner(msg) then
 				data[tostring(msg.to.id)]['settings']['set_userchannel'] = msg.text
 				save_data(_config.moderation.data, data)
-				return "<i> 🔖یوزرنیم جدید کانال با موفقیت تنظیم شد </i>"
+				return " 🔖یوزرنیم جدید کانال با موفقیت تنظیم شد "
 			end
 		end
 		
 		if matches[1]:lower() == 'setusertag' and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_usertag'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return '<i> 🎟اکنون تگ جدید را ارسال کنید </i>'
+			return ' 🎟اکنون تگ جدید را ارسال کنید '
 		end
 
 		if msg.text then
 			if msg.text:match("^#(.*)$") and data[tostring(msg.to.id)]['settings']['set_usertag'] == 'waiting' and is_owner(msg) then
 				data[tostring(msg.to.id)]['settings']['set_usertag'] = msg.text
 				save_data(_config.moderation.data, data)
-				return "<i> 🎟تگ جدید با موفقیت ذخیره و تغییر یافت </i>"
+				return " 🎟تگ جدید با موفقیت ذخیره و تغییر یافت "
 			end
 		end
 		
 		if matches[1]:lower() == 'setlinkgroup' and msg.text:match("([https?://w]*.?telegram.me/joinchat/%S+)$") and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_linkgroup'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return '<i> ℹ️آیا لینک ارسالی شما صحیح است؟ </i>\n____________________\n⬅️تایید = ارسال مجدد لینک'
+			return ' ℹ️آیا لینک ارسالی شما صحیح است؟ \n____________________\n⬅️تایید = ارسال مجدد لینک'
 		else
 		if msg.text then
 			if msg.text:match("([https?://w]*.?telegram.me/joinchat/%S+)") and data[tostring(msg.to.id)]['settings']['set_linkgroup'] == 'waiting' and is_owner(msg) then
 				data[tostring(msg.to.id)]['settings']['set_linkgroup'] = msg.text
 				save_data(_config.moderation.data, data)
-				 return '<i> 🔖لینک جدید گروه با موفقیت ذخیره و تغییر یافت </i>'
+				 return ' 🔖لینک جدید گروه با موفقیت ذخیره و تغییر یافت '
 			end
 		end
 		end
@@ -6229,12 +6228,12 @@ if is_link then
 	 local hash = 'group:'..msg.to.id
     local group_lang = redis:hget(hash,'lang')
     if group_lang then
-			local text = '> <i>نام گروه:</i> [<b>'..msg.to.title..'</b>]\n> <i>لینک ورود به گروه:</i> '
---..'<a href="'..group_link..'">لینک(کلیک کنید)</a>'
+			local text = '> نام گروه: ['..msg.to.title..']\n> لینک ورود به گروه: '
+--..'<a href="'..group_link..'">لینک(کلیک کنید)'
 			return reply_msg(msg.id, text, ok_cb, false)
 			 else
-	local text = '> <b>Group Name:</b> [<i>'..msg.to.title..'</i>]\n> <b>SuperGroup Link:</b>\n' --['..cliapi..']
---..'<a href="'..cliapi..'">Link (click)</a>'
+	local text = '> Group Name: ['..msg.to.title..']\n> SuperGroup Link:\n' --['..H_Terminal..']
+--..'<a href="'..H_Terminal..'">Link (click)'
 ..'['..group_link..']'
 			return reply_msg(msg.id, text, ok_cb, false)
 			
@@ -6252,8 +6251,8 @@ if is_link then
 			return reply_msg(msg.id, text, ok_cb, false)
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
-			local text = '> <b>Group Name:</b> [<i>'..msg.to.title..'</i>]\n> <b>SuperGroup Link:</b>\n' --['..cliapi..']
---..'<a href="'..cliapi..'">Link (click)</a>'
+			local text = '> Group Name: ['..msg.to.title..']\n> SuperGroup Link:\n' --['..H_Terminal..']
+--..'<a href="'..H_Terminal..'">Link (click)'
 ..'['..group_link..']'
 			 send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
            return "ℹ️لینک ورود به گروه به خصوصی شما ارسال شد"
@@ -6279,7 +6278,7 @@ if is_link then
 			end
 			local linkchannel = data[tostring(msg.to.id)]['settings']['set_linkchannel']
 			if not linkchannel then
-				local text = "ابتدا لینک دوم گروه را با استفاده از دستور <b>/setlinkchannel</b> تنظیم کنید"
+				local text = "ابتدا لینک دوم گروه را با استفاده از دستور /setlinkchannel تنظیم کنید"
 			return reply_msg(msg.id, text, ok_cb, false)
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..linkchannel.."]")
@@ -6294,7 +6293,7 @@ if is_link then
 			end
 			local userchannel = data[tostring(msg.to.id)]['settings']['set_userchannel']
 			if not userchannel then
-				local text = "<i> ابتدا یوزرنیم جدید کانال را با استفاده از دستور /setuserchannel تنظیم کنید </i>"
+				local text = "ابتدا یوزرنیم جدید کانال را با استفاده از دستور /setuserchannel تنظیم کنید "
 			return reply_msg(msg.id, text, ok_cb, false)
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..userchannel.."]")
@@ -6306,7 +6305,7 @@ if is_userchannel then
    return reply_msg(msg.id, text, ok_cb, false)
      elseif not is_userchannel then
      redis:set(userchannel_hash, true)
-			local text = "👤<i> درخواست کننده: </i> "..msg.from.first_name.."\n🏷<i> یوزرنیم ورود به کانال: </i>\n____________________\n"..userchannel
+			local text = "👤 درخواست کننده: "..msg.from.first_name.."\n🏷 یوزرنیم ورود به کانال: \n____________________\n"..userchannel
 			return reply_msg(msg.id, text, ok_cb, false)
 		end
 		end
@@ -6321,7 +6320,7 @@ if is_userchannel then
 			return reply_msg(msg.id, text, ok_cb, false)
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..userchannel.."]")
-			local text = "👤<i> درخواست کننده: </i> "..msg.from.first_name.."\n🏷<i> یوزرنیم ورود به کانال: </i>\n____________________\n"..userchannel
+			local text = "👤 درخواست کننده: "..msg.from.first_name.."\n🏷 یوزرنیم ورود به کانال: \n____________________\n"..userchannel
 			send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
            return "ℹ️یوزرنیم کانال به خصوصی شما ارسال شد"
 		end
@@ -6340,11 +6339,11 @@ if is_userchannel then
  local usertag_hash = 'usertag:'..hour..':'..msg.from.id
  local is_usertag = redis:get(usertag_hash)
 if is_usertag then
-   local text = "<b>About every 15 minutes you are entitled to receive a username tag</b>"
+   local text = "About every 15 minutes you are entitled to receive a username tag"
    return reply_msg(msg.id, text, ok_cb, false)
      elseif not usertag then
      redis:set(usertag_hash, true)
-			local text = "<i> 👤درخواست کننده: </i> "..msg.from.first_name.."\n🏷<i> یوزرنیم تگ شده: </i>\n____________________\n"..usertag
+			local text = " 👤درخواست کننده: "..msg.from.first_name.."\n🏷 یوزرنیم تگ شده: \n____________________\n"..usertag
 			return reply_msg(msg.id, text, ok_cb, false)
 		end
 		end
@@ -6355,27 +6354,27 @@ if is_usertag then
 			end
 			local usertag = data[tostring(msg.to.id)]['settings']['set_usertag']
 			if not usertag then
-				local text = "<i> تگ جدید ثبت نشده است.ابتدا با استفاده از دستور </i> <b>/setusertag</b> <i> تگ جدید را تنظیم کنید </i>"
+				local text = " تگ جدید ثبت نشده است.ابتدا با استفاده از دستور /setusertag تگ جدید را تنظیم کنید "
 			return reply_msg(msg.id, text, ok_cb, false)
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..usertag.."]")
-			local text = "<i> 👤درخواست کننده: </i> "..msg.from.first_name.."\n<i> یوزر تگ شده: </i>\n____________________\n"..usertag
+			local text = " 👤درخواست کننده: "..msg.from.first_name.."\n یوزر تگ شده: \n____________________\n"..usertag
 			send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
-           return "<i> ℹ️تگ یوزر به خصوصی شما ارسال شد </i>"
+           return " ℹ️تگ یوزر به خصوصی شما ارسال شد "
 		end
 		
 		-------------
 		if matches[1]:lower() == "setlinks" and is_owner(msg) then
 local alirezapt = "links"..msg.from.id
 redis:set(alirezapt, matches[2])
-local alireza = "<i> 🔖لینک جدید با موفقیت ذخیره گردید </i>"
+local alireza = " 🔖لینک جدید با موفقیت ذخیره گردید "
 return reply_msg(msg.id, alireza, ok_cb, false)
 end
 
 if matches[1] == "clean links" and is_owner(msg) then
 local alirezapt = "links"..msg.from.id
 redis:del(alirezapt)
-local alireza = "<i> لینک ذخیره شده با موفقیت حذف گردید! </i>"
+local alireza = " لینک ذخیره شده با موفقیت حذف گردید! "
 return reply_msg(msg.id, alireza, ok_cb, false)
 end
 
@@ -6383,14 +6382,14 @@ if matches[1] == "links" and is_owner(msg) then
 local alirezapt = "links"..msg.from.id
   local cliapi = redis:get(alirezapt)
             if cliapi then
---local alireza = "》<b>Group Name:</b> ["..msg.to.title.."]\n____________________\n><b>Group Link:</b> ["..redis:get(alirezapt).."]"
-local alireza = '> <b>Group Name:</b> [<i>'..msg.to.title..'</i>]\n> <b>SuperGroup Link:</b>\n' --['..cliapi..']
---..'<a href="'..cliapi..'">Link (click)</a>'
+--local alireza = "》Group Name: ["..msg.to.title.."]\n____________________\n> Group Link: ["..redis:get(Hessam).."]"
+local alireza = '> Group Name: ['..msg.to.title..']\n> SuperGroup Link:\n' --['..H_Terminal..']
+--..'<a href="'..H_terminal..'">Link (click)'
 ..'['..cliapi..']'
 return reply_msg(msg.id, alireza, ok_cb, false)
 else
 if not cliapi then
-local text = "<i> > لینک گروه یافت نشد! با استفاده از دستور [/setlinks] لینک جدید را تنظیم کنید </i>"
+local text = " > لینک گروه یافت نشد! با استفاده از دستور [/setlinks] لینک جدید را تنظیم کنید "
 return reply_msg(msg.id, text, ok_cb, false)
 end
 end
@@ -6437,7 +6436,7 @@ local alirezapt4 = "userchannel4"..msg.from.id
 local alirezapt5 = "userchannel5"..msg.from.id
 local alirezapt6 = "userchannel6"..msg.from.id
 local alirezapt7 = "userchannel7"..msg.from.id
-local alireza = "👤درخواست کننده : ["..msg.from.first_name.."]\n____________________\n🎟|نام منتخب|: ["..(redis:get(alirezapt2) or "یافت نشد").."] > |یوزرنیم|: [@"..(redis:get(alirezapt3) or "یافت نشد").."]\n\n🎟|نام منتخب|: ["..(redis:get(alirezapt4) or "یافت نشد").."] > |یوزرنیم|: [@"..(redis:get(alirezapt5) or "یافت نشد").."]\n\n🎟|نام منتخب|: ["..(redis:get(alirezapt6) or "یافت نشد").."] > |یوزرنیم|: [@"..(redis:get(alirezapt7) or "یافت نشد").."]"
+local alireza = "👤درخواست کننده : ["..msg.from.first_name.."]\n____________________\n🎟|نام منتخب|: ["..(redis:get(Hessam2) or "یافت نشد").."] > |یوزرنیم|: [@"..(redis:get(Hessam3) or "یافت نشد").."]\n\n🎟|نام منتخب|: ["..(redis:get(Hessam4) or "یافت نشد").."] > |یوزرنیم|: [@"..(redis:get(Hessam5) or "یافت نشد").."]\n\n🎟|نام منتخب|: ["..(redis:get(Hessam6) or "یافت نشد").."] > |یوزرنیم|: [@"..(redis:get(Hessam7) or "یافت نشد").."]"
 return reply_msg(msg.id, alireza, ok_cb, false)
 else
 local text = "ℹ️لینک گروه یافت نشد! با استفاده از دستور /setlink لینک جدید را تنظیم کنید "
@@ -6475,7 +6474,7 @@ local alirezapt2 = "userchannel2"..msg.from.id
 local alirezapt3 = "userchannel3"..msg.from.id
 local alirezapt4 = "userchannel4"..msg.from.id
 local alirezapt5 = "userchannel5"..msg.from.id
-local alireza = "👤درخواست کننده : ["..msg.from.first_name.."]\n____________________\n🔖|نام کانال|: ["..(redis:get(alirezapt2) or "یافت نشد").."]\n > (یوزرنیم ورود به کانال): [@"..(redis:get(alirezapt3) or "یوزرنیم کانال ثبت نشده است").."]\n____________________\n🔖|نام گروه|: ["..(redis:get(alirezapt4) or "یافت نشد").."]\n > (لینک ورود به گروه): ["..(redis:get(alirezapt5) or "لینک گروه ثبت نشده است").."]"
+local alireza = "👤درخواست کننده : ["..msg.from.first_name.."]\n____________________\n🔖|نام کانال|: ["..(redis:get(Hessam2) or "یافت نشد").."]\n > (یوزرنیم ورود به کانال): [@"..(redis:get(Hessam3) or "یوزرنیم کانال ثبت نشده است").."]\n____________________\n🔖|نام گروه|: ["..(redis:get(Hessam4) or "یافت نشد").."]\n > (لینک ورود به گروه): ["..(redis:get(Hessam5) or "لینک گروه ثبت نشده است").."]"
 return reply_msg(msg.id, alireza, ok_cb, false)
 else
 local text = "ℹ️لینک گروه یافت نشد! با استفاده از دستور /setlink لینک جدید را تنظیم کنید "
@@ -6486,7 +6485,7 @@ if matches[1]:lower() == 'leave' and matches[2] and is_sudo(msg) then
 local data = load_data(_config.moderation.data)
 local group_name = data[tostring(matches[2])]['settings']['set_name']
 leave_channel("channel#id"..matches[2], ok_cb, false)
-return reply_msg(msg.id, "》 <i> ربات </i> [ @TGSecurityBOT ] <i> با موفقیت از سوپرگروه </i> [<b>"..group_name.."</b>] <i> خارج گردید </i>", ok_cb, false)
+return reply_msg(msg.id, "》  ربات با موفقیت از سوپرگروه ["..group_name.."] خارج گردید ", ok_cb, false)
 end
 ----------------------
 		if matches[1]:lower() == "invite" and is_sudo(msg) then
@@ -6620,7 +6619,7 @@ end
 				return
 			end
 			if not is_owner(msg) then
-				local text = "<i>ℹ️فقط مالک گروه/ادمین میتواند ارتقا مقام دهد</i>"
+				local text = "ℹ️فقط مالک گروه/ادمین میتواند ارتقا مقام دهد"
 				return reply_msg(msg.id, text, ok_cb, false)
 			end
 			if type(msg.reply_id) ~= "nil" then
@@ -6665,7 +6664,7 @@ end
 				return
 			end
 			if not is_owner(msg) then
-				local text = "<i>ℹ️فقط مالک گروه/ادمین میتواند عزل مقام کند</i>"
+				local text = "ℹ️فقط مالک گروه/ادمین میتواند عزل مقام کند"
 				return reply_msg(msg.id, text, ok_cb, false)
 			end
 			if type(msg.reply_id) ~= "nil" then
@@ -6714,7 +6713,7 @@ end
 			save_data(_config.moderation.data, data)
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup description to: "..about_text)
 			channel_set_about(receiver, about_text, ok_cb, false)
-			local text = "<i> ℹ️توضیحات ثبت شد </i>\n\n<i> برای مشاهده تغییرات مجدد سعی کنید </i>"
+			local text = " ℹ️توضیحات ثبت شد \n\n برای مشاهده تغییرات مجدد سعی کنید "
 			return reply_msg(msg.id, text, ok_cb, false)
 		end
 
@@ -6799,7 +6798,7 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 			data[tostring(msg.to.id)]['settings']['set_photo'] = 'waiting'
 			save_data(_config.moderation.data, data)
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] started setting new SuperGroup photo")
-			local text = '<i> 🔀اکنون تصویر جدید برای گروه را ارسال کنید </i>'
+			local text = ' 🔀اکنون تصویر جدید برای گروه را ارسال کنید '
 			return reply_msg(msg.id, text, ok_cb, false)
 		end
 		
@@ -6808,12 +6807,12 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 				return
 			end
 			if not is_owner(msg) then
-				local text = "<i> فقط مالک گروه مجاز به حذف است </i>"
+				local text = " فقط مالک گروه مجاز به حذف است "
 				return reply_msg(msg.id, text, ok_cb, false)
 			end
 			if matches[2] == 'managers' then
 				if next(data[tostring(msg.to.id)]['moderators']) == nil then
-					local text = '<i> ℹ️ادمین در این سوپرگروه یافت نشد </i>'
+					local text = ' ℹ️ادمین در این سوپرگروه یافت نشد '
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 				for k,v in pairs(data[tostring(msg.to.id)]['moderators']) do
@@ -6821,14 +6820,14 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					save_data(_config.moderation.data, data)
 				end
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] cleaned modlist")
-				local text = '<i> #⃣ادمین های گروه حذف شدند </i>'
+				local text = ' #⃣ادمین های گروه حذف شدند '
 				send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/remove.webp", ok_cb, false)
 				return reply_msg(msg.id, text, ok_cb, false)
 			end
 			if matches[2] == 'laws' then
 				local data_cat = 'laws'
 				if data[tostring(msg.to.id)][data_cat] == nil then
-					local text = "<i> ℹ️قوانین برای این گروه ثبت نشده است </i>"
+					local text = " ℹ️قوانین برای این گروه ثبت نشده است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 				data[tostring(msg.to.id)][data_cat] = nil
@@ -6847,20 +6846,20 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 				data[tostring(msg.to.id)][data_cat] = nil
 				save_data(_config.moderation.data, data)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] cleaned more")
-				local text = '<i> 🔄اطلاعات ذخیره شده با موفقیت حذف گردید </i>'
+				local text = ' 🔄اطلاعات ذخیره شده با موفقیت حذف گردید '
 				send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/remove.webp", ok_cb, false)
 				return reply_msg(msg.id, text, ok_cb, false)
 			end
 			if matches[2] == 'nerkh' then
 				local data_cat = 'nerkh'
 				if data[tostring(msg.to.id)][data_cat] == nil then
-					local text = "💰<i> نرخ فروش گروه با ربات </i> <b>Security BOT</b>  <i> ثبت نشده است </i>"
+					local text = "💰 نرخ فروش گروه با ربات BoomBoom ثبت نشده است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 				data[tostring(msg.to.id)][data_cat] = nil
 				save_data(_config.moderation.data, data)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] cleaned nerkh")
-				local text = '<i> 🔄نرخ فروش گروه ذخیره شده با موفقیت بازنشانی شد </i>'
+				local text = '🔄نرخ فروش گروه ذخیره شده با موفقیت بازنشانی شد'
 				send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/remove.webp", ok_cb, false)
 				return reply_msg(msg.id, text, ok_cb, false)
 			end
@@ -6877,14 +6876,14 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 				local about_text = ' '
 				local data_cat = 'description'
 				if data[tostring(msg.to.id)][data_cat] == nil then
-					local text = '<i> ℹ️توضیحات برای این گروه ثبت نشده است </i>'
+					local text = 'ℹ️توضیحات برای این گروه ثبت نشده است'
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 				data[tostring(msg.to.id)][data_cat] = nil
 				save_data(_config.moderation.data, data)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] cleaned about")
 				channel_set_about(receiver, about_text, ok_cb, false)
-				local text = "<i> 🔄توضیحات گروه بازنشانی شد </i>"
+				local text = "🔄توضیحات گروه بازنشانی شد"
 				send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/remove.webp", ok_cb, false)
 				return reply_msg(msg.id, text, ok_cb, false)
 			end
@@ -6892,7 +6891,7 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 				chat_id = msg.to.id
 				local hash =  'mute_user:'..chat_id
 					redis:del(hash)
-				local text = "<i> ℹ️لیست کاربران لیست سکوت با موفقیت حذف گردید </i>"
+				local text = "ℹ️لیست کاربران لیست سکوت با موفقیت حذف گردید"
 				send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/remove.webp", ok_cb, false)
 				return reply_msg(msg.id, text, ok_cb, false)
 			end
@@ -6911,7 +6910,7 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 			if matches[2] == "bots" and is_owner(msg) then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked all SuperGroup bots")
 				channel_get_bots(receiver, callback_clean_bots, {msg = msg})
-				local text = "<i> ℹ️تمامی ربات ها از سوپرگروه حذف شدند </i>"
+				local text = "ℹ️تمامی ربات ها از سوپرگروه حذف شدند"
 				send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/remove.webp", ok_cb, false)
 				return reply_msg(msg.id, text, ok_cb, false)
 			end
@@ -7501,10 +7500,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 			local hash = 'group:'..msg.to.id
             local group_lang = redis:hget(hash,'lang')
             if group_lang then
-			local text = "<i> 🔍حساسیت نسبت به ارسال مکرر پیام برای گروه </i> [<b>"..msg.to.title.."</b>] <i> تنظیم شد به </i> : {<b>"..matches[2].."</b>}"
+			local text = " 🔍حساسیت نسبت به ارسال مکرر پیام برای گروه ["..msg.to.title.."] تنظیم شد به : {"..matches[2].."}"
 			return reply_msg(msg.id, text, ok_cb, false)
 		else
-		local text = "<b>🔍Sensitivity to send repeated messages to groups</b> [<i>"..msg.to.title.."</i>] <b>Were set to</b> : {<i>"..matches[2].."</i>}"
+		local text = "🔍Sensitivity to send repeated messages to groups ["..msg.to.title.."] Were set to : {"..matches[2].."}"
 			return reply_msg(msg.id, text, ok_cb, false)
 			end
 			end
@@ -7522,7 +7521,7 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] set flood to ["..matches[2].."]")
 			local text = "🔖نام گروه : "..msg.to.title.."\n🆔شناسه سوپرگروه : "..msg.to.id .."\n____________________\n🔐تنظیمات اعمال شده :\n____________________\n🔁حساسیت نسبت به ارسال مکرر پیام تنظیم شد به: ["..matches[2].."]\n____________________\n🗒از این پس کاربر پس از ارسال [ "..matches[2].." ] پیام متوالی از گروه اخراج خواهد شد"
 			send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false)
-           return "<i> اعمال شد! اطلاعات تکمیلی در خصوصی ارسال شد </i>"
+           return " اعمال شد! اطلاعات تکمیلی در خصوصی ارسال شد "
 		end        
 
 		
@@ -7536,10 +7535,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					mute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_audio'] = 'yes'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇در سوپرگروه فیلتر تمامی صدا ها فعال شد </i>"
+					local text = " 🔇در سوپرگروه فیلتر تمامی صدا ها فعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔕در سوپرگروه فیلتر تمامی صدا ها از قبل فعال است </i>"
+					local text = " 🔕در سوپرگروه فیلتر تمامی صدا ها از قبل فعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7550,10 +7549,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					mute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_forward'] = 'yes'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی مطالب فوروارد شده فعال شد </i>"
+					local text = " 🔇فیلتر تمامی مطالب فوروارد شده فعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔕در سوپرگروه فیلتر تمامی  مطالب فوروارد شده از قبل فعال است </i>"
+					local text = " 🔕در سوپرگروه فیلتر تمامی  مطالب فوروارد شده از قبل فعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7576,10 +7575,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					mute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_service'] = 'yes'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی پیغام های ورود و خروج افراد فعال شد </i>"
+					local text = " 🔇فیلتر تمامی پیغام های ورود و خروج افراد فعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔕در سوپرگروه فیلتر تمامی پیغام های ورود و خروج افراد از قبل فعال است </i>"
+					local text = " 🔕در سوپرگروه فیلتر تمامی پیغام های ورود و خروج افراد از قبل فعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7590,10 +7589,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					mute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_photo'] = 'yes'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇در سوپرگروه فیلتر تمامی تصاویر ها فعال شد </i>"
+					local text = " 🔇در سوپرگروه فیلتر تمامی تصاویر ها فعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔕در سوپرگروه فیلتر تمامی تصاویر ها از قبل فعال است </i>"
+					local text = " 🔕در سوپرگروه فیلتر تمامی تصاویر ها از قبل فعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7604,10 +7603,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					mute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_video'] = 'yes'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇در سوپرگروه فیلتر تمامی ویدئو ها فعال شد </i>"
+					local text = " 🔇در سوپرگروه فیلتر تمامی ویدئو ها فعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔕در سوپرگروه فیلتر تمامی ویدئو ها از قبل فعال است </i>"
+					local text = " 🔕در سوپرگروه فیلتر تمامی ویدئو ها از قبل فعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7618,10 +7617,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					mute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_gif'] = 'yes'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇در سوپرگروه فیلتر تمامی تصاویر متحرک ها فعال شد </i>"
+					local text = " 🔇در سوپرگروه فیلتر تمامی تصاویر متحرک ها فعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔕در سوپرگروه فیلتر تمامی تصاویر متحرک ها از قبل فعال است </i>"
+					local text = " 🔕در سوپرگروه فیلتر تمامی تصاویر متحرک ها از قبل فعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7632,10 +7631,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					mute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_doc'] = 'yes'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇در سوپرگروه فیلتر تمامی اسناد  ها فعال شد </i>"
+					local text = " 🔇در سوپرگروه فیلتر تمامی اسناد  ها فعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔕در سوپرگروه فیلتر تمامی اسناد ها از قبل فعال است </i>"
+					local text = " 🔕در سوپرگروه فیلتر تمامی اسناد ها از قبل فعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7646,10 +7645,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					mute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_media'] = 'yes'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇در سوپرگروه فیلتر تمامی رسانه  ها فعال شد </i>"
+					local text = " 🔇در سوپرگروه فیلتر تمامی رسانه  ها فعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔕در سوپرگروه فیلتر تمامی رسانه ها از قبل فعال است </i>"
+					local text = " 🔕در سوپرگروه فیلتر تمامی رسانه ها از قبل فعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7660,10 +7659,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					mute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_text'] = 'yes'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇در سوپرگروه فیلتر تمامی متن ها فعال شد </i>"
+					local text = " 🔇در سوپرگروه فیلتر تمامی متن ها فعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔕در سوپرگروه فیلتر تمامی متن ها از قبل فعال است </i>"
+					local text = " 🔕در سوپرگروه فیلتر تمامی متن ها از قبل فعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7674,10 +7673,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					mute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_all'] = 'yes'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی گفتگو ها فعال شد </i>"
+					local text = " 🔇فیلتر تمامی گفتگو ها فعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔕در سوپرگروه فیلتر تمامی گفتگو ها از قبل فعال است </i>"
+					local text = " 🔕در سوپرگروه فیلتر تمامی گفتگو ها از قبل فعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7692,10 +7691,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					unmute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_audio'] = 'no'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی صدا ها غیرفعال شد </i>"
+					local text = " 🔇فیلتر تمامی صدا ها غیرفعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔔در سوپرگروه فیلتر تمامی صدا ها از قبل غیرفعال است </i>"
+					local text = " 🔔در سوپرگروه فیلتر تمامی صدا ها از قبل غیرفعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7706,10 +7705,10 @@ if matches[1]:lower() == 'uexpiretime' and not matches[3] then
 					unmute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_forward'] = 'no'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی مطالب فوروارد شده غیرفعال شد </i>"
+					local text = " 🔇فیلتر تمامی مطالب فوروارد شده غیرفعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔔در سوپرگروه فیلتر تمامی مطالب فوروارد شده از قبل غیرفعال است </i>"
+					local text = " 🔔در سوپرگروه فیلتر تمامی مطالب فوروارد شده از قبل غیرفعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7749,10 +7748,10 @@ if matches[1]:lower() == 'welcome' then
 					unmute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_service'] = 'no'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی پیغام های ورود و خروج افراد غیرفعال شد </i>"
+					local text = " 🔇فیلتر تمامی پیغام های ورود و خروج افراد غیرفعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔔در سوپرگروه فیلتر تمامی پیغام های ورود و خروج افراد از قبل غیرفعال است </i>"
+					local text = " 🔔در سوپرگروه فیلتر تمامی پیغام های ورود و خروج افراد از قبل غیرفعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7763,10 +7762,10 @@ if matches[1]:lower() == 'welcome' then
 					unmute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_photo'] = 'no'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی تصاویر ها غیرفعال شد"
+					local text = " 🔇فیلتر تمامی تصاویر ها غیرفعال شد"
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔔در سوپرگروه فیلتر تمامی تصاویر ها از قبل غیرفعال است </i>"
+					local text = " 🔔در سوپرگروه فیلتر تمامی تصاویر ها از قبل غیرفعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7777,10 +7776,10 @@ if matches[1]:lower() == 'welcome' then
 					unmute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_video'] = 'no'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی ویدئو ها غیرفعال شد </i>"
+					local text = " 🔇فیلتر تمامی ویدئو ها غیرفعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔔در سوپرگروه فیلتر تمامی ویدئو ها از قبل غیرفعال است </i>"
+					local text = " 🔔در سوپرگروه فیلتر تمامی ویدئو ها از قبل غیرفعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7791,10 +7790,10 @@ if matches[1]:lower() == 'welcome' then
 					unmute(chat_id, msg_type) 
 					data[tostring(msg.to.id)]['settings']['mute_gif'] = 'no'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی تصاویر متحرک ها غیرفعال شد</i>"
+					local text = " 🔇فیلتر تمامی تصاویر متحرک ها غیرفعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔔در سوپرگروه فیلتر تمامی تصاویر متحرک ها از قبل غیرفعال است </i>"
+					local text = " 🔔در سوپرگروه فیلتر تمامی تصاویر متحرک ها از قبل غیرفعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7805,10 +7804,10 @@ if matches[1]:lower() == 'welcome' then
 					unmute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_doc'] = 'no'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی اسناد ها غیرفعال شد </i>"
+					local text = " 🔇فیلتر تمامی اسناد ها غیرفعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔔در سوپرگروه فیلتر تمامی اسناد ها از قبل غیرفعال است </i>"
+					local text = " 🔔در سوپرگروه فیلتر تمامی اسناد ها از قبل غیرفعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7819,10 +7818,10 @@ if matches[1]:lower() == 'welcome' then
 					unmute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_media'] = 'no'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی رسانه ها غیرفعال شد </i>"
+					local text = " 🔇فیلتر تمامی رسانه ها غیرفعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔔در سوپرگروه فیلتر تمامی رسانه ها از قبل غیرفعال است </i>"
+					local text = " 🔔در سوپرگروه فیلتر تمامی رسانه ها از قبل غیرفعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7833,10 +7832,10 @@ if matches[1]:lower() == 'welcome' then
 					unmute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_text'] = 'no'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی متن ها غیرفعال شد </i>"
+					local text = " 🔇فیلتر تمامی متن ها غیرفعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔔در سوپرگروه فیلتر تمامی متن ها از قبل غیرفعال است </i>"
+					local text = " 🔔در سوپرگروه فیلتر تمامی متن ها از قبل غیرفعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7847,10 +7846,10 @@ if matches[1]:lower() == 'welcome' then
 					unmute(chat_id, msg_type)
 					data[tostring(msg.to.id)]['settings']['mute_all'] = 'no'
                     save_data(_config.moderation.data, data)
-					local text = "<i> 🔇فیلتر تمامی گفتگو ها غیرفعال شد </i>"
+					local text = " 🔇فیلتر تمامی گفتگو ها غیرفعال شد "
 					return reply_msg(msg.id, text, ok_cb, false)
 				else
-					local text = "<i> 🔔در سوپرگروه فیلتر تمامی گفتگو ها از قبل غیرفعال است </i>"
+					local text = " 🔔در سوپرگروه فیلتر تمامی گفتگو ها از قبل غیرفعال است "
 					return reply_msg(msg.id, text, ok_cb, false)
 				end
 			end
@@ -7870,11 +7869,11 @@ if matches[1]:lower() == 'welcome' then
 				if is_muted_user(chat_id, user_id) then
 					unmute_user(chat_id, user_id)
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] removed ["..user_id.."] from the muted users list")
-					return "》  <i>کاربر </i> [<b>"..user_id.."</b>] <i>از لیست سکوت خارج شد </i>(اکنون توانایی گفتگو در گروه را داراست)"
+					return "》  کاربر ["..user_id.."] از لیست سکوت خارج شد (اکنون توانایی گفتگو در گروه را داراست)"
 				elseif is_owner(msg) then
 					mute_user(chat_id, user_id)
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] added ["..user_id.."] to the muted users list")
-					return "》  <i>کاربر </i> [<b>"..user_id.."</b>] <i>به لیست سکوت افزوده شد </i>(اکنون توانایی گفتگو در گروه را از دست داد)"
+					return "》  کاربر ["..user_id.."] به لیست سکوت افزوده شد (اکنون توانایی گفتگو در گروه را از دست داد)"
 				end
 			elseif matches[1]:lower() == "mute" and matches[2] and not string.match(matches[2], '^%d+$') then
 				local receiver = get_receiver(msg)
@@ -7898,7 +7897,7 @@ if matches[1]:lower() == 'welcome' then
 				--if is_muted_user(chat_id, user_id) then
 					unmute_user(chat_id, user_id)
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] removed ["..user_id.."] from the muted users list")
-					return "》  <i>کاربر </i> [<b>"..user_id.."</b>] <i>از لیست سکوت خارج شد </i>(اکنون توانایی گفتگو در گروه را داراست)"
+					return "》  کاربر ["..user_id.."] از لیست سکوت خارج شد (اکنون توانایی گفتگو در گروه را داراست)"
 				--elseif is_owner(msg) then
 					--unmute_user(chat_id, user_id)
 					--savelog(msg.to.id, name_log.." ["..msg.from.id.."] added ["..user_id.."] to the muted users list")
@@ -7945,15 +7944,15 @@ if matches[1]:lower() == 'welcome' then
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup mutelist")
 			local hash =  'mute_user:'..msg.to.id
 	        local list = redis:smembers(hash)
-         	local text = "🔕 <i> لیست کاربران حالت سکوت گروه </i> (<b>"..msg.to.title.."</b>) [<b>"..msg.to.id.."</b>]:\n\n"
+         	local text = "🔕 لیست کاربران حالت سکوت گروه ("..msg.to.title..") ["..msg.to.id.."]:\n\n"
          	for k,v in pairsByKeys(list) do
   	    	local user_info = redis:hgetall('user:'..v)
 	    	if user_info and user_info.print_name then
 			local print_name = string.gsub(user_info.print_name, "_", " ")
 			local print_name = string.gsub(print_name, "‮", "")
-			text = text..k.." - "..print_name.." [<b>"..v.."</b>]\n"
+			text = text..k.." - "..print_name.." ["..v.."]\n"
 		else
-		text = text..k.." - [<b>"..v.."</b>]\n"
+		text = text..k.." - ["..v.."]\n"
 	        end
         end
         return reply_msg(msg.id, text, ok_cb, false)
@@ -7964,7 +7963,7 @@ if matches[1]:lower() == 'welcome' then
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup mutelist")
 			local hash =  'mute_user:'..msg.to.id
 	        local list = redis:smembers(hash)
-         	local text = "🔕لیست کاربران حالت سکوت گروه (<i>"..msg.to.title.."</i>) [<b>"..msg.to.id.."</b>]:\n\n"
+         	local text = "🔕لیست کاربران حالت سکوت گروه ("..msg.to.title..") ["..msg.to.id.."]:\n\n"
          	for k,v in pairsByKeys(list) do
   	    	local user_info = redis:hgetall('user:'..v)
 	    	if user_info and user_info.print_name then
@@ -8374,4 +8373,4 @@ return {
   muteallgroup = muteallgroup
 }
 --End supergrpup.lua
---By @alireza_PT 
+--By @H_Terminal 
