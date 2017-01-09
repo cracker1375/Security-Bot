@@ -154,7 +154,7 @@ if is_chat_msg(msg) or is_super_group(msg) then
 					  send_msg("channel#id"..msg.to.id, '>کاربر ('..USERNAME..') به دلیل تبلیغ کردن اخراج شد  (banned)',ok_cb,false)
 					  ban_user(msg.from.id, msg.to.id)
 					elseif link_flood == 'kick' then
-					  send_msg("channel#id"..msg.to.id, '<code> ارسال تبلیغات مجاز نیست!(کاربر خاطی از گروه اخراج گردید) </code>\n <i> >مشخصات ارسال کننده تبلیغات: </i> ('..USERNAME..')\n <i> نوع تبلیغات: </i> (TEXT)\n <b>(kicked from Supergroup)</b>',ok_cb,false)
+					  send_msg("channel#id"..msg.to.id, ' ارسال تبلیغات مجاز نیست!(کاربر خاطی از گروه اخراج گردید) \n >مشخصات ارسال کننده تبلیغات: ('..USERNAME..')\n نوع تبلیغات: (TEXT)\n (kicked from Supergroup)',ok_cb,false)
 					  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
 					  kick_user(msg.from.id, msg.to.id)
@@ -196,7 +196,7 @@ send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل ارس
 		  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
             kick_user(msg.from.id, msg.to.id)
-send_large_msg(get_receiver(msg), '<i> >کاربر </i> ['..user..']  <i> به دلیل ارسال صفحات اینترنتی اخراج شد </i> <b>(kicked)</b>')
+send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل ارسال صفحات اینترنتی اخراج شد (kicked)')
             local webpage_hash = 'webpage_user:'..msg.to.id..':'..msg.from.id
             redis:set(webpage_hash, 0)-- Reset the Counter
 	          end
@@ -221,7 +221,7 @@ send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل ارس
 		  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
             kick_user(msg.from.id, msg.to.id)
-send_large_msg(get_receiver(msg), '<i> >کاربر </i> ['..user..']  <i> به دلیل ارسال تبلیغات اخراج شد </i> <b>(kicked)</b>')
+send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل ارسال تبلیغات اخراج شد (kicked)')
             local linkpro_hash = 'linkpro_user:'..msg.to.id..':'..msg.from.id
             redis:set(linkpro_hash, 0)-- Reset the Counter
 	          end
@@ -244,7 +244,7 @@ send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل است
 		  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
             kick_user(msg.from.id, msg.to.id)
-send_large_msg(get_receiver(msg), '<i> >کاربر </i> ['..user..'] <i> به علت استفاده از دستورات ربات اخراج شد </i> <b>(kicked)</b>')
+send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به علت استفاده از دستورات ربات اخراج شد (kicked)')
             local commands_hash = 'commands_user:'..msg.to.id..':'..msg.from.id
             redis:set(commands_hash, 0)-- Reset the Counter
 	          end
@@ -258,7 +258,7 @@ send_large_msg(get_receiver(msg), '<i> >کاربر </i> ['..user..'] <i> به ع
 			if is_antispambot_msg and lock_antispambot == "yes" then
 				--delete_msg(msg.id, ok_cb, false)
 				--if strict == "yes" or to_chat then
-					  send_msg("channel#id"..msg.to.id, '<i> >ربات ضد اسپم </i> ('..USERNAME..') <i> شناسایی و از گروه اخراج شد </i> <b>(kicked)</b>',ok_cb,false)
+					  send_msg("channel#id"..msg.to.id, '>ربات ضد اسپم ('..USERNAME..') شناسایی و از گروه اخراج شد (kicked)',ok_cb,false)
 					  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
 					  kick_user(msg.from.id, msg.to.id)
@@ -282,7 +282,7 @@ send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل ارس
 		  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
             kick_user(msg.from.id, msg.to.id)
-send_large_msg(get_receiver(msg), '<i> >کاربر </i> ['..user..'] <i> به دلیل ارسال تبلیغ اپراتور ها اخراج شد </i> <b>(kicked)</b>')
+send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل ارسال تبلیغ اپراتور ها اخراج شد (kicked)')
             local operator_hash = 'operator_user:'..msg.to.id..':'..msg.from.id
             redis:set(operator_hash, 0)-- Reset the Counter
 	          end
@@ -305,14 +305,14 @@ send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل ارس
 		  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
             kick_user(msg.from.id, msg.to.id)
-send_large_msg(get_receiver(msg), '<i> >کاربر </i> ['..user..'] <i> به دلیل ارسال تگ اخراج شد </i> <b>(kicked)</b>')
+send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل ارسال تگ اخراج شد (kicked)')
             local tags_hash = 'tags_user:'..msg.to.id..':'..msg.from.id
             redis:set(tags_hash, 0)-- Reset the Counter
 	          end
           end
 				local is_kickme_msg = msg.text:match("#kickme") or msg.text:match("/kickme") or msg.text:match("!kickme")
 			if is_kickme_msg and lock_kickme == "yes" then
-					  send_msg("channel#id"..msg.to.id, '<i> >کاربر </i> ('..USERNAME..') <i> به درخواست خود از گروه حذف گردید </i> <b>(kicked)</b>',ok_cb,false)
+					  send_msg("channel#id"..msg.to.id, '>کاربر ('..USERNAME..') به درخواست خود از گروه حذف گردید (kicked)',ok_cb,false)
 					  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
 					  kick_user(msg.from.id, msg.to.id)
@@ -337,7 +337,7 @@ send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل ارس
 		  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
             kick_user(msg.from.id, msg.to.id)
-send_large_msg(get_receiver(msg), '<i> >کاربر </i> ['..user..'] <i> به دلیل ارسال تبلیغات اخراج شد </i> <b>(kicked)</b>')
+send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل ارسال تبلیغات اخراج شد (kicked)')
             local publicpro_hash = 'publicpro_user:'..msg.to.id..':'..msg.from.id
             redis:set(publicity_hash, 0)-- Reset the Counter
 	          end
@@ -362,7 +362,7 @@ send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل است
 		  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
             kick_user(msg.from.id, msg.to.id)
-send_large_msg(get_receiver(msg), '<i> >کاربر </i> ['..user..'] <i> به دلیل استفاده از کلمات توهین آمیز از گروه اخراج شد </i> <b>(kicked)</b>')
+send_large_msg(get_receiver(msg), '>کاربر ['..user..'] به دلیل استفاده از کلمات توهین آمیز از گروه اخراج شد (kicked)')
             local badwords_hash = 'badwords_user:'..msg.to.id..':'..msg.from.id
             redis:set(badwords_hash, 0)-- Reset the Counter
 	          end
@@ -390,13 +390,13 @@ send_large_msg(get_receiver(msg), '<i> >کاربر </i> ['..user..'] <i> به د
             user = msg.from.first_name
             end
          if tonumber(qa_redis) == 1 and not is_momod(msg) and not msg.service then
-send_large_msg(get_receiver(msg), '<code> >کاربر </code> ['..user..'] <code> پروفایل کاربری شما تکمیل نمیباشد! </code>\n<code> این میتواند شامل موارد زیر باشد </code>\n<b>1-</b> <code> عدم وجود تصویر پروفایل </code>\n<b>2-</b> <code> عدم وجود یوزرنیم کاربری </code>\n<b>3-</b> <code> عدم وجود نام کاربری </code>\n<b>***</b> <code> لطفا موارد فوق را بررسی و نسبت به تکمیل آن اقدام کنید در غیر این صورت از فعالیت شما در گروه جلوگیری به عمل خواهد آمد </code>') 
+send_large_msg(get_receiver(msg), '>کاربر ['..user..'] پروفایل کاربری شما تکمیل نمیباشد! \n این میتواند شامل موارد زیر باشد \n 1- عدم وجود تصویر پروفایل \n 2- عدم وجود یوزرنیم کاربری \n 3- عدم وجود نام کاربری \n *** لطفا موارد فوق را بررسی و نسبت به تکمیل آن اقدام کنید در غیر این صورت از فعالیت شما در گروه جلوگیری به عمل خواهد آمد ') 
 				 elseif tonumber(qa_redis) == 2 and not is_momod(msg) and not msg.service then
-send_large_msg(get_receiver(msg), '#تذکر_دوم\n<code> >کاربر </code> ['..user..'] <code> هر چه سریع تر نسبت به تکمیل پروفایل کاربری خود اقدام کنید </code>') 
+send_large_msg(get_receiver(msg), '#تذکر_دوم\n >کاربر ['..user..'] هر چه سریع تر نسبت به تکمیل پروفایل کاربری خود اقدام کنید ') 
 				end
           if tonumber(qa_redis) == 3 and not is_momod(msg)  and not msg.service then
             kick_user(msg.from.id, msg.to.id)
-send_large_msg(get_receiver(msg), '<code> >کاربر گرامی </code> ['..user..'] <code> با توجه به تذکرات قبلی نسبت به تکمیل پروفایل کاربری و عدم توجه،از گروه اخراج میشوید </code>')
+send_large_msg(get_receiver(msg), '>کاربر گرامی ['..user..'] با توجه به تذکرات قبلی نسبت به تکمیل پروفایل کاربری و عدم توجه،از گروه اخراج میشوید ')
             local qa_hash = 'qa_user:'..msg.to.id..':'..msg.from.id
             redis:set(qa_hash, 0)-- Reset the Counter
 	          end
@@ -420,7 +420,7 @@ send_large_msg(get_receiver(msg), '<code> >کاربر گرامی </code> ['..use
 							  send_msg(get_receiver(msg), '>کاربر ('..USERNAME..') به دلیل تبلیغ کردن اخراج شد (banned)',ok_cb,false)
 							  ban_user(msg.from.id, msg.to.id)
 							elseif link_flood == 'kick' then
-							  send_msg(get_receiver(msg), '<code> تبلیغات شناسایی و کاربر ارسال کننده تبلیغات از گروه اخراج گردید </code>\n <i> >مشخصات ارسال کننده: </i> ('..USERNAME..') | <i> نوع تبلیغات: </i> (Caption/Media) (kicked from Supergroup)',ok_cb,false)
+							  send_msg(get_receiver(msg), 'تبلیغات شناسایی و کاربر ارسال کننده تبلیغات از گروه اخراج گردید \n >مشخصات ارسال کننده: ('..USERNAME..') | نوع تبلیغات: (Caption/Media) (kicked from Supergroup)',ok_cb,false)
 							  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
 							  kick_user(msg.from.id, msg.to.id)
@@ -446,7 +446,7 @@ send_large_msg(get_receiver(msg), '<code> >کاربر گرامی </code> ['..use
 							  send_msg(get_receiver(msg), '>کاربر ('..USERNAME..') به دلیل تبلیغ کردن اخراج شد (banned)',ok_cb,false)
 							  ban_user(msg.from.id, msg.to.id)
 							elseif link_flood == 'kick' then
-							  send_msg(get_receiver(msg), '<code> ارسال تبلیغات برای شما مجاز نیست!(کاربر منتشر کننده از گروه اخراج گردید) </code>\n <i> >مشخصات ارسال کننده: </i> ('..USERNAME..') \n <i> نوع تبلیغات: </i> (Caption/Media) \n(kicked from Supergroup)',ok_cb,false)
+							  send_msg(get_receiver(msg), ' ارسال تبلیغات برای شما مجاز نیست!(کاربر منتشر کننده از گروه اخراج گردید) \n >مشخصات ارسال کننده: ('..USERNAME..') \n نوع تبلیغات: (Caption/Media) \n(kicked from Supergroup)',ok_cb,false)
 							  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
 							  kick_user(msg.from.id, msg.to.id)
@@ -472,7 +472,7 @@ send_large_msg(get_receiver(msg), '<code> >کاربر گرامی </code> ['..use
 						  send_msg(get_receiver(msg), '>کاربر ('..USERNAME..') به دلیل تبلیغ کردن اخراج شد (banned)',ok_cb,false)
 						  ban_user(msg.from.id, msg.to.id)
 						elseif link_flood == 'kick' then
-						  send_msg(get_receiver(msg), '<i> >کاربر </i> ('..USERNAME..') <i> به دلیل تبلیغ کردن اخراج شد </i> <b>(kicked)</b>',ok_cb,false)
+						  send_msg(get_receiver(msg), '>کاربر ('..USERNAME..') به دلیل تبلیغ کردن اخراج شد (kicked)',ok_cb,false)
 						  delete_msg(msg.id, ok_cb, false)
 					  delete_msg(msg.id, ok_cb, false)
 						  kick_user(msg.from.id, msg.to.id)
