@@ -117,7 +117,7 @@ local function banall_by_reply(extra, success, result)
 	end
 		banall_user(result.from.peer_id)
 		send_large_msg(chat, "User "..result.from.peer_id.." Golobally Banned")
-		send_large_msg(channel, "><i> دسترسی کاربر برای ورود به تمامی گروه های ربات </i> [ @TGSecurityBOT ] <i> مسدود شد </i>\n><i> شناسه کاربری: </i> [<b>"..result.from.peer_id.."</b>]")
+		send_large_msg(channel, ">دسترسی کاربر برای ورود به تمامی گروه های ربات مسدود شد \n>شناسه کاربری:["..result.from.peer_id.."]")
 	else
 		return
 	end
@@ -135,12 +135,12 @@ local function unbanall_by_reply(extra, success, result)
 		return
 	end
      if not is_gbanned(result.from.peer_id) then
-       return '><i> کاربر مورد نظر در لیست مسدودیت دائمی ربات </i> [ @TGSecurityBOT ] <i> قرار ندارد </i>\n><i> شناسه کاربری: </i> [<b>'..result.from.peer_id..'</b>]'
+       return '> کاربر مورد نظر در لیست مسدودیت دائمی ربات قرار ندارد \n>شناسه کاربری: ['..result.from.peer_id..']'
       end
 	  if is_gbanned(result.from.peer_id) then
 		unbanall_user(result.from.peer_id)
 		send_large_msg(chat, "User "..result.from.peer_id.." Golobally un-Banned")
-		send_large_msg(channel, "><i> کاربر مورد نظر در لیست مسدودیت دائمی ربات </i> [ @TGSecurityBOT ] <i> قرار ندارد </i>\n><i> شناسه کاربری: </i> [<b>"..result.from.peer_id.."</b>]")
+		send_large_msg(channel, "> کاربر مورد نظر در لیست مسدودیت دائمی ربات قرار ندارد \n>شناسه کاربری: ["..result.from.peer_id.."]")
 	end
 	end
 end
@@ -156,7 +156,7 @@ local function unban_by_reply(extra, success, result)
 		return
 	end
 		send_large_msg(chat, "User "..result.from.peer_id.." un-Banned")
-		send_large_msg(channel, "><i> دسترسی کاربر برای ورود به گروه بازگردانده شد </i>\n><i> شناسه کاربری: </i> [<b>"..result.from.peer_id.."</b>]")
+		send_large_msg(channel, ">دسترسی کاربر برای ورود به گروه بازگردانده شد \n> شناسه کاربری: ["..result.from.peer_id.."]")
 		local hash =  'banned:'..result.to.peer_id
 		redis:srem(hash, result.from.peer_id)
 	else
@@ -173,7 +173,7 @@ local function kick_ban_res(extra, success, result)
 		receiver = 'channel#id'..chat_id
 	  end
 	  if success == 0 then
-		return send_large_msg(receiver, "<i> ℹ️این کاربر با این یوزرنیم یافت نشد </i>")
+		return send_large_msg(receiver, "ℹ️این کاربر با این یوزرنیم یافت نشد")
 	  end
       local member_id = result.peer_id
       local user_id = member_id
@@ -182,32 +182,32 @@ local function kick_ban_res(extra, success, result)
       local get_cmd = extra.get_cmd
        if get_cmd == "kick" then
          if member_id == from_id then
-            send_large_msg(receiver, "<i> ℹ️شما مجاز به اخراج کردن خود از گروه نیستید </i>")
+            send_large_msg(receiver, "ℹ️شما مجاز به اخراج کردن خود از گروه نیستید")
 			return
          end
          if is_momod2(member_id, chat_id) and not is_admin2(sender) then
-            send_large_msg(receiver, "<i> ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را برای ورود به این گروه مسدود کنید </i>")
+            send_large_msg(receiver, "ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را برای ورود به این گروه مسدود کنید")
 			return
          end
 		 kick_user(member_id, chat_id)
       elseif get_cmd == 'ban' then
         if is_momod2(member_id, chat_id) and not is_admin2(sender) then
-			send_large_msg(receiver, "<i> ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را برای ورود به این گروه مسدود کنید </i>")
+			send_large_msg(receiver, "ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را برای ورود به این گروه مسدود کنید")
 			return
         end
-        send_large_msg(receiver, '><i> دسترسی کاربر برای ورود به گروه مسدود شد </i> \n><i> یوزرنیم: </i> [@'..member..']\n><i> شناسه کاربری: </i> [<b>'..member_id..'</b>]')
+        send_large_msg(receiver, '>دسترسی کاربر برای ورود به گروه مسدود شد \n>یوزرنیم: [@'..member..']\n> شناسه کاربری: ['..member_id..']')
 		ban_user(member_id, chat_id)
       elseif get_cmd == 'unban' then
-        send_large_msg(receiver, '><i> دسترسی کاربر برای ورود به گروه بازگردانده شد </i> \n><i> یوزرنیم: </i> [@'..member..']\n><i> شناسه کاربری: </i> [<b>'..member_id..'</b>]')
+        send_large_msg(receiver, '>دسترسی کاربر برای ورود به گروه بازگردانده شد \n>یوزرنیم: [@'..member..']\n> شناسه کاربری: ['..member_id..']')
         local hash =  'banned:'..chat_id
         redis:srem(hash, member_id)
-        return '><i> دسترسی کاربر برای ورود به گروه بازگردانده شد </i> \n<i> شناسه کاربری: </i>: ['..user_id..' ]'
+        return '>دسترسی کاربر برای ورود به گروه بازگردانده شد \n<i> شناسه کاربری: ['..user_id..' ]'
       elseif get_cmd == 'banall' then
-        send_large_msg(receiver, '><i> دسترسی کاربر برای ورود به تمامی گروه های ربات </i> [ @TGSecurityBOT ] <i> مسدود شد </i>\n><i> یوزرنیم: </i> [@'..member..']\n><i> شناسه کاربری: </i> [<b>'..member_id..'</b>]')
+        send_large_msg(receiver, '> دسترسی کاربر برای ورود به تمامی گروه های ربات مسدود شد \n> یوزرنیم:  [@'..member..']\n> شناسه کاربری: ['..member_id..']')
 		banall_user(member_id)
 		kick_user(member_id, msg.to.id)
       elseif get_cmd == 'unbanall' then
-        send_large_msg(receiver, '><i> دسترسی کاربر برای ورود به تمامی گروه های ربات </i> [ @TGSecurityBOT ] <i> بازگردانده شد </i> \n><i> یوزرنیم: </i> [@'..member..']\n><i> شناسه کاربری: </i> [<b>'..member_id..'</b>]')
+        send_large_msg(receiver, '> دسترسی کاربر برای ورود به تمامی گروه های ربات بازگردانده شد \n> یوزرنیم: [@'..member..']\n> شناسه کاربری: ['..member_id..']')
 	    unbanall_user(member_id)
     end
 end
@@ -256,14 +256,14 @@ end
       end
 if matches[2] == 'globalbanlist' then 
 local hash = 'globalbanlist'
-send_large_msg(get_receiver(msg), "<i> لیست افراد قطع دسترسی شده به تمامی گروه ها با موفقیت حذف گردید </i>")
+send_large_msg(get_receiver(msg), " لیست افراد قطع دسترسی شده به تمامی گروه ها با موفقیت حذف گردید ")
 --reply_msg(msg.id, "لیست افراد قطع دسترسی شده به تمامی گروه ها با موفقیت حذف گردید", ok_cb, false)
 redis:del(hash)
      end
 if matches[2] == 'banlist' and is_owner(msg) then
 local chat_id = msg.to.id
 local hash = 'banned:'..chat_id
-send_large_msg(get_receiver(msg), "<i> لیست افراد مسدود شده برای ورود به گروه با موفقیت حذف گردید </i>")
+send_large_msg(get_receiver(msg), " لیست افراد مسدود شده برای ورود به گروه با موفقیت حذف گردید ")
 --reply_msg(msg.id, "لیست افراد مسدود شده برای ورود به گروه با موفقیت حذف گردید", ok_cb, false)
 redis:del(hash)
 end
@@ -294,14 +294,14 @@ end
           	return "you can't ban mods/owner/admins"
         end]]
         if tonumber(matches[2]) == tonumber(msg.from.id) then
-          	return "<i> ℹ️شما مجاز به اخراج کردن خود از گروه نیستید </i>"
+          	return "ℹ️شما مجاز به اخراج کردن خود از گروه نیستید"
         end
         local print_name = user_print_name(msg.from):gsub("‮", "")
 	    local name = print_name:gsub("_", "")
 		local receiver = get_receiver(msg)
         savelog(msg.to.id, name.." ["..msg.from.id.."] baned user ".. matches[2])
         ban_user(matches[2], msg.to.id)
-		send_large_msg(receiver, '><i> دسترسی کاربر برای ورود به گروه مسدود شد </i>\n><i> شناسه کاربری: </i> [<b>'..matches[2]..'</b>]')
+		send_large_msg(receiver, '>دسترسی کاربر برای ورود به گروه مسدود شد \n>شناسه کاربری: ['..matches[2]..']')
 		send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/ban1.webp", ok_cb, false)
       else
 		local cbres_extra = {
@@ -327,10 +327,10 @@ if matches[1]:lower() == 'kick' then
 			return
 		end
 		if not is_admin1(msg) and is_momod2(matches[2], msg.to.id) then
-			return "<i> ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را به این گروه مسدود کنید </i>"
+			return "ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را به این گروه مسدود کنید"
 		end
 		if tonumber(matches[2]) == tonumber(msg.from.id) then
-			return "<i> ℹ️شما مجاز به اخراج کردن خود از گروه نیستید </i>"
+			return "ℹ️شما مجاز به اخراج کردن خود از گروه نیستید"
 		end
     local user_id = matches[2]
     local chat_id = msg.to.id
@@ -365,16 +365,16 @@ end
          	return "TEST!"
         end
         --if is_admin2(msg.from.id) then
-          	--return "<i> ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را به این گروه مسدود کنید </i>"
+          	--return "ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را به این گروه مسدود کنید"
        -- end
        -- if tonumber(matches[2]) == tonumber(msg.from.id) then
-         -- 	return "<i> ℹ️شما مجاز به اخراج کردن خود از گروه نیستید </i>"
+         -- 	return "ℹ️شما مجاز به اخراج کردن خود از گروه نیستید"
        -- end
 		if not is_admin1(msg) and is_momod2(matches[2], msg.to.id) then
-			return "<i> ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را به این گروه مسدود کنید </i>"
+			return "ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را به این گروه مسدود کنید"
 		end
 		if tonumber(matches[2]) == tonumber(msg.from.id) then
-			return "<i> ℹ️شما مجاز به اخراج کردن خود از گروه نیستید </i>"
+			return "ℹ️شما مجاز به اخراج کردن خود از گروه نیستید"
 		end
         local print_name = user_print_name(msg.from):gsub("‮", "")
 	    local name = print_name:gsub("_", "")
@@ -382,7 +382,7 @@ end
         savelog(msg.to.id, name.." ["..msg.from.id.."] banedall user ".. matches[2])
         banall_user(matches[2])
 		 kick_user(matches[2], msg.to.id)
-		send_large_msg(receiver, '><i> دسترسی کاربر برای ورود به تمامی گروه های ربات </i> [ @TGSecurityBOT ] <i> مسدود شد </i> \n><i> شناسه کاربری: </i> [<b>'..matches[2]..'</b>]')
+		send_large_msg(receiver, '>دسترسی کاربر برای ورود به تمامی گروه های ربات مسدود شد \n> شناسه کاربری: ['..matches[2]..']')
 		send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/ban.webp", ok_cb, false)
       else
 		local cbres_extra = {
@@ -408,17 +408,17 @@ end
          	return
         end
         if not is_admin1(msg) and is_momod2(matches[2], msg.to.id) then
-          	return "<i> ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را به این گروه مسدود کنید </i>"
+          	return "ℹ️شما نمیتوانید دسترسی  مدیران/مالک گروه/ادمین ها را به این گروه مسدود کنید"
         end
         if tonumber(matches[2]) == tonumber(msg.from.id) then
-          	return "<i> ℹ️شما مجاز به اخراج کردن خود از گروه نیستید </i>"
+          	return "ℹ️شما مجاز به اخراج کردن خود از گروه نیستید"
         end
         local print_name = user_print_name(msg.from):gsub("‮", "")
 	    local name = print_name:gsub("_", "")
 		local receiver = get_receiver(msg)
         savelog(msg.to.id, name.." ["..msg.from.id.."] unbanedall user ".. matches[2])
         unbanall_user(matches[2])
-		send_large_msg(receiver, '><i> دسترسی کاربر برای ورود به تمامی گروه های ربات </i> [ @TGSecurityBOT ] <i> بازگردانده شد </i> \n><i> شناسه کاربری: </i> [<b>'..matches[2]..'</b>]')
+		send_large_msg(receiver, '>دسترسی کاربر برای ورود به تمامی گروه های ربات بازگردانده شد \n> شناسه کاربری: ['..matches[2]..']')
      send_document("channel#id"..msg.to.id, "/root/TeleSeed/userinfo/unban.webp", ok_cb, false)
 	 else
 		local cbres_extra = {
@@ -449,7 +449,7 @@ if matches[1]:lower() == 'unban' then-- /ban
         savelog(msg.to.id, name.." ["..msg.from.id.."] unban user ".. matches[2])
         local hash = 'banned:'..msg.to.id
          redis:srem(hash, matches[2])
-		send_large_msg(receiver, '><i> دسترسی کاربر برای ورود به گروه بازگردانده شد </i> \n><i> شناسه کاربری: </i> [<b>'..matches[2]..'</b>]')
+		send_large_msg(receiver, '> دسترسی کاربر برای ورود به گروه بازگردانده شد \n> شناسه کاربری: ['..matches[2]..']')
       else
 		local cbres_extra = {
 		chat_id = msg.to.id,
